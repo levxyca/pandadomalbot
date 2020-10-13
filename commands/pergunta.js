@@ -4,7 +4,7 @@ function randomArray(array) {
 
 exports.default = (client, target, context, message) => {
   if (String(message).includes('!pergunta')) {
-    let respostas = ['sim', 'não'];
+    let respostas = ['sim', 'com certeza', 'provavelmente', 'não'];
     let pergunta = String(message).split(' ');
 
     let resultado = randomArray(respostas);
