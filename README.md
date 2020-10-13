@@ -6,10 +6,11 @@ Panda do Mal Bot foi feito usando NodeJS e Tmi.js.
 
 Links para os comandos:
 
-[!ban](#!ban)
-[Donates](#donates)
-[!comandos](#!comandos)
-[Social](#social)
+- [!ban](#!ban)
+- [!pergunta](#!pergunta)
+- [Donates](#donates)
+- [!comandos](#!comandos)
+- [Social](#social)
 
 # !ban
 
@@ -22,6 +23,14 @@ Exemplo:
 ou
 
 `!ban @levxyca`
+
+# !pergunta
+
+Faça uma pergunta para a vida o universo e tudo mais.
+
+Exemplo:
+
+`!pergunta vai ter sorteio hoje?`
 
 # Donates
 
