@@ -1,54 +1,60 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 const { Client } = require('tmi.js');
 const { readdirSync } = require('fs');
 const fs = require('fs');
-const dotenv = require("dotenv").config();
 
-const BOT_USERNAME = process.env.BOT_USERNAME
-const CHANNEL_NAME = process.env.CHANNEL_NAME
-const OAUTH_TOKEN = process.env.OAUTH_TOKEN
+require('dotenv').config();
+
+const { BOT_USERNAME } = process.env;
+const { CHANNEL_NAME } = process.env;
+const { OAUTH_TOKEN } = process.env;
 
 const opts = {
   identity: {
-  username: BOT_USERNAME,
-  password: OAUTH_TOKEN
+    username: BOT_USERNAME,
+    password: OAUTH_TOKEN,
   },
-  channels: [ CHANNEL_NAME ]
+  channels: [CHANNEL_NAME],
 };
 
 const client = new Client(opts);
 
-//Contadores
-var countEita = 0;
-var countEitaH = 0;
-var countCalma = 0;
-var countCalmaH = 0;
-var countOh = 0;
-var countOhH = 0;
+// Contadores
+let countEita = 0;
+let countEitaH = 0;
+let countCalma = 0;
+let countCalmaH = 0;
+let countOh = 0;
+let countOhH = 0;
 
-var obj = {
-  table: {qtdEita:0, qtdCalma:0, qtdOh:0}
+const obj = {
+  table: { qtdEita: 0, qtdCalma: 0, qtdOh: 0 },
 };
 
 function escrever(data) {
-  let obj = JSON.stringify(data);
-  fs.writeFile("dados.json", obj, "utf8", (erro)=>{
+  const dataToWrite = JSON.stringify(data);
+  fs.writeFile('dados.json', dataToWrite, 'utf8', (erro) => {
     if (erro) {
+      // eslint-disable-next-line no-console
       console.log(erro);
     } else {
+      // eslint-disable-next-line no-console
       console.log('salvo');
     }
   });
 }
 
-function ler(){
-  fs.readFile("dados.json", "utf8", (erro, data)=>{
+function ler() {
+  fs.readFile('dados.json', 'utf8', (erro, data) => {
     if (erro) {
+      // eslint-disable-next-line no-console
       console.log('Deu erro no arquivo');
     } else {
-      data = JSON.parse(data);
-      countEita = data.table.qtdEita;
-      countCalma = data.table.qtdCalma;
-      countOh = data.table.qtdOh;
+      const dataReaded = JSON.parse(data);
+      countEita = dataReaded.table.qtdEita;
+      countCalma = dataReaded.table.qtdCalma;
+      countOh = dataReaded.table.qtdOh;
     }
   });
 }
@@ -62,40 +68,52 @@ readdirSync(`${__dirname}/commands`)
       if (isBot) return;
       require(`./commands/${file}`).default(client, target, context, message);
     });
-});
+  });
 
-//intercepta mensagem do chat
+// intercepta mensagem do chat
 function mensagemChegou(target, context, message, ehBot) {
   if (ehBot) {
-    return; //se for mensagens do nosso bot ele não faz nada
-  } 
+    return; // se for mensagens do nosso bot ele não faz nada
+  }
 
   switch (message) {
     case '!eita':
-      countEita = countEita + 1;
-      countEitaH = countEitaH + 1;
-      client.say(target, `/me A @levxyca já disse EITA! ${countEitaH} vezes hoje e ${countEita} vezes desde o dia 09/10/2020.`);
+      countEita += 1;
+      countEitaH += 1;
+      client.say(
+        target,
+        `/me A @levxyca já disse EITA! ${countEitaH} vezes hoje e ${countEita} vezes desde o dia 09/10/2020.`,
+      );
       obj.table.qtdEita = countEita;
       escrever(obj);
       break;
     case '!calma':
-      countCalma = countCalma + 1;
-      countCalmaH = countCalmaH + 1;
-      client.say(target, `/me A @levxyca já disse CALMA! ${countCalmaH} vezes hoje e ${countCalma} vezes desde o dia 09/10/2020.`);
+      countCalma += 1;
+      countCalmaH += 1;
+      client.say(
+        target,
+        `/me A @levxyca já disse CALMA! ${countCalmaH} vezes hoje e ${countCalma} vezes desde o dia 09/10/2020.`,
+      );
       obj.table.qtdCalma = countCalma;
       escrever(obj);
       break;
     case '!oh':
-      countOh = countOh + 1;
-      countOhH = countOhH + 1;
-      client.say(target, `/me A @levxyca já disse Ó! ${countOhH} vezes hoje e ${countOh} vezes desde o dia 09/10/2020.`);
+      countOh += 1;
+      countOhH += 1;
+      client.say(
+        target,
+        `/me A @levxyca já disse Ó! ${countOhH} vezes hoje e ${countOh} vezes desde o dia 09/10/2020.`,
+      );
       obj.table.qtdOh = countOh;
       escrever(obj);
+      break;
+    default:
       break;
   }
 }
 
 client.on('connected', (host, port) => {
+  // eslint-disable-next-line no-console
   console.log(`* Bot entrou no endereço ${host}:${port}`);
 });
 client.on('message', mensagemChegou);
