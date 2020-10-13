@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable prefer-const */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 const { Client } = require('tmi.js');
@@ -28,13 +30,13 @@ let countCalmaH = 0;
 let countOh = 0;
 let countOhH = 0;
 
-const obj = {
+let obj = {
   table: { qtdEita: 0, qtdCalma: 0, qtdOh: 0 },
 };
 
 function escrever(data) {
-  const dataToWrite = JSON.stringify(data);
-  fs.writeFile('dados.json', dataToWrite, 'utf8', (erro) => {
+  const obj = JSON.stringify(data);
+  fs.writeFile('dados.json', obj, 'utf8', (erro) => {
     if (erro) {
       // eslint-disable-next-line no-console
       console.log(erro);
@@ -51,10 +53,10 @@ function ler() {
       // eslint-disable-next-line no-console
       console.log('Deu erro no arquivo');
     } else {
-      const dataReaded = JSON.parse(data);
-      countEita = dataReaded.table.qtdEita;
-      countCalma = dataReaded.table.qtdCalma;
-      countOh = dataReaded.table.qtdOh;
+      const fileContents = JSON.parse(data);
+      countEita = fileContents.table.qtdEita;
+      countCalma = fileContents.table.qtdCalma;
+      countOh = fileContents.table.qtdOh;
     }
   });
 }
