@@ -8,9 +8,7 @@ As categorias de comandos do bot são as seguintes:
 2. [Donate e Sub](#donate)
 3. [Social](#social)
 
-
 ## Geral
-
 
 ### !ban
 
@@ -28,6 +26,13 @@ ou
 
 Lista todos os comandos já existentes.
 
+### !pergunta
+
+Faça uma pergunta para a vida o universo e tudo mais.
+
+Exemplo:
+
+`!pergunta vai ter sorteio hoje?`
 
 ## Donate e Sub
 
