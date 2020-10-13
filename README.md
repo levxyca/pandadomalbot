@@ -1,17 +1,18 @@
 # Panda do Mal Bot
 
-Panda do Mal Bot é um bot feito para a live da [Levxyca](https://twitch.tv/levxyca).
+O Panda do Mal Bot foi pensado para as lives do canal da [Levxyca](https://twitch.tv/levxyca), e está sendo desenvolvido usando NodeJS e Tmi.js.
 
-Panda do Mal Bot foi feito usando NodeJS e Tmi.js.
+As categorias de comandos do bot são as seguintes:
 
-Links para os comandos:
+1. [Geral](#geral)
+2. [Donate e Sub](#donate)
+3. [Social](#social)
 
-[!ban](#!ban)
-[Donates](#donates)
-[!comandos](#!comandos)
-[Social](#social)
 
-# !ban
+## Geral
+
+
+### !ban
 
 Digite o comando `!ban` com  o nome da pessoa.
 
@@ -23,48 +24,45 @@ ou
 
 `!ban @levxyca`
 
-# Donates
-
-Há alguns comandos para donates, como os listados á seguir:
-
-## !donate
-
-Link para fazer donate pela twitch.
-
-## !prime
-
-Link para dar um sub via Amazon Prime.
-
-## !picpay
-
-Link para doar através do PicPay
-
-## !sub
-
-Link para dar sub na live
-
-# !comandos
+### !comandos
 
 Lista todos os comandos já existentes.
 
-# Social
 
-## !social
+## Donate e Sub
 
-Mostra todas as redes da Levxyca.
+### !donate
 
-## !telegram
+Link para fazer donate pela twitch.
 
-Link do Telegram da live da Levxyca.
+### !prime
 
-## !discord
+Link para dar um sub no canal via Amazon Prime.
 
-Link do Discord da live da Levxyca.
+### !picpay
 
-## !fofinhos
+Link para doar através do PicPay.
 
-Link do grupo de WhatsApp dos Fofinhos da live da Levxyca.
+### !sub
 
-## !github
+Link para dar sub no canal.
 
-Link do Gitub da Levxyca.
+
+## Social
+
+Nesta categoria estão diversos comandos que direcionam para as redes da Levxyca:
+
+### !social
+
+Retorna os links para todas as redes da streamer.
+
+### !telegram
+
+### !discord
+
+### !fofinhos
+
+Link para um grupo de WhatsApp onde se pode enviar imagens e vídeos de bichinhos fofinhos para alegrar seu dia.
+
+### !github
+
