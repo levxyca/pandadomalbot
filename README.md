@@ -1,18 +1,16 @@
 # Panda do Mal Bot
 
-Panda do Mal Bot é um bot feito para a live da [Levxyca](https://twitch.tv/levxyca).
+O Panda do Mal Bot foi pensado para as lives do canal da [Levxyca](https://twitch.tv/levxyca), e está sendo desenvolvido usando NodeJS e Tmi.js.
 
-Panda do Mal Bot foi feito usando NodeJS e Tmi.js.
+As categorias de comandos do bot são as seguintes:
 
-Links para os comandos:
+1. [Geral](#geral)
+2. [Donate e Sub](#donate)
+3. [Social](#social)
 
-- [!ban](#!ban)
-- [!pergunta](#!pergunta)
-- [Donates](#donates)
-- [!comandos](#!comandos)
-- [Social](#social)
+## Geral
 
-# !ban
+### !ban
 
 Digite o comando `!ban` com  o nome da pessoa.
 
@@ -24,7 +22,11 @@ ou
 
 `!ban @levxyca`
 
-# !pergunta
+### !comandos
+
+Lista todos os comandos já existentes.
+
+### !pergunta
 
 Faça uma pergunta para a vida o universo e tudo mais.
 
@@ -32,48 +34,40 @@ Exemplo:
 
 `!pergunta vai ter sorteio hoje?`
 
-# Donates
+## Donate e Sub
 
-Há alguns comandos para donates, como os listados á seguir:
-
-## !donate
+### !donate
 
 Link para fazer donate pela twitch.
 
-## !prime
+### !prime
 
-Link para dar um sub via Amazon Prime.
+Link para dar um sub no canal via Amazon Prime.
 
-## !picpay
+### !picpay
 
-Link para doar através do PicPay
+Link para doar através do PicPay.
 
-## !sub
+### !sub
 
-Link para dar sub na live
+Link para dar sub no canal.
 
-# !comandos
 
-Lista todos os comandos já existentes.
+## Social
 
-# Social
+Nesta categoria estão diversos comandos que direcionam para as redes da Levxyca:
 
-## !social
+### !social
 
-Mostra todas as redes da Levxyca.
+Retorna os links para todas as redes da streamer.
 
-## !telegram
+### !telegram
 
-Link do Telegram da live da Levxyca.
+### !discord
 
-## !discord
+### !fofinhos
 
-Link do Discord da live da Levxyca.
+Link para um grupo de WhatsApp onde se pode enviar imagens e vídeos de bichinhos fofinhos para alegrar seu dia.
 
-## !fofinhos
+### !github
 
-Link do grupo de WhatsApp dos Fofinhos da live da Levxyca.
-
-## !github
-
-Link do Gitub da Levxyca.
