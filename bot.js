@@ -29,7 +29,7 @@ let countCalma = 0;
 let countCalmaH = 0;
 let countOh = 0;
 let countOhH = 0;
-
+let botOnline = true
 let obj = {
   table: { qtdEita: 0, qtdCalma: 0, qtdOh: 0 },
 };
@@ -77,7 +77,10 @@ function mensagemChegou(target, context, message, ehBot) {
   if (ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
-
+  if(botOnline){
+    client.say(target, "Estou de olho em vocês.")
+    botOnline = false
+  }
   switch (message) {
     case '!eita':
       countEita += 1;
