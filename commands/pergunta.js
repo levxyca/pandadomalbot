@@ -12,8 +12,14 @@ exports.default = (client, target, context, message) => {
   const commandName = message.trim();
 
   if (commandName.includes('!pergunta')) {
-    const answer = getAnswer();
+    message = message.split(' ');
 
-    client.say(target, `${answer} @${context.username}`);
+    if (message[0] != '!pergunta' || message == '!pergunta') {
+      client.say(target, `Para utiliza o comando !pergunta você deve digitar !pergunta 'sua pergunta'`);
+    } else {
+      const answer = getAnswer();
+
+      client.say(target, `${answer} @${context.username}`);
+    }
   }
 };
