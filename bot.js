@@ -2,15 +2,26 @@
 /* eslint-disable prefer-const */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
-const { Client } = require('tmi.js');
-const { readdirSync } = require('fs');
+
+const {
+  Client
+} = require('tmi.js');
+const {
+  readdirSync
+} = require('fs');
 const fs = require('fs');
 
 require('dotenv').config();
 
-const { BOT_USERNAME } = process.env;
-const { CHANNEL_NAME } = process.env;
-const { OAUTH_TOKEN } = process.env;
+const {
+  BOT_USERNAME
+} = process.env;
+const {
+  CHANNEL_NAME
+} = process.env;
+const {
+  OAUTH_TOKEN
+} = process.env;
 
 const opts = {
   identity: {
@@ -29,9 +40,20 @@ let countCalma = 0;
 let countCalmaH = 0;
 let countOh = 0;
 let countOhH = 0;
+let views = [];
+let pointViews = [];
+let allViews = [];
+let preso = '';
 let botOnline = true
+
 let obj = {
-  table: { qtdEita: 0, qtdCalma: 0, qtdOh: 0 },
+  table: {
+    qtdEita: 0,
+    qtdCalma: 0,
+    qtdOh: 0
+  },
+  pointViews: [],
+  allViews: []
 };
 
 function escrever(data) {
@@ -57,8 +79,16 @@ function ler() {
       countEita = fileContents.table.qtdEita;
       countCalma = fileContents.table.qtdCalma;
       countOh = fileContents.table.qtdOh;
+      pointViews = fileContents.pointViews;
+      allViews = fileContents.allViews;
     }
   });
+}
+
+function prendeView() {
+  let index = Math.floor((Math.random() * views.length));
+
+  return views[index];
 }
 
 ler();
@@ -77,10 +107,26 @@ function mensagemChegou(target, context, message, ehBot) {
   if (ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
+
+  let viewName = context.username;
+
+  if (views.indexOf(viewName) == -1) {
+    views.push(viewName);
+  }
+
+  if (allViews.indexOf(viewName) == -1) {
+    allViews.push(viewName);
+    pointViews.push({
+      name: viewName,
+      pointViews: 0
+    })
+  }
+
   if(botOnline){
     client.say(target, "Estou de olho em vocês.")
     botOnline = false
   }
+
   switch (message) {
     case '!eita':
       countEita += 1;
@@ -112,15 +158,57 @@ function mensagemChegou(target, context, message, ehBot) {
       obj.table.qtdOh = countOh;
       escrever(obj);
       break;
-    default:
-      break;
+    case '!salvar':
+      let username = context.username;
+
+      if (preso) {
+        if (Math.random() < 0.5) {
+          client.say(
+            target,
+            `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
+          );
+
+          pointViews.map((view) => {
+            if (username == view.name) {
+              view.points += 100;
+              obj.pointViews = pointViews;
+              escrever(obj);
+            }
+          });
+
+          preso = '';
+        } else {
+          client.say(
+            target,
+            `/me ${username} não conseguiu resgatar ${preso} das mãos do panda do mal.`,
+          );
+        }
+      } else {
+        client.say(
+          target,
+          `/me ${username} não tem ninguem preso.`,
+        );
+      }
+      default:
+        break;
   }
+
+  setInterval(function () {
+    if (!preso) {
+      preso = prendeView();
+
+      client.say(target, `/me prendeu ${preso}`);
+    } else {
+      client.say(target, `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`);
+    }
+  }, 10000);
 }
 
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
   console.log(`* Bot entrou no endereço ${host}:${port}`);
 });
+
 client.on('message', mensagemChegou);
 
 client.connect();
