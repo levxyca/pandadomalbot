@@ -41,9 +41,10 @@ let countCalmaH = 0;
 let countOh = 0;
 let countOhH = 0;
 let views = [];
-let preso = '';
 let pointViews = [];
 let allViews = [];
+let preso = '';
+let botOnline = true
 
 let obj = {
   table: {
@@ -119,6 +120,11 @@ function mensagemChegou(target, context, message, ehBot) {
       name: viewName,
       pointViews: 0
     })
+  }
+
+  if(botOnline){
+    client.say(target, "Estou de olho em vocês.")
+    botOnline = false
   }
 
   switch (message) {
