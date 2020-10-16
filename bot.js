@@ -42,6 +42,7 @@ let countOh = 0;
 let countOhH = 0;
 let views = [];
 let preso = '';
+let botOnline = true
 
 let obj = {
   table: {
@@ -105,6 +106,11 @@ function mensagemChegou(target, context, message, ehBot) {
 
   if (views.indexOf(viewName) == -1) {
     views.push(viewName);
+  }
+
+  if(botOnline){
+    client.say(target, "Estou de olho em vocês.")
+    botOnline = false
   }
 
   switch (message) {
