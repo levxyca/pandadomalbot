@@ -42,8 +42,6 @@ let countOh = 0;
 let countOhH = 0;
 let views = [];
 let preso = '';
-let pointViews = [];
-let allViews = [];
 
 let obj = {
   table: {
@@ -51,8 +49,6 @@ let obj = {
     qtdCalma: 0,
     qtdOh: 0
   },
-  pointViews: [],
-  allViews: []
 };
 
 function escrever(data) {
@@ -78,8 +74,6 @@ function ler() {
       countEita = fileContents.table.qtdEita;
       countCalma = fileContents.table.qtdCalma;
       countOh = fileContents.table.qtdOh;
-      pointViews = fileContents.pointViews;
-      allViews = fileContents.allViews;
     }
   });
 }
@@ -111,14 +105,6 @@ function mensagemChegou(target, context, message, ehBot) {
 
   if (views.indexOf(viewName) == -1) {
     views.push(viewName);
-  }
-
-  if (allViews.indexOf(viewName) == -1) {
-    allViews.push(viewName);
-    pointViews.push({
-      name: viewName,
-      pointViews: 0
-    })
   }
 
   switch (message) {
@@ -161,14 +147,6 @@ function mensagemChegou(target, context, message, ehBot) {
             target,
             `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
           );
-
-          pointViews.map((view) => {
-            if (username == view.name) {
-              view.points += 100;
-              obj.pointViews = pointViews;
-              escrever(obj);
-            }
-          });
 
           preso = '';
         } else {
