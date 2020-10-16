@@ -17,7 +17,7 @@ exports.default = (client, target, context, message) => {
       randomBan = Math.floor(Math.random() * 1000);
       if(randomBan > 0 && randomBan < 499){
         client.say(target,`/timeout ${splittedMessage[1]} 60`)
-        client.say(target. `/me ${splittedMessage[1]} perdeu a batalha de familias entra a familia dev e familia codes!`)
+        client.say(target, `/me ${splittedMessage[1]} perdeu a batalha de familias entra a familia dev e familia codes!`)
         client.say(target,`/me FAMILIA DEV GANHOU A RINHA DE FAMILIAS!`)
       } else if(randomBan > 500 && randomBan < 1000){
           client.say(target,`/timeout ${context.username} 60`)
@@ -28,7 +28,7 @@ exports.default = (client, target, context, message) => {
       randomBan = Math.floor(Math.random() * 1000);
       if(randomBan > 0 && randomBan < 499){
         client.say(target,`/timeout ${splittedMessage[1]} 60`)
-        client.say(target. `/me ${splittedMessage[1]} perdeu a batalha de familias entra a familia dev e familia codes!`)
+        client.say(target, `/me ${splittedMessage[1]} perdeu a batalha de familias entra a familia dev e familia codes!`)
         client.say(target,`/me FAMILIA CODES GANHOU A RINHA DE FAMILIAS!`)
       } else if(randomBan > 500 && randomBan < 1000){
           client.say(target,`/timeout ${context.username} 60`)

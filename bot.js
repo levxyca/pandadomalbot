@@ -52,6 +52,13 @@ let obj = {
   },
 };
 
+const motivoIrritacao = [
+  'puxou a orelha do panda do mal',
+  'imitou a voz do panda do mal',
+  'jogou água no panda do mal',
+  'sugeriu live de deno'
+];
+
 function escrever(data) {
   const obj = JSON.stringify(data);
   fs.writeFile('dados.json', obj, 'utf8', (erro) => {
@@ -102,13 +109,13 @@ function mensagemChegou(target, context, message, ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
 
-  let viewName = context.username;
+  let username = context.username;
 
-  if (views.indexOf(viewName) == -1) {
-    views.push(viewName);
+  if (views.indexOf(username) == -1) {
+    views.push(username);
   }
 
-  if(botOnline){
+  if (botOnline) {
     client.say(target, "Estou de olho em vocês.")
     botOnline = false
   }
@@ -145,8 +152,6 @@ function mensagemChegou(target, context, message, ehBot) {
       escrever(obj);
       break;
     case '!salvar':
-      let username = context.username;
-
       if (preso) {
         if (Math.random() < 0.5) {
           client.say(
@@ -167,8 +172,27 @@ function mensagemChegou(target, context, message, ehBot) {
           `/me ${username} não tem ninguem preso.`,
         );
       }
-      default:
-        break;
+      break;
+    case '!irritar':
+      const index = Math.floor((Math.random() * motivoIrritacao.length));
+      const irritacao = `${username} ${motivoIrritacao[index]} e `;
+
+      if (Math.random() < 0.5) {
+        client.say(
+          target,
+          `/me ${irritacao} deu azar.`,
+        );
+
+        preso = username;
+      } else {
+        client.say(
+          target,
+          `/me ${irritacao} saiu correndo.`,
+        );
+      }
+      break;
+    default:
+      break;
   }
 }
 
@@ -186,7 +210,7 @@ client.on('message', (target) => {
       }
     }, 600000);
   }
-})
+});
 
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
