@@ -164,17 +164,23 @@ function mensagemChegou(target, context, message, ehBot) {
       default:
         break;
   }
-
-  setInterval(function () {
-    if (!preso) {
-      preso = prendeView();
-
-      client.say(target, `/me prendeu ${preso}`);
-    } else {
-      client.say(target, `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`);
-    }
-  }, 10000);
 }
+
+let interval = null;
+
+client.on('message', (target) => {
+  if (interval === null) {
+    interval = setInterval(() => {
+      if (!preso) {
+        preso = prendeView();
+
+        client.say(target, `/me prendeu ${preso}`);
+      } else {
+        client.say(target, `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`);
+      }
+    }, 600000);
+  }
+})
 
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
