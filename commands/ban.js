@@ -1,7 +1,23 @@
+// Array de motivos de ban
+const motivosBan = [
+  'não saber falar o nick da levxyca.',
+  'falar mal do Panda do Mal!',
+  'tentar banir o Chico Kappa',
+]
+
+/**
+ * Retorna um motivo aleatório para o ban
+ * @return {string}
+ */
+function randomMotivoBan () {
+  const index = Math.floor(Math.random() * motivosBan.length)
+  return motivosBan[index];
+}
+
 exports.default = (client, target, context, message) => {
   const splittedMessage = String(message).split(' ');
   if (splittedMessage[0] === '!ban') {
-    const randomBan = Math.floor(Math.random() * 10000);
+    let randomBan = Math.floor(Math.random() * 10000);
     if (!(splittedMessage.length >= 2 && splittedMessage[1][0] === '@')) {
       client.say(
         target,
@@ -10,7 +26,7 @@ exports.default = (client, target, context, message) => {
     } else {
       client.say(
         target,
-        `/me ${splittedMessage[1]} recebeu um ban por não saber falar o nick da levxyca.`,
+        `/me ${splittedMessage[1]} recebeu um ban por ${randomMotivoBan()}`,
       );
     }
     if(String(context.username).toLowerCase().includes("dev") && String(splittedMessage[1]).toLowerCase().includes("codes")){
