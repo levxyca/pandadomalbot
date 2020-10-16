@@ -7,6 +7,9 @@
     "start": "nodemon bot.js",
     "lint": "eslint ."
   },
+  "nodemonConfig": {
+    "ignore": ["**/*.json"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/levxyca/pandadomalbot.git"
