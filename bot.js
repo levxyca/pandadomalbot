@@ -41,8 +41,6 @@ let countCalmaH = 0;
 let countOh = 0;
 let countOhH = 0;
 let views = [];
-let pointViews = [];
-let allViews = [];
 let preso = '';
 let botOnline = true
 
@@ -52,8 +50,6 @@ let obj = {
     qtdCalma: 0,
     qtdOh: 0
   },
-  pointViews: [],
-  allViews: []
 };
 
 function escrever(data) {
@@ -79,8 +75,6 @@ function ler() {
       countEita = fileContents.table.qtdEita;
       countCalma = fileContents.table.qtdCalma;
       countOh = fileContents.table.qtdOh;
-      pointViews = fileContents.pointViews;
-      allViews = fileContents.allViews;
     }
   });
 }
@@ -112,14 +106,6 @@ function mensagemChegou(target, context, message, ehBot) {
 
   if (views.indexOf(viewName) == -1) {
     views.push(viewName);
-  }
-
-  if (allViews.indexOf(viewName) == -1) {
-    allViews.push(viewName);
-    pointViews.push({
-      name: viewName,
-      pointViews: 0
-    })
   }
 
   if(botOnline){
@@ -168,14 +154,6 @@ function mensagemChegou(target, context, message, ehBot) {
             `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
           );
 
-          pointViews.map((view) => {
-            if (username == view.name) {
-              view.points += 100;
-              obj.pointViews = pointViews;
-              escrever(obj);
-            }
-          });
-
           preso = '';
         } else {
           client.say(
@@ -192,17 +170,23 @@ function mensagemChegou(target, context, message, ehBot) {
       default:
         break;
   }
-
-  setInterval(function () {
-    if (!preso) {
-      preso = prendeView();
-
-      client.say(target, `/me prendeu ${preso}`);
-    } else {
-      client.say(target, `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`);
-    }
-  }, 10000);
 }
+
+let interval = null;
+
+client.on('message', (target) => {
+  if (interval === null) {
+    interval = setInterval(() => {
+      if (!preso) {
+        preso = prendeView();
+
+        client.say(target, `/me prendeu ${preso}`);
+      } else {
+        client.say(target, `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`);
+      }
+    }, 600000);
+  }
+})
 
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
