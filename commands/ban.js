@@ -9,12 +9,7 @@ const motivosBan = [
  * @return {string}
  */
 function randomMotivoBan () {
-  const random = Math.random();
-  let floatIndex = random * (motivosBan.length - 1) + 1;
-  const index = Math.round(floatIndex);
-
-  if (index >= motivosBan.length) return motivosBan[index-1];
-
+  const index = Math.floor(Math.random() * motivosBan.length)
   return motivosBan[index];
 }
 
