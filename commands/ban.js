@@ -2,6 +2,7 @@
 const motivosBan = [
   'não saber falar o nick da levxyca.',
   'falar mal do Panda do Mal!',
+  'tentar banir o Chico Kappa',
 ]
 
 /**
