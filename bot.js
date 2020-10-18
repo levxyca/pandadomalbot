@@ -9,9 +9,10 @@ const {
 const {
   readdirSync
 } = require('fs');
-const fs = require('fs');
 
 require('dotenv').config();
+
+const { lerDados } = require('./utils');
 
 const {
   BOT_USERNAME
@@ -34,23 +35,10 @@ const opts = {
 const client = new Client(opts);
 
 // Contadores
-let countEita = 0;
-let countEitaH = 0;
-let countCalma = 0;
-let countCalmaH = 0;
-let countOh = 0;
-let countOhH = 0;
 let views = [];
 let preso = '';
 let botOnline = true
 
-let obj = {
-  table: {
-    qtdEita: 0,
-    qtdCalma: 0,
-    qtdOh: 0
-  },
-};
 
 const motivoIrritacao = [
   'puxou a orelha do panda do mal',
@@ -59,47 +47,20 @@ const motivoIrritacao = [
   'sugeriu live de deno'
 ];
 
-function escrever(data) {
-  const obj = JSON.stringify(data);
-  fs.writeFile('dados.json', obj, 'utf8', (erro) => {
-    if (erro) {
-      // eslint-disable-next-line no-console
-      console.log(erro);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('salvo');
-    }
-  });
-}
-
-function ler() {
-  fs.readFile('dados.json', 'utf8', (erro, data) => {
-    if (erro) {
-      // eslint-disable-next-line no-console
-      console.log('Deu erro no arquivo');
-    } else {
-      const fileContents = JSON.parse(data);
-      countEita = fileContents.table.qtdEita;
-      countCalma = fileContents.table.qtdCalma;
-      countOh = fileContents.table.qtdOh;
-    }
-  });
-}
-
 function prendeView() {
   let index = Math.floor((Math.random() * views.length));
 
   return views[index];
 }
 
-ler();
+const dados = lerDados(); 
 
 readdirSync(`${__dirname}/commands`)
   .filter((file) => file.slice(-3) === '.js')
   .forEach((file) => {
-    client.on('message', (target, context, message, isBot) => {
+    client.on('message', function(target, context, message, isBot) {
       if (isBot) return;
-      require(`./commands/${file}`).default(client, target, context, message);
+      require(`./commands/${file}`).default(client, target, context, message, dados);
     });
   });
 
@@ -121,36 +82,6 @@ function mensagemChegou(target, context, message, ehBot) {
   }
 
   switch (message) {
-    case '!eita':
-      countEita += 1;
-      countEitaH += 1;
-      client.say(
-        target,
-        `/me A @levxyca já disse EITA! ${countEitaH} vezes hoje e ${countEita} vezes desde o dia 09/10/2020.`,
-      );
-      obj.table.qtdEita = countEita;
-      escrever(obj);
-      break;
-    case '!calma':
-      countCalma += 1;
-      countCalmaH += 1;
-      client.say(
-        target,
-        `/me A @levxyca já disse CALMA! ${countCalmaH} vezes hoje e ${countCalma} vezes desde o dia 09/10/2020.`,
-      );
-      obj.table.qtdCalma = countCalma;
-      escrever(obj);
-      break;
-    case '!oh':
-      countOh += 1;
-      countOhH += 1;
-      client.say(
-        target,
-        `/me A @levxyca já disse Ó! ${countOhH} vezes hoje e ${countOh} vezes desde o dia 09/10/2020.`,
-      );
-      obj.table.qtdOh = countOh;
-      escrever(obj);
-      break;
     case '!salvar':
       if (preso) {
         if (Math.random() < 0.5) {
