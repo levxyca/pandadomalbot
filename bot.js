@@ -3,26 +3,16 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 
-const {
-  Client
-} = require('tmi.js');
-const {
-  readdirSync
-} = require('fs');
+const { Client } = require('tmi.js');
+const { readdirSync } = require('fs');
 
 require('dotenv').config();
 
 const { lerDados } = require('./utils');
 
-const {
-  BOT_USERNAME
-} = process.env;
-const {
-  CHANNEL_NAME
-} = process.env;
-const {
-  OAUTH_TOKEN
-} = process.env;
+const { BOT_USERNAME } = process.env;
+const { CHANNEL_NAME } = process.env;
+const { OAUTH_TOKEN } = process.env;
 
 const opts = {
   identity: {
@@ -37,30 +27,35 @@ const client = new Client(opts);
 // Contadores
 let views = [];
 let preso = '';
-let botOnline = true
-
+let botOnline = true;
 
 const motivoIrritacao = [
   'puxou a orelha do panda do mal',
   'imitou a voz do panda do mal',
   'jogou água no panda do mal',
-  'sugeriu live de deno'
+  'sugeriu live de deno',
 ];
 
 function prendeView() {
-  let index = Math.floor((Math.random() * views.length));
+  let index = Math.floor(Math.random() * views.length);
 
   return views[index];
 }
 
-const dados = lerDados(); 
+const dados = lerDados();
 
 readdirSync(`${__dirname}/commands`)
   .filter((file) => file.slice(-3) === '.js')
   .forEach((file) => {
-    client.on('message', function(target, context, message, isBot) {
+    client.on('message', function (target, context, message, isBot) {
       if (isBot) return;
-      require(`./commands/${file}`).default(client, target, context, message, dados);
+      require(`./commands/${file}`).default(
+        client,
+        target,
+        context,
+        message,
+        dados,
+      );
     });
   });
 
@@ -77,8 +72,8 @@ function mensagemChegou(target, context, message, ehBot) {
   }
 
   if (botOnline) {
-    client.say(target, "Estou de olho em vocês.")
-    botOnline = false
+    client.say(target, 'Estou de olho em vocês.');
+    botOnline = false;
   }
 
   switch (message) {
@@ -98,28 +93,19 @@ function mensagemChegou(target, context, message, ehBot) {
           );
         }
       } else {
-        client.say(
-          target,
-          `/me ${username} não tem ninguem preso.`,
-        );
+        client.say(target, `/me ${username} não tem ninguem preso.`);
       }
       break;
     case '!irritar':
-      const index = Math.floor((Math.random() * motivoIrritacao.length));
+      const index = Math.floor(Math.random() * motivoIrritacao.length);
       const irritacao = `${username} ${motivoIrritacao[index]} e `;
 
       if (Math.random() < 0.5) {
-        client.say(
-          target,
-          `/me ${irritacao} deu azar.`,
-        );
+        client.say(target, `/me ${irritacao} deu azar.`);
 
         preso = username;
       } else {
-        client.say(
-          target,
-          `/me ${irritacao} saiu correndo.`,
-        );
+        client.say(target, `/me ${irritacao} saiu correndo.`);
       }
       break;
     default:
@@ -137,7 +123,10 @@ client.on('message', (target) => {
 
         client.say(target, `/me prendeu ${preso}`);
       } else {
-        client.say(target, `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`);
+        client.say(
+          target,
+          `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`,
+        );
       }
     }, 600000);
   }
