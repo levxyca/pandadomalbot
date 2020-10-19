@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@400;700&display=swap');
+
+body{
+  text-align: justify;
+  font-family: 'Commissioner';
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20vh;
+  padding: 1em;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgba(0, 0, 0, 0.3);
+  transition: 400ms;
+}
+body:hover{
+  border-color: rgba(0, 0, 0, 0.5);
+}
+a{
+ text-decoration: none;
+}
+pre{
+  background-color: #282a36;
+  color: #f8f8f2;
+  padding: 1em;
+  margin: 2em;
+  border-radius: 10px;
+}
+code{
+  background-color: #282a36;
+  color: #f8f8f2;
+  padding: 2px;
+  border-radius: 5px;
+}
