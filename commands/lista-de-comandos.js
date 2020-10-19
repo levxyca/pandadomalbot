@@ -4,7 +4,7 @@ exports.default = (client, target, context, message) => {
     case '!commands':
       client.say(
         target,
-        `!ban | !social | !telegram | !discord | !fofinho | !github | !eita | !calma | !oh | !donate | !prime | !picpay | !sub | !pergunta |`,
+        `!ban | !social | !telegram | !discord | !fofinho | !github | !eita | !calma | !oh | !donate | !prime | !picpay | !sub | !pergunta | !irritar | !amor |`,
       );
       break;
     default:

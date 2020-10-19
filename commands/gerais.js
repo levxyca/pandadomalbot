@@ -30,5 +30,11 @@ exports.default = (client, target, context, message) => {
         `https://marketplace.visualstudio.com/items?itemName=jolaleye.horizon-theme-vscode`,
       );
       break;
+    case '!amor':
+      client.say(
+        target,
+        `levxycAmor levxycAmor levxycAmor levxycAmor levxycAmor levxycAmor levxycAmor levxycAmor levxycAmor levxycAmor`,
+      );
+      break;
   }
 }
