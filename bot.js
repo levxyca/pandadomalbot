@@ -120,80 +120,86 @@ function mensagemChegou(target, context, message, ehBot) {
     botOnline = false
   }
 
-  switch (message) {
-    case '!eita':
-      countEita += 1;
-      countEitaH += 1;
-      client.say(
-        target,
-        `/me A @levxyca já disse EITA! ${countEitaH} vezes hoje e ${countEita} vezes desde o dia 09/10/2020.`,
-      );
-      obj.table.qtdEita = countEita;
-      escrever(obj);
-      break;
-    case '!calma':
-      countCalma += 1;
-      countCalmaH += 1;
-      client.say(
-        target,
-        `/me A @levxyca já disse CALMA! ${countCalmaH} vezes hoje e ${countCalma} vezes desde o dia 09/10/2020.`,
-      );
-      obj.table.qtdCalma = countCalma;
-      escrever(obj);
-      break;
-    case '!oh':
-      countOh += 1;
-      countOhH += 1;
-      client.say(
-        target,
-        `/me A @levxyca já disse Ó! ${countOhH} vezes hoje e ${countOh} vezes desde o dia 09/10/2020.`,
-      );
-      obj.table.qtdOh = countOh;
-      escrever(obj);
-      break;
-    case '!salvar':
-      if (preso) {
-        if (Math.random() < 0.5) {
-          client.say(
-            target,
-            `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
-          );
+  const messageTrimmed = message.trim();
+  const messageSplited = messageTrimmed.split(" ");
+  const messageLength = messageSplited.length;
+  const messageQuantity = Number.isInteger(parseInt(messageSplited[1],10)) &&  parseInt(messageSplited[1],10) > 1 ? parseInt(messageSplited[1],10) : 1;
 
-          preso = '';
+    switch (messageSplited[0]) {
+      case '!eita':
+        countEita += messageQuantity;
+        countEitaH += messageQuantity;
+        client.say(
+          target,
+          `/me A @levxyca já disse EITA! ${countEitaH} vezes hoje e ${countEita} vezes desde o dia 09/10/2020.`,
+        );
+        obj.table.qtdEita = countEita;
+        escrever(obj);
+        break;
+      case '!calma':
+        countCalma += messageQuantity;
+        countCalmaH += messageQuantity;
+        client.say(
+          target,
+          `/me A @levxyca já disse CALMA! ${countCalmaH} vezes hoje e ${countCalma} vezes desde o dia 09/10/2020.`,
+        );
+        obj.table.qtdCalma = countCalma;
+        escrever(obj);
+        break;
+      case '!oh':
+        countOh += messageQuantity;
+        countOhH += messageQuantity;
+        client.say(
+          target,
+          `/me A @levxyca já disse Ó! ${countOhH} vezes hoje e ${countOh} vezes desde o dia 09/10/2020.`,
+        );
+        obj.table.qtdOh = countOh;
+        escrever(obj);
+        break;
+      case '!salvar':
+        if (preso) {
+          if (Math.random() < 0.5) {
+            client.say(
+              target,
+              `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
+            );
+
+            preso = '';
+          } else {
+            client.say(
+              target,
+              `/me ${username} não conseguiu resgatar ${preso} das mãos do panda do mal.`,
+            );
+          }
         } else {
           client.say(
             target,
-            `/me ${username} não conseguiu resgatar ${preso} das mãos do panda do mal.`,
+            `/me ${username} não tem ninguem preso.`,
           );
         }
-      } else {
-        client.say(
-          target,
-          `/me ${username} não tem ninguem preso.`,
-        );
-      }
-      break;
-    case '!irritar':
-      const index = Math.floor((Math.random() * motivoIrritacao.length));
-      const irritacao = `${username} ${motivoIrritacao[index]} e `;
+        break;
+      case '!irritar':
+        const index = Math.floor((Math.random() * motivoIrritacao.length));
+        const irritacao = `${username} ${motivoIrritacao[index]} e `;
 
-      if (Math.random() < 0.5) {
-        client.say(
-          target,
-          `/me ${irritacao} deu azar.`,
-        );
+        if (Math.random() < 0.5) {
+          client.say(
+            target,
+            `/me ${irritacao} deu azar.`,
+          );
 
-        preso = username;
-      } else {
-        client.say(
-          target,
-          `/me ${irritacao} saiu correndo.`,
-        );
-      }
-      break;
-    default:
-      break;
-  }
+          preso = username;
+        } else {
+          client.say(
+            target,
+            `/me ${irritacao} saiu correndo.`,
+          );
+        }
+        break;
+      default:
+        break;
+    }
+  
 }
 
 let interval = null;
