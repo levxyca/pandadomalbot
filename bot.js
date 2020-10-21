@@ -101,7 +101,9 @@ function mensagemChegou(target, context, message, ehBot) {
       const irritacao = `${username} ${motivoIrritacao[index]} e `;
 
       if (Math.random() < 0.5) {
-        client.say(target, `/me ${irritacao} deu azar.`);
+        const tempoTO = Math.floor(Math.random()*30);
+        client.say(target, `/me ${irritacao} deu azar. Vou segurar você por ${tempoTO} segundos!`);
+        client.say(target, `/timeout ${username} ${tempoTO}`);
 
         preso = username;
       } else {
