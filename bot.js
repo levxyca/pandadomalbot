@@ -65,7 +65,7 @@ function mensagemChegou(target, context, message, ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
 
-  let username = context.username;
+  let { username } = context;
 
   if (views.indexOf(username) == -1) {
     views.push(username);
@@ -79,7 +79,9 @@ function mensagemChegou(target, context, message, ehBot) {
   switch (message) {
     case '!salvar':
       if (preso) {
-        if (Math.random() < 0.5) {
+        if (preso === username) {
+          client.say(target, `/me ${username}, você não pode se salvar.`);
+        } else if (Math.random() < 0.5) {
           client.say(
             target,
             `/me ${irritacao} deu azar.`,
