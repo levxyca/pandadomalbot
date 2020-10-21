@@ -42,5 +42,12 @@ exports.default = (client, target, context, message) => {
         `levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro`,
       );
       break;
+    case '!help':
+    case '!site':
+      client.say(
+        target,
+        `levxyca.github.io/pandadomalbot/`,
+      );
+      break;
   }
 }
