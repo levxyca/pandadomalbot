@@ -26,7 +26,7 @@ npm run start
 
 - Faça o fork desse repositório em sua conta do GitHub.
 - Clone o seu fork no seu ambiente e crie uma branch a partir da `main`.
-- Faça o commit das suas alterações e envie um novo pull request tendo a branch `main` como destino.
+- Faça o commit das suas alterações e envie um novo pull request tendo a branch `test` como destino.
 
 # Comandos
 
