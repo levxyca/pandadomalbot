@@ -65,7 +65,7 @@ function mensagemChegou(target, context, message, ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
 
-  let username = context.username;
+  let { username } = context;
 
   if (views.indexOf(username) == -1) {
     views.push(username);
@@ -76,25 +76,27 @@ function mensagemChegou(target, context, message, ehBot) {
     botOnline = false;
   }
 
-  switch (message) {
-    case '!salvar':
-      if (preso) {
-        if (Math.random() < 0.5) {
-          client.say(
-            target,
-            `/me ${irritacao} deu azar.`,
-          );
-
-          preso = username;
-        } else {
-          client.say(
-            target,
-            `/me ${irritacao} saiu correndo.`,
-          );
-        }
-      } else {
-        client.say(target, `/me ${username} não tem ninguem preso.`);
-      }
+  switch (message) { 
+    case '!salvar': 
+      if (preso) { 
+        if (preso === username) { 
+          client.say(target, `/me ${username}, você não pode se salvar.`); 
+        } else if (Math.random() < 0.5) { 
+          client.say( 
+            target, 
+            `/me ${username} resgatou ${preso} das mãos do panda do mal.`, 
+          ); 
+ 
+          preso = ''; 
+        } else { 
+          client.say( 
+            target, 
+            `/me ${username} não conseguiu resgatar ${preso} das mãos do panda do mal.`, 
+          ); 
+        } 
+      } else { 
+        client.say(target, `/me ${username} não tem ninguem preso.`); 
+      } 
       break;
     case '!irritar':
       const index = Math.floor(Math.random() * motivoIrritacao.length);
