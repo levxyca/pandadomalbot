@@ -15,7 +15,7 @@ exports.default = (client, target, context, message) => {
     message = message.split(' ');
 
     if (message[0] != '!pergunta' || message == '!pergunta') {
-      client.say(target, `Para utiliza o comando !pergunta você deve digitar !pergunta 'sua pergunta'`);
+      client.say(target, `Para utilizar o comando !pergunta você deve digitar !pergunta 'sua pergunta'`);
     } else {
       const answer = getAnswer();
 
