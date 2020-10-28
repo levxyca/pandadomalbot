@@ -16,7 +16,7 @@ module.exports = {
   lerDados() {
     let dados = {};
     try {
-      const conteudoArquivo = fs.readFileSync('dados.json', 'utf8');
+      const conteudoArquivo = fs.readFileSync('dados.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
 
@@ -28,4 +28,19 @@ module.exports = {
       return dados;
     }
   },
+  lerSubs() {
+    let subs = [];
+    try {
+      const data = fs.readFileSync('subs.txt', 'utf8');
+      if (!data) return;
+      
+      const lines = data.split(/\r?\n/);
+
+      lines.forEach((line) => {
+        subs.push(line);
+      });
+    } finally {
+      return subs;
+    }
+  }
 };

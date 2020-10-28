@@ -4,11 +4,14 @@
   "description": "",
   "main": "bot.js",
   "scripts": {
-    "start": "nodemon bot.js",
+    "start": "node bot.js",
+    "dev": "nodemon bot.js",
     "lint": "eslint ."
   },
   "nodemonConfig": {
-    "ignore": ["**/*.json"]
+    "ignore": [
+      "**/*.json"
+    ]
   },
   "repository": {
     "type": "git",
