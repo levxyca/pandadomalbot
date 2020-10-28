@@ -43,6 +43,7 @@ const dados = lerDados();
 // Contadores
 let views = [];
 let preso = '';
+let tentou = [];
 let botOnline = true;
 let protegido = '';
 
@@ -108,20 +109,26 @@ function mensagemChegou(target, context, message, ehBot) {
   switch (message) {
     case '!salvar':
       if (preso) {
-        if (preso === username) {
-          client.say(target, `/me ${username}, você não pode se salvar.`);
-        } else if (Math.random() < 0.5) {
-          client.say(
-            target,
-            `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
-          );
+        if (!tentou.includes(username)) {
+          if (preso === username) {
+            client.say(target, `/me ${username}, você não pode se salvar.`);
+          } else if (Math.random() < 0.5) {
+            client.say(
+              target,
+              `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
+            );
 
-          preso = '';
+            preso = '';
+            tentou = [];
+          } else {
+            client.say(
+              target,
+              `/me ${username} não conseguiu resgatar ${preso} das mãos do panda do mal.`,
+            );
+            tentou.push(username);
+          }
         } else {
-          client.say(
-            target,
-            `/me ${username} não conseguiu resgatar ${preso} das mãos do panda do mal.`,
-          );
+          client.say(target, `/me ${username} você não pode mais resgatar ${preso} das mãos do panda do mal.`);
         }
       } else {
         client.say(target, `/me ${username} não tem ninguem preso.`);
