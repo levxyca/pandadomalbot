@@ -12,6 +12,9 @@ exports.default = (client, target, context, message) => {
     case '!discord':
       client.say(target, `https://discord.io/levxyca`);
       break;
+    case '!caverna':
+      client.say(target, `https://discord.gg/3B26RmS3Sj`);
+      break;
     case '!fofinho':
       client.say(
         target,
