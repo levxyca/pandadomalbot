@@ -60,6 +60,7 @@ exports.default = (client, target, context, message) => {
       client.say(
         target,
         `/me Os nossos sabores são: Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`
-      )
+      );
+      break;
   }
 }
