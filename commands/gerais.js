@@ -49,5 +49,17 @@ exports.default = (client, target, context, message) => {
         `levxyca.github.io/pandadomalbot/`,
       );
       break;
+    case '!picole':
+    case '!sorvete':
+      client.say(
+        target,
+        `/me Olha o sorvete e o picole fresquinho a toda hooora. Por apenas a sua ALMA!!!`,
+      );
+      break;
+    case '!sabores':
+      client.say(
+        target,
+        `/me Os nossos sabores são: Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`
+      )
   }
 }
