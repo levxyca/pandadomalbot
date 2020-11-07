@@ -3,16 +3,31 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 
-const { Client } = require('tmi.js');
-const { readdirSync } = require('fs');
+const {
+  Client
+} = require('tmi.js');
+const {
+  readdirSync
+} = require('fs');
 
 require('dotenv').config();
 
-const { lerDados, lerSubs } = require('./utils');
+const {
+  lerDados,
+  lerSubs,
+  lerPontos,
+  salvaPontos
+} = require('./utils');
 
-const { BOT_USERNAME } = process.env;
-const { CHANNEL_NAME } = process.env;
-const { OAUTH_TOKEN } = process.env;
+const {
+  BOT_USERNAME
+} = process.env;
+const {
+  CHANNEL_NAME
+} = process.env;
+const {
+  OAUTH_TOKEN
+} = process.env;
 
 const opts = {
   identity: {
@@ -26,6 +41,7 @@ const client = new Client(opts);
 
 const subs = lerSubs();
 const dados = lerDados();
+const pontos = lerPontos();
 
 // Contadores
 let views = [];
@@ -77,7 +93,9 @@ function mensagemChegou(target, context, message, ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
 
-  let { username } = context;
+  let {
+    username
+  } = context;
 
   if (views.indexOf(username) == -1) {
     if (username != protegido) {
@@ -97,6 +115,14 @@ function mensagemChegou(target, context, message, ehBot) {
               `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
             );
 
+            if (pontos[username]) {
+              pontos[username] += 100;
+            } else {
+              pontos[username] = 100;
+            }
+
+            salvaPontos(pontos);
+
             preso = '';
             tentou = [];
           } else {
@@ -115,6 +141,21 @@ function mensagemChegou(target, context, message, ehBot) {
       } else {
         client.say(target, `/me ${username} não tem ninguem preso.`);
       }
+      break;
+    case '!pontos':
+      let msg = '';
+
+      if (pontos[username]) {
+        msg = `/me ${username} você possui ${pontos[username]} pontos`;
+      } else {
+        msg = `/me ${username} você possui 0 pontos`;
+      }
+
+      client.say(
+        target,
+        msg
+      );
+
       break;
     case '!irritar':
       const index = Math.floor(Math.random() * motivoIrritacao.length);
