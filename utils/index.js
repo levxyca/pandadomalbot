@@ -42,5 +42,28 @@ module.exports = {
     } finally {
       return subs;
     }
+  },
+  lerPontos() {
+    try {
+      const conteudoArquivo = fs.readFileSync('pontos.json');
+      if (!conteudoArquivo) return;
+      dados = JSON.parse(conteudoArquivo);
+
+      return dados;
+    } finally {
+      return dados;
+    }
+  },
+  salvaPontos(data) {
+    const obj = JSON.stringify(data);
+    fs.writeFile('pontos.json', obj, 'utf8', (erro) => {
+      if (erro) {
+        // eslint-disable-next-line no-console
+        console.log(erro);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('salvo');
+      }
+    });
   }
 };
