@@ -43,6 +43,8 @@ const subs = lerSubs();
 const dados = lerDados();
 const pontos = lerPontos();
 
+const sabores = ['Shacolate', 'Leite Compensado', 'Frocus', 'Napolialma', 'Trucado', 'Motankum', 'Vambruesha'];
+
 // Contadores
 let views = [];
 let preso = '';
@@ -100,6 +102,30 @@ function mensagemChegou(target, context, message, ehBot) {
   if (views.indexOf(username) == -1) {
     if (username != protegido) {
       views.push(username);
+    }
+  }
+
+  if (message.split(' ')[0] == '!comprar') {
+    if (pontos[username] >= 50) {
+      sabor = message.split(' ')[1];
+
+      if (sabor) {
+        sabor = sabor[0].toUpperCase() + sabor.substr(1);
+      }
+
+      if (message.toLowerCase().includes('leite compensado')) {
+        sabor = 'Leite Compensado';
+      } else if (!sabores.includes(sabor)) {
+        sabor = sabores[Math.floor(Math.random() * sabores.length)];
+      }
+
+      pontos[username] -= 50;
+      
+      salvaPontos(pontos);
+
+      client.say(target, `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você!`);
+    } else {
+      client.say(target, `/me ${username} você não tem pontos suficientes, quem saiba da proxima vez!?`);
     }
   }
 
