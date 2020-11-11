@@ -135,6 +135,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
     if (user) {
       user = user.replace('@', '');
+      user = user.toLowerCase();
 
       if (pontos[user]) {
         msg = `/me ${user} você possui ${pontos[user]} pontos`;
