@@ -129,6 +129,32 @@ function mensagemChegou(target, context, message, ehBot) {
     }
   }
 
+  if (message.split(' ')[0] == '!pontos') {
+    let msg = '';
+    let user = message.split(' ')[1];
+
+    if (user) {
+      user = user.replace('@', '');
+
+      if (pontos[user]) {
+        msg = `/me ${user} você possui ${pontos[user]} pontos`;
+      } else {
+        msg = `/me ${user} você possui 0 pontos`;
+      }
+    } else {
+      if (pontos[username]) {
+        msg = `/me ${username} você possui ${pontos[username]} pontos`;
+      } else {
+        msg = `/me ${username} você possui 0 pontos`;
+      }  
+    } 
+
+    client.say(
+      target,
+      msg
+    );
+  }
+
   switch (message) {
     case '!salvar':
       if (preso) {
@@ -167,21 +193,6 @@ function mensagemChegou(target, context, message, ehBot) {
       } else {
         client.say(target, `/me ${username} não tem ninguem preso.`);
       }
-      break;
-    case '!pontos':
-      let msg = '';
-
-      if (pontos[username]) {
-        msg = `/me ${username} você possui ${pontos[username]} pontos`;
-      } else {
-        msg = `/me ${username} você possui 0 pontos`;
-      }
-
-      client.say(
-        target,
-        msg
-      );
-
       break;
     case '!irritar':
       const index = Math.floor(Math.random() * motivoIrritacao.length);
