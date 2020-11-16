@@ -68,7 +68,7 @@ module.exports = {
   },
   lerLoja() {
     try {
-      const conteudoArquivo = fs.readFileSync('loja.json');
+      const conteudoArquivo = fs.readFileSync('lojinha.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
 
@@ -79,7 +79,7 @@ module.exports = {
   },
   salvaLoja(data) {
     const obj = JSON.stringify(data);
-    fs.writeFile('loja.json', obj, 'utf8', (erro) => {
+    fs.writeFile('lojinha.json', obj, 'utf8', (erro) => {
       if (erro) {
         // eslint-disable-next-line no-console
         console.log(erro);

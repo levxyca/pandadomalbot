@@ -76,6 +76,17 @@ function protegerSub() {
 }
 
 function compraPicole(message, username) {
+  if (!loja[username]) {
+    loja[username] = {
+      Shacolate: 0,
+      'Leite Compensado': 0,
+      Frocus: 0,
+      Napolialma: 0,
+      Trushado: 0,
+      Motankum: 0,
+      Vambruesha: 0
+    }
+  }
   let sabor = message.split(' ')[1];
 
   if (sabor) {
@@ -88,11 +99,7 @@ function compraPicole(message, username) {
     sabor = sabores[Math.floor(Math.random() * sabores.length)];
   }
 
-  if (loja[username][sabor]) {
-    loja[username][sabor] += 1;
-  } else {
-    loja[username][sabor] = 1;
-  }
+  loja[username][sabor] += 1;
 
   pontos[username] -= 50;
 
