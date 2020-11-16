@@ -152,7 +152,9 @@ function verGeladeira(message, username) {
     msg = '';
 
     for (const property in loja[username]) {
-      msg += `${loja[username][property]} ${property} `;
+      if (loja[username][property] > 0) {
+        msg += `${loja[username][property]} ${property} `;
+      }
     }
 
     msg = `${username} possui ${msg}na geladeira`;
