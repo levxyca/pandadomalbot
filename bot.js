@@ -3,14 +3,9 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable global-require */
 
-const {
-  Client
-} = require('tmi.js');
+const { Client } = require('tmi.js');
 require('dotenv').config();
-const {
-  readdirSync
-} = require('fs');
-
+const { readdirSync } = require('fs');
 
 const {
   lerDados,
@@ -18,18 +13,12 @@ const {
   lerPontos,
   salvaPontos,
   lerLoja,
-  salvaLoja
+  salvaLoja,
 } = require('./utils');
 
-const {
-  BOT_USERNAME
-} = process.env;
-const {
-  CHANNEL_NAME
-} = process.env;
-const {
-  OAUTH_TOKEN
-} = process.env;
+const { BOT_USERNAME } = process.env;
+const { CHANNEL_NAME } = process.env;
+const { OAUTH_TOKEN } = process.env;
 
 const opts = {
   identity: {
@@ -46,13 +35,22 @@ const dados = lerDados();
 const pontos = lerPontos();
 const loja = lerLoja();
 
-const sabores = ['Shacolate', 'Leite Compensado', 'Frocus', 'Napolialma', 'Trushado', 'Motankum', 'Vambruesha'];
+const sabores = [
+  'Shacolate',
+  'Leite Compensado',
+  'Frocus',
+  'Napolialma',
+  'Trushado',
+  'Motankum',
+  'Vambruesha',
+];
 
 // Contadores
 let views = [];
 let preso = '';
 let tentou = [];
 let protegido = '';
+let escape = false;
 
 const motivoIrritacao = [
   'puxou a orelha do panda do mal',
@@ -84,8 +82,8 @@ function compraPicole(message, username) {
       Napolialma: 0,
       Trushado: 0,
       Motankum: 0,
-      Vambruesha: 0
-    }
+      Vambruesha: 0,
+    };
   }
   let sabor = message.split(' ')[1];
 
@@ -113,9 +111,9 @@ function verRanking(username) {
   let indexUser = null;
   let msg = 'O ranking atual é ';
 
-  const ranking = Object.entries(Object.fromEntries(
-    Object.entries(pontos).sort(([, a], [, b]) => b - a)
-  ));
+  const ranking = Object.entries(
+    Object.fromEntries(Object.entries(pontos).sort(([, a], [, b]) => b - a)),
+  );
 
   ranking.map((user, index) => {
     if (user[0] == username) {
@@ -130,7 +128,9 @@ function verRanking(username) {
   }
 
   if (indexUser != null) {
-    msg += `${username} está ${indexUser + 1}º com ${ranking[indexUser][1]} pontos`;
+    msg += `${username} está ${indexUser + 1}º com ${
+      ranking[indexUser][1]
+    } pontos`;
   } else {
     msg += `${username} não possui pontos :(`;
   }
@@ -188,9 +188,7 @@ function mensagemChegou(target, context, message, ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
 
-  let {
-    username
-  } = context;
+  let { username } = context;
 
   if (views.indexOf(username) == -1) {
     if (username != protegido) {
@@ -210,25 +208,25 @@ function mensagemChegou(target, context, message, ehBot) {
 
     const msg = verRanking(username);
 
-    client.say(
-      target,
-      msg
-    );
+    client.say(target, msg);
   } else if (message.split(' ')[0] == '!comprar') {
     if (pontos[username] >= 50) {
       const sabor = compraPicole(message, username);
 
-      client.say(target, `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você!`);
+      client.say(
+        target,
+        `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você!`,
+      );
     } else {
-      client.say(target, `/me ${username} você não tem pontos suficientes, quem saiba da proxima vez!?`);
+      client.say(
+        target,
+        `/me ${username} você não tem pontos suficientes, quem saiba da proxima vez!?`,
+      );
     }
   } else if (message.split(' ')[0] == '!geladeira') {
     const msg = verGeladeira(message, username);
 
-    client.say(
-      target,
-      msg
-    );
+    client.say(target, msg);
   } else if (message.split(' ')[0] == '!pontos') {
     let msg = '';
     let user = message.split(' ')[1];
@@ -250,10 +248,7 @@ function mensagemChegou(target, context, message, ehBot) {
       }
     }
 
-    client.say(
-      target,
-      msg
-    );
+    client.say(target, msg);
   }
 
   switch (message) {
@@ -322,6 +317,44 @@ function mensagemChegou(target, context, message, ehBot) {
         target,
         `/me ${protegido} está sob minha proteção, nem adianta tentar!`,
       );
+      break;
+    case '!escapar':
+      if (preso == username) {
+        if (!escape) {
+          if (Math.random() <= 0.1) {
+            let points = [0, 50, 100, 150, 200];
+            points = points[Math.floor(Math.random() * points.length)];
+
+            client.say(
+              target,
+              `/me ${username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
+            );
+            preso = '';
+            escape = false;
+
+            if (pontos[username]) {
+              pontos[username] += points;
+            } else {
+              pontos[username] = points;
+            }
+          } else {
+            client.say(
+              target,
+              `/me ${username} não conseguiu escapar das minhas mãos.`,
+            );
+            escape = true;
+          }
+        } else {
+          client.say(target, `/me ${username} você já tentou escapar.`);
+        }
+      }
+      break;
+    case '!preso':
+      if (preso) {
+        client.say(target, `/me ${preso} está em minhas mãos.`);
+      } else {
+        client.say(target, `/me não tem ninguem em minhas mãos.`);
+      }
       break;
     default:
       break;
