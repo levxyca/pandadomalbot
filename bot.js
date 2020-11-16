@@ -6,17 +6,19 @@
 const {
   Client
 } = require('tmi.js');
+require('dotenv').config();
 const {
   readdirSync
 } = require('fs');
 
-require('dotenv').config();
 
 const {
   lerDados,
   lerSubs,
   lerPontos,
-  salvaPontos
+  salvaPontos,
+  lerLoja,
+  salvaLoja
 } = require('./utils');
 
 const {
@@ -42,8 +44,9 @@ const client = new Client(opts);
 const subs = lerSubs();
 const dados = lerDados();
 const pontos = lerPontos();
+const loja = lerLoja();
 
-const sabores = ['Shacolate', 'Leite Compensado', 'Frocus', 'Napolialma', 'Trucado', 'Motankum', 'Vambruesha'];
+const sabores = ['Shacolate', 'Leite Compensado', 'Frocus', 'Napolialma', 'Trushado', 'Motankum', 'Vambruesha'];
 
 // Contadores
 let views = [];
@@ -70,6 +73,87 @@ function protegerSub() {
   protegido = subs[index];
 
   dados.protegido = protegido;
+}
+
+function compraPicole(message, username) {
+  let sabor = message.split(' ')[1];
+
+  if (sabor) {
+    sabor = sabor[0].toUpperCase() + sabor.substr(1);
+  }
+
+  if (message.toLowerCase().includes('leite compensado')) {
+    sabor = 'Leite Compensado';
+  } else if (!sabores.includes(sabor)) {
+    sabor = sabores[Math.floor(Math.random() * sabores.length)];
+  }
+
+  if (loja[username][sabor]) {
+    loja[username][sabor] += 1;
+  } else {
+    loja[username][sabor] = 1;
+  }
+
+  pontos[username] -= 50;
+
+  salvaLoja(loja);
+  salvaPontos(pontos);
+
+  return sabor;
+}
+
+function verRanking(username) {
+  let indexUser = null;
+  let msg = 'O ranking atual é ';
+
+  const ranking = Object.entries(Object.fromEntries(
+    Object.entries(pontos).sort(([, a], [, b]) => b - a)
+  ));
+
+  ranking.map((user, index) => {
+    if (user[0] == username) {
+      indexUser = index;
+    }
+  });
+
+  for (let i = 0; i < 3; i++) {
+    const user = ranking[i];
+
+    msg += `${i + 1}º ${user[0]} com ${user[1]} pontos. `;
+  }
+
+  if (indexUser != null) {
+    msg += `${username} está ${indexUser + 1}º com ${ranking[indexUser][1]} pontos`;
+  } else {
+    msg += `${username} não possui pontos :(`;
+  }
+
+  return msg;
+}
+
+function verGeladeira(message, username) {
+  let user = message.split(' ')[1];
+
+  if (user) {
+    user = user.replace('@', '');
+    user = user.toLowerCase();
+
+    username = user;
+  }
+
+  if (loja[username]) {
+    msg = '';
+
+    for (const property in loja[username]) {
+      msg += `${loja[username][property]} ${property} `;
+    }
+
+    msg = `${username} possui ${msg}na geladeira`;
+  } else {
+    msg = `${username} está com a geladeira vazia :(`;
+  }
+
+  return msg;
 }
 
 protegerSub();
@@ -105,31 +189,38 @@ function mensagemChegou(target, context, message, ehBot) {
     }
   }
 
-  if (message.split(' ')[0] == '!comprar') {
+  if (message.split(' ')[0] == '!rank') {
+    let user = message.split(' ')[1];
+
+    if (user) {
+      user = user.replace('@', '');
+      user = user.toLowerCase();
+
+      username = user;
+    }
+
+    const msg = verRanking(username);
+
+    client.say(
+      target,
+      msg
+    );
+  } else if (message.split(' ')[0] == '!comprar') {
     if (pontos[username] >= 50) {
-      sabor = message.split(' ')[1];
-
-      if (sabor) {
-        sabor = sabor[0].toUpperCase() + sabor.substr(1);
-      }
-
-      if (message.toLowerCase().includes('leite compensado')) {
-        sabor = 'Leite Compensado';
-      } else if (!sabores.includes(sabor)) {
-        sabor = sabores[Math.floor(Math.random() * sabores.length)];
-      }
-
-      pontos[username] -= 50;
-      
-      salvaPontos(pontos);
+      const sabor = compraPicole(message, username);
 
       client.say(target, `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você!`);
     } else {
       client.say(target, `/me ${username} você não tem pontos suficientes, quem saiba da proxima vez!?`);
     }
-  }
+  } else if (message.split(' ')[0] == '!geladeira') {
+    const msg = verGeladeira(message, username);
 
-  if (message.split(' ')[0] == '!pontos') {
+    client.say(
+      target,
+      msg
+    );
+  } else if (message.split(' ')[0] == '!pontos') {
     let msg = '';
     let user = message.split(' ')[1];
 
@@ -138,17 +229,17 @@ function mensagemChegou(target, context, message, ehBot) {
       user = user.toLowerCase();
 
       if (pontos[user]) {
-        msg = `/me ${user} você possui ${pontos[user]} pontos`;
+        msg = `/me ${user} possui ${pontos[user]} pontos`;
       } else {
-        msg = `/me ${user} você possui 0 pontos`;
+        msg = `/me ${user} possui 0 pontos`;
       }
     } else {
       if (pontos[username]) {
         msg = `/me ${username} você possui ${pontos[username]} pontos`;
       } else {
         msg = `/me ${username} você possui 0 pontos`;
-      }  
-    } 
+      }
+    }
 
     client.say(
       target,
