@@ -273,6 +273,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
             preso = '';
             tentou = [];
+            escape = false;
           } else {
             client.say(
               target,
@@ -303,6 +304,7 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/timeout ${username} ${tempoTO}`);
 
         preso = username;
+        escape = false;
       } else {
         client.say(target, `/me ${irritacao} saiu correndo.`);
       }
