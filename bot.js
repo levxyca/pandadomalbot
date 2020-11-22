@@ -115,13 +115,13 @@ function verRanking(username) {
     Object.fromEntries(Object.entries(pontos).sort(([, a], [, b]) => b - a)),
   );
 
-  ranking.map((user, index) => {
-    if (user[0] == username) {
+  ranking.forEach((user, index) => {
+    if (user[0] === username) {
       indexUser = index;
     }
   });
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i += 1) {
     const user = ranking[i];
 
     msg += `${i + 1}º ${user[0]} com ${user[1]} pontos. `;
@@ -140,26 +140,25 @@ function verRanking(username) {
 
 function verGeladeira(message, username) {
   let user = message.split(' ')[1];
+  let msg = '';
 
   if (user) {
     user = user.replace('@', '');
     user = user.toLowerCase();
-
-    username = user;
+  } else {
+    user = username;
   }
 
-  if (loja[username]) {
-    msg = '';
-
-    for (const property in loja[username]) {
-      if (loja[username][property] > 0) {
-        msg += `${loja[username][property]} ${property} `;
+  if (loja[user]) {
+    Object.keys(loja[user]).forEach((property) => {
+      if (loja[user][property] > 0) {
+        msg += `${loja[user][property]} ${property} `;
       }
-    }
+    });
 
-    msg = `${username} possui ${msg}na geladeira`;
+    msg = `${user} possui ${msg}na geladeira`;
   } else {
-    msg = `${username} está com a geladeira vazia :(`;
+    msg = `${user} está com a geladeira vazia :(`;
   }
 
   return msg;
@@ -170,7 +169,7 @@ protegerSub();
 readdirSync(`${__dirname}/commands`)
   .filter((file) => file.slice(-3) === '.js')
   .forEach((file) => {
-    client.on('message', function (target, context, message, isBot) {
+    client.on('message', (target, context, message, isBot) => {
       if (isBot) return;
       require(`./commands/${file}`).default(
         client,
@@ -190,13 +189,13 @@ function mensagemChegou(target, context, message, ehBot) {
 
   let { username } = context;
 
-  if (views.indexOf(username) == -1) {
-    if (username != protegido) {
+  if (views.indexOf(username) === -1) {
+    if (username !== protegido) {
       views.push(username);
     }
   }
 
-  if (message.split(' ')[0] == '!rank') {
+  if (message.split(' ')[0] === '!rank') {
     let user = message.split(' ')[1];
 
     if (user) {
@@ -209,7 +208,7 @@ function mensagemChegou(target, context, message, ehBot) {
     const msg = verRanking(username);
 
     client.say(target, msg);
-  } else if (message.split(' ')[0] == '!comprar') {
+  } else if (message.split(' ')[0] === '!comprar') {
     if (pontos[username] >= 50) {
       const sabor = compraPicole(message, username);
 
@@ -223,11 +222,11 @@ function mensagemChegou(target, context, message, ehBot) {
         `/me ${username} você não tem pontos suficientes, quem saiba da proxima vez!?`,
       );
     }
-  } else if (message.split(' ')[0] == '!geladeira') {
+  } else if (message.split(' ')[0] === '!geladeira') {
     const msg = verGeladeira(message, username);
 
     client.say(target, msg);
-  } else if (message.split(' ')[0] == '!pontos') {
+  } else if (message.split(' ')[0] === '!pontos') {
     let msg = '';
     let user = message.split(' ')[1];
 
@@ -240,12 +239,10 @@ function mensagemChegou(target, context, message, ehBot) {
       } else {
         msg = `/me ${user} possui 0 pontos`;
       }
+    } else if (pontos[username]) {
+      msg = `/me ${username} você possui ${pontos[username]} pontos`;
     } else {
-      if (pontos[username]) {
-        msg = `/me ${username} você possui ${pontos[username]} pontos`;
-      } else {
-        msg = `/me ${username} você possui 0 pontos`;
-      }
+      msg = `/me ${username} você possui 0 pontos`;
     }
 
     client.say(target, msg);
@@ -291,7 +288,7 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/me ${username} não tem ninguem preso.`);
       }
       break;
-    case '!irritar':
+    case '!irritar': {
       const index = Math.floor(Math.random() * motivoIrritacao.length);
       const irritacao = `${username} ${motivoIrritacao[index]} e `;
 
@@ -309,8 +306,9 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/me ${irritacao} saiu correndo.`);
       }
       break;
+    }
     case '!proteger':
-      if (context.username == 'levxyca') {
+      if (context.username === 'levxyca') {
         protegerSub();
       }
       break;
@@ -321,7 +319,7 @@ function mensagemChegou(target, context, message, ehBot) {
       );
       break;
     case '!escapar':
-      if (preso == username) {
+      if (preso === username) {
         if (!escape) {
           if (Math.random() <= 0.1) {
             let points = [0, 50, 100, 150, 200];

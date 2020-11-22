@@ -51,6 +51,8 @@ exports.default = (client, target, context, message, dados) => {
       ? dados.table[comandoContador.contadorDiario] || 0
       : 0;
 
+  const novosDados = { ...dados };
+
   const valorASerSomado =
     comandoContador.temCombo && isComboValido(combo) ? parseInt(combo, 10) : 1;
   contadorTotal += valorASerSomado;
@@ -61,9 +63,9 @@ exports.default = (client, target, context, message, dados) => {
     `/me A @levxyca já disse ${comandoContador.palavra}! ${contadorDiario} vezes hoje e ${contadorTotal} vezes desde o dia ${DATA_INICIAL}.`,
   );
 
-  dados.table[comandoContador.contadorTotal] = contadorTotal;
-  dados.table[comandoContador.contadorDiario] = contadorDiario;
-  dados.table.ultimaData = data;
+  novosDados.table[comandoContador.contadorTotal] = contadorTotal;
+  novosDados.table[comandoContador.contadorDiario] = contadorDiario;
+  novosDados.table.ultimaData = data;
 
-  salvarDados({ ...dados });
+  salvarDados({ ...novosDados });
 };

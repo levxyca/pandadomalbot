@@ -9,17 +9,16 @@ function getAnswer() {
 }
 
 exports.default = (client, target, context, message) => {
-  const commandName = message.trim();
+  const command = message.split(' ');
 
-  if (commandName.includes('!pergunta')) {
-    message = message.split(' ');
+  if (command[0] === '!pergunta' && command[1] === undefined) {
+    client.say(
+      target,
+      `Para utilizar o comando !pergunta você deve digitar !pergunta 'sua pergunta'`,
+    );
+  } else {
+    const answer = getAnswer();
 
-    if (message[0] != '!pergunta' || message == '!pergunta') {
-      client.say(target, `Para utilizar o comando !pergunta você deve digitar !pergunta 'sua pergunta'`);
-    } else {
-      const answer = getAnswer();
-
-      client.say(target, `${answer} @${context.username}`);
-    }
+    client.say(target, `${answer} @${context.username}`);
   }
 };
