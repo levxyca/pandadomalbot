@@ -358,6 +358,27 @@ function mensagemChegou(target, context, message, ehBot) {
       break;
     default:
       break;
+    case '!carinho':
+      if (Math.random() <= 0.001) {
+        let points = [1000];
+        points = points[Math.floor(Math.random() * points.length)];
+
+        client.say(
+          target,
+          `/me ${username} está fazendo o melhor carinho que eu já recebi! nhawwww 🐼 Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${points}.`,
+        );
+
+        if (pontos[username]) {
+          pontos[username] += points;
+        } else {
+          pontos[username] = points;
+        }
+      } else {
+        client.say(
+          target,
+          `/me Obrigado pelo seu carinho ${username}! 🐼 `
+        )
+      }
   }
 }
 

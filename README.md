@@ -126,7 +126,7 @@ Olha o sorvete e o picole fresquinho a toda hooora. Por apenas a sua ALMA!!!
 
 ### Prisão do panda do mal
 
-A prisão do panda do mal é uma brincadeira onde o panda prende alguém do chat aleatóriamente ou quando as pessoas tentam irritá-lo.
+A prisão do panda do mal é uma brincadeira onde o panda prende alguém do chat aleatóriamente ou quando as pessoas tentam irritá-lo. Também temos uma ação extra que pode te recompensar com 1000 pontos, porém dizem que poucos conseguem 🐼 dar o `!carinho` perfeito.
 
 #### !salvar
 
@@ -143,6 +143,10 @@ Quando você obtem sucesso em escapar, você consegue ganhar uma quantidade de p
 #### !irritar
 
 `!irritar` você pode, por sua livre e espontânea vontade tentar irritar o  panda, os riscos são por sua conta.
+
+#### !carinho
+
+`!carinho` você pode fazer carinho no panda e caso atinja o carinho PERFEITO, o panda pode te recompensar!
 
 ## Doação e Inscrições
 
