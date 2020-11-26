@@ -20,7 +20,7 @@ module.exports = {
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
 
-      return dados;
+      // return dados;
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log('Deu erro no arquivo');
@@ -29,11 +29,11 @@ module.exports = {
     }
   },
   lerSubs() {
-    let subs = [];
+    const subs = [];
     try {
       const data = fs.readFileSync('subs.txt', 'utf8');
       if (!data) return;
-      
+
       const lines = data.split(/\r?\n/);
 
       lines.forEach((line) => {
@@ -44,12 +44,11 @@ module.exports = {
     }
   },
   lerPontos() {
+    let dados = {};
     try {
       const conteudoArquivo = fs.readFileSync('pontos.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
-
-      return dados;
     } finally {
       return dados;
     }
@@ -67,12 +66,11 @@ module.exports = {
     });
   },
   lerLoja() {
+    let dados = {};
     try {
       const conteudoArquivo = fs.readFileSync('lojinha.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
-
-      return dados;
     } finally {
       return dados;
     }
@@ -88,5 +86,5 @@ module.exports = {
         console.log('salvo');
       }
     });
-  }
+  },
 };

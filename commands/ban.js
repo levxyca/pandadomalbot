@@ -1,19 +1,3 @@
-// Array de motivos de ban
-const motivosBan = [
-  'não saber falar o nick da levxyca.',
-  'falar mal do Panda do Mal!',
-  'tentar banir o Chico Kappa',
-];
-
-/**
- * Retorna um motivo aleatório para o ban
- * @return {string}
- */
-function randomMotivoBan() {
-  const index = Math.floor(Math.random() * motivosBan.length);
-  return motivosBan[index];
-}
-
 exports.default = (client, target, context, message, dados) => {
   const splittedMessage = String(message).split(' ');
   if (splittedMessage[0] === '!ban') {
@@ -21,7 +5,7 @@ exports.default = (client, target, context, message, dados) => {
       splittedMessage[1] = splittedMessage[1].substring(1);
     }
     let randomBan = Math.floor(Math.random() * 10000);
-    if (splittedMessage[1] == dados.protegido) {
+    if (splittedMessage[1] === dados.protegido) {
       client.say(target, `/timeout ${context.username} 60`);
       client.say(
         target,
@@ -67,20 +51,18 @@ exports.default = (client, target, context, message, dados) => {
         );
         client.say(target, `/me FAMILIA DEV GANHOU A RINHA DE FAMILIAS!`);
       }
-    } else {
-      if (splittedMessage.length >= 2) {
-        if (randomBan > 100 && randomBan < 1000) {
-          client.say(target, `/timeout @${splittedMessage[1]} 10`);
-          client.say(
-            target,
-            `/me @${splittedMessage[1]} foi pego pelo panda do mal.`,
-          );
-        } else if (randomBan > 1000 && randomBan < 7000) {
-          client.say(target, `/timeout ${context.username} 10`);
-          client.say(target, `${context.username} foi pego pelo panda do mal.`);
-        } else {
-          client.say(target, `Todos escaparam do panda do mal. Grrrr`);
-        }
+    } else if (splittedMessage.length >= 2) {
+      if (randomBan > 100 && randomBan < 1000) {
+        client.say(target, `/timeout @${splittedMessage[1]} 10`);
+        client.say(
+          target,
+          `/me @${splittedMessage[1]} foi pego pelo panda do mal.`,
+        );
+      } else if (randomBan > 1000 && randomBan < 7000) {
+        client.say(target, `/timeout ${context.username} 10`);
+        client.say(target, `${context.username} foi pego pelo panda do mal.`);
+      } else {
+        client.say(target, `Todos escaparam do panda do mal. Grrrr`);
       }
     }
   }

@@ -13,7 +13,10 @@ exports.default = (client, target, context, message) => {
       client.say(target, `https://discord.io/levxyca`);
       break;
     case '!caverna':
-      client.say(target, `https://discord.gg/3B26RmS3Sj - Por favor, não se esqueça de passar no canal #regras para liberar o acesso á todas as salas do nosso servidor ^^`);
+      client.say(
+        target,
+        `https://discord.gg/3B26RmS3Sj - Por favor, não se esqueça de passar no canal #regras para liberar o acesso á todas as salas do nosso servidor ^^`,
+      );
       break;
     case '!fofinho':
       client.say(

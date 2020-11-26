@@ -44,10 +44,7 @@ exports.default = (client, target, context, message) => {
       break;
     case '!help':
     case '!site':
-      client.say(
-        target,
-        `levxyca.github.io/pandadomalbot/`,
-      );
+      client.say(target, `levxyca.github.io/pandadomalbot/`);
       break;
     case '!picole':
     case '!sorvete':
@@ -59,8 +56,10 @@ exports.default = (client, target, context, message) => {
     case '!sabores':
       client.say(
         target,
-        `/me Os nossos sabores são: Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`
+        `/me Os nossos sabores são: Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`,
       );
       break;
+    default:
+      break;
   }
-}
+};
