@@ -1,5 +1,5 @@
 function getAnswer() {
-  const answers = ['sim', 'não', 'provavelmente', 'com certeza'];
+  const answers = ['sim', 'não', 'provavelmente', 'com certeza', 'hmmmmmm, será?', 'o que você acha?'];
 
   const answersCount = answers.length;
 
@@ -16,7 +16,7 @@ exports.default = (client, target, context, message) => {
       target,
       `Para utilizar o comando !pergunta você deve digitar !pergunta 'sua pergunta'`,
     );
-  } else {
+  } else if (command[0] === '!pergunta') {
     const answer = getAnswer();
 
     client.say(target, `${answer} @${context.username}`);
