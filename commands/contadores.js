@@ -39,6 +39,12 @@ exports.default = (client, target, context, message, dados) => {
     new Date().getFullYear(),
   ].join('/');
 
+  if (dados.table.ultimaData != data){
+    dados.table["qtdEitaH"] = 0;
+    dados.table["qtdCalmaH"] = 0;
+    dados.table["qtdOhH"] = 0;
+  };
+
   const commandName = message.trim();
   const [comando, combo] = commandName.split(' ');
   const comandoContador = COMANDOS_CONTADORES[comando];
@@ -46,6 +52,7 @@ exports.default = (client, target, context, message, dados) => {
   if (!comandoContador) return;
 
   let contadorTotal = dados.table[comandoContador.contadorTotal] || 0;
+
   let contadorDiario =
     dados.table.ultimaData === data
       ? dados.table[comandoContador.contadorDiario] || 0
