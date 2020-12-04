@@ -65,19 +65,19 @@ module.exports = {
       }
     });
   },
-  lerPontosM() {
+  lerCarteira() {
     let dados = {};
     try {
-      const conteudoArquivo = fs.readFileSync('pontosM.json');
+      const conteudoArquivo = fs.readFileSync('carteira.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
     } finally {
       return dados;
     }
   },
-  salvaPontosM(data) {
+  salvaCarteira(data) {
     const obj = JSON.stringify(data);
-    fs.writeFile('pontosM.json', obj, 'utf8', (erro) => {
+    fs.writeFile('carteira.json', obj, 'utf8', (erro) => {
       if (erro) {
         // eslint-disable-next-line no-console
         console.log(erro);

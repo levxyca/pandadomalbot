@@ -12,8 +12,8 @@ const {
   lerSubs,
   lerPontos,
   salvaPontos,
-  lerPontosM,
-  salvaPontosM,
+  lerCarteira,
+  salvaCarteira,
   lerLoja,
   salvaLoja,
 } = require('./utils');
@@ -35,7 +35,7 @@ const client = new Client(opts);
 const subs = lerSubs();
 const dados = lerDados();
 const pontos = lerPontos();
-const pontosM = lerPontosM();
+const carteira = lerCarteira();
 const loja = lerLoja();
 
 const sabores = [
@@ -102,10 +102,10 @@ function compraPicole(message, username) {
 
   loja[username][sabor] += 1;
 
-  pontos[username] -= 50;
+  carteira[username] -= 50;
 
   salvaLoja(loja);
-  salvaPontos(pontos);
+  salvaCarteira(carteira);
 
   return sabor;
 }
@@ -212,7 +212,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
     client.say(target, msg);
   } else if (message.split(' ')[0] === '!comprar') {
-    if (pontos[username] >= 50) {
+    if (carteira[username] >= 50) {
       const sabor = compraPicole(message, username);
 
       client.say(
@@ -222,7 +222,7 @@ function mensagemChegou(target, context, message, ehBot) {
     } else {
       client.say(
         target,
-        `/me ${username} você não tem pontos suficientes, quem saiba da proxima vez!?`,
+        `/me ${username} você não tem pontos suficientes, quem sabe da proxima vez!?`,
       );
     }
   } else if (message.split(' ')[0] === '!geladeira') {
@@ -237,15 +237,35 @@ function mensagemChegou(target, context, message, ehBot) {
       user = user.replace('@', '');
       user = user.toLowerCase();
 
-      if (pontos[user] || pontosM[user]) {
-        msg = `/me ${user} possui ${pontos[user]} pontos da enternidade e ${pontosM[user]} pontos deste mês. `;
+      if (pontos[user]) {
+        msg = `/me ${user} possui ${pontos[user]} pontos.`;
       } else {
         msg = `/me ${user} possui 0 pontos`;
       }
-    } else if (pontos[username] || pontosM[username]) {
-      msg = `/me ${username} você possui ${pontos[username]} pontos da enternidade e ${pontosM[username]} pontos deste mês.`;
+    } else if (pontos[username]) {
+      msg = `/me ${username} você possui ${pontos[username]} pontos.`;
     } else {
-      msg = `/me ${username} você possui 0 pontos`;
+      msg = `/me Poxa, ${username}! Você ainda não possui pontos.`;
+    }
+
+    client.say(target, msg);
+  } else if (message.split(' ')[0] === '!carteira') {
+    let msg = '';
+    let user = message.split(' ')[1];
+
+    if (user) {
+      user = user.replace('@', '');
+      user = user.toLowerCase();
+
+      if (carteira[user]) {
+        msg = `/me ${user} possui ${carteira[user]} panda coins.`;
+      } else {
+        msg = `/me ${user} possui 0 panda coins`;
+      }
+    } else if (carteira[username]) {
+      msg = `/me ${username} você possui ${pontos[username]} panda coins.`;
+    } else {
+      msg = `/me Poxa, ${username}! Você ainda não possui panda coins.`;
     }
 
     client.say(target, msg);
@@ -269,14 +289,15 @@ function mensagemChegou(target, context, message, ehBot) {
               pontos[username] = 100;
             }
 
-            if (pontosM[username]) {
-              pontosM[username] += 100;
+            salvaPontos(pontos);
+
+            if (carteira[username]) {
+              carteira[username] += 100;
             } else {
-              pontosM[username] = 100;
+              carteira[username] = 100;
             }
 
-            salvaPontos(pontos);
-            salvaPontosM(pontosM);
+            salvaCarteira(carteira);
 
             preso = '';
             tentou = [];
@@ -348,10 +369,10 @@ function mensagemChegou(target, context, message, ehBot) {
               pontos[username] = points;
             }
 
-            if (pontosM[username]) {
-              pontosM[username] += points;
+            if (carteira[username]) {
+              carteira[username] += points;
             } else {
-              pontosM[username] = points;
+              carteira[username] = points;
             }
           } else {
             client.say(
@@ -384,10 +405,10 @@ function mensagemChegou(target, context, message, ehBot) {
           `/me ${username} está fazendo o melhor carinho que eu já recebi! nhawwww 🐼 Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${points}.`,
         );
 
-        if (pontos[username]) {
-          pontos[username] += points;
+        if (carteira[username]) {
+          carteira[username] += points;
         } else {
-          pontos[username] = points;
+          carteira[username] = points;
         }
       } else {
         client.say(target, `/me Obrigado pelo seu carinho ${username}! 🐼 `);
@@ -407,7 +428,7 @@ client.on('message', (target) => {
       } else {
         client.say(
           target,
-          `/me ${preso} está nas mãos do panda do mal. Digita !salvar para poder salvar.`,
+          `/me ${preso} está nas mãos do panda do mal. Digite !salvar para poder salvar.`,
         );
       }
     }, 600000);
