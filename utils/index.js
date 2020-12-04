@@ -65,6 +65,28 @@ module.exports = {
       }
     });
   },
+  lerPontosM() {
+    let dados = {};
+    try {
+      const conteudoArquivo = fs.readFileSync('pontosM.json');
+      if (!conteudoArquivo) return;
+      dados = JSON.parse(conteudoArquivo);
+    } finally {
+      return dados;
+    }
+  },
+  salvaPontosM(data) {
+    const obj = JSON.stringify(data);
+    fs.writeFile('pontosM.json', obj, 'utf8', (erro) => {
+      if (erro) {
+        // eslint-disable-next-line no-console
+        console.log(erro);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('salvo');
+      }
+    });
+  },
   lerLoja() {
     let dados = {};
     try {

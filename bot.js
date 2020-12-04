@@ -12,6 +12,8 @@ const {
   lerSubs,
   lerPontos,
   salvaPontos,
+  lerPontosM,
+  salvaPontosM,
   lerLoja,
   salvaLoja,
 } = require('./utils');
@@ -33,6 +35,7 @@ const client = new Client(opts);
 const subs = lerSubs();
 const dados = lerDados();
 const pontos = lerPontos();
+const pontosM = lerPontosM();
 const loja = lerLoja();
 
 const sabores = [
@@ -234,13 +237,13 @@ function mensagemChegou(target, context, message, ehBot) {
       user = user.replace('@', '');
       user = user.toLowerCase();
 
-      if (pontos[user]) {
-        msg = `/me ${user} possui ${pontos[user]} pontos`;
+      if (pontos[user] || pontosM[user]) {
+        msg = `/me ${user} possui ${pontos[user]} pontos da enternidade e ${pontosM[user]} pontos deste mês. `;
       } else {
         msg = `/me ${user} possui 0 pontos`;
       }
-    } else if (pontos[username]) {
-      msg = `/me ${username} você possui ${pontos[username]} pontos`;
+    } else if (pontos[username] || pontosM[username]) {
+      msg = `/me ${username} você possui ${pontos[username]} pontos da enternidade e ${pontosM[username]} pontos deste mês.`;
     } else {
       msg = `/me ${username} você possui 0 pontos`;
     }
@@ -266,7 +269,14 @@ function mensagemChegou(target, context, message, ehBot) {
               pontos[username] = 100;
             }
 
+            if (pontosM[username]) {
+              pontosM[username] += 100;
+            } else {
+              pontosM[username] = 100;
+            }
+
             salvaPontos(pontos);
+            salvaPontosM(pontosM);
 
             preso = '';
             tentou = [];
@@ -337,6 +347,12 @@ function mensagemChegou(target, context, message, ehBot) {
             } else {
               pontos[username] = points;
             }
+
+            if (pontosM[username]) {
+              pontosM[username] += points;
+            } else {
+              pontosM[username] = points;
+            }
           } else {
             client.say(
               target,
@@ -374,10 +390,7 @@ function mensagemChegou(target, context, message, ehBot) {
           pontos[username] = points;
         }
       } else {
-        client.say(
-          target,
-          `/me Obrigado pelo seu carinho ${username}! 🐼 `
-        )
+        client.say(target, `/me Obrigado pelo seu carinho ${username}! 🐼 `);
       }
   }
 }
