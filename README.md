@@ -126,19 +126,19 @@ Olha o sorvete e o picole fresquinho a toda hooora. Por apenas a sua ALMA!!!
 
 ### Prisão do panda do mal
 
-A prisão do panda do mal é uma brincadeira onde o panda prende alguém do chat aleatóriamente ou quando as pessoas tentam irritá-lo. Também temos uma ação extra que pode te recompensar com 1000 pontos, porém dizem que poucos conseguem 🐼 dar o `!carinho` perfeito.
+A prisão do panda do mal é uma brincadeira onde o panda prende alguém do chat aleatóriamente ou quando as pessoas tentam irritá-lo. Também temos uma ação extra que pode te recompensar com 1000 pandacoins🐼, porém dizem que poucos conseguem dar o `!carinho` perfeito.
 
 #### !salvar
 
 `!salvar` você pode usar esse comando quando alguém do chat foi pego para tentar salva-lo.
 
-Cada vez que você salva alguém, você consegue obter pontos. Para ver seus pontos, bastar usar o `!pontos`.
+Cada vez que você salva alguém, você consegue obter pontos e pandacoins🐼. Para ver seus pontos, bastar usar o `!pontos` e para ver o seu saldo de pandacoins🐼 `!carteira`.
 
 #### !escapar
 
 `!escapar` serve para quando você for pego pelo panda e quiser tentar fugir. Você tem apenas uma chance para obter sucesso!
 
-Quando você obtem sucesso em escapar, você consegue ganhar uma quantidade de pontos aleatória.
+Quando você obtem sucesso em escapar, você consegue ganhar uma quantidade de pontos e pandacoins🐼 aleatória.
 
 #### !irritar
 

@@ -161,7 +161,7 @@ function verGeladeira(message, username) {
       }
     });
 
-    msg = `${user} possui ${msg}na geladeira`;
+    msg = `${user} possui ${msg}na geladeira 🔎`;
   } else {
     msg = `${user} está com a geladeira vazia :(`;
   }
@@ -219,12 +219,12 @@ function mensagemChegou(target, context, message, ehBot) {
 
       client.say(
         target,
-        `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você!`,
+        `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você! 🍦`,
       );
     } else {
       client.say(
         target,
-        `/me ${username} você não tem pontos suficientes, quem sabe da proxima vez!?`,
+        `/me ${username} você não tem pandacoins🐼 suficientes, quem sabe da proxima vez!?`,
       );
     }
   } else if (message.split(' ')[0] === '!geladeira') {
@@ -260,14 +260,14 @@ function mensagemChegou(target, context, message, ehBot) {
       user = user.toLowerCase();
 
       if (carteira[user]) {
-        msg = `/me ${user} possui ${carteira[user]} panda coins.`;
+        msg = `/me ${user} possui ${carteira[user]} pandacoins🐼.`;
       } else {
         msg = `/me ${user} possui 0 panda coins`;
       }
     } else if (carteira[username]) {
-      msg = `/me ${username} você possui ${pontos[username]} panda coins.`;
+      msg = `/me ${username} você possui ${pontos[username]} pandacoins🐼.`;
     } else {
-      msg = `/me Poxa, ${username}! Você ainda não possui panda coins.`;
+      msg = `/me Poxa, ${username}! Você ainda não possui pandacoins🐼.`;
     }
 
     client.say(target, msg);
@@ -344,7 +344,15 @@ function mensagemChegou(target, context, message, ehBot) {
 
         salvaPontos(pontos);
 
-        client.say(target, `/me ${irritacao} saiu correndo.`);
+        if (carteira[username]) {
+          carteira[username] += 100;
+        } else {
+          carteira[username] = 100;
+        }
+
+        salvaCarteira(carteira);
+
+        client.say(target, `/me ${irritacao} saiu correndo. Grrrr`);
       }
       break;
     }
@@ -412,7 +420,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
         client.say(
           target,
-          `/me ${username} está fazendo o melhor carinho que eu já recebi! nhawwww 🐼 Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${points}.`,
+          `/me ${username} está fazendo o melhor carinho que eu já recebi! nhawwww Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${points} pandacoins🐼.`,
         );
 
         if (carteira[username]) {
@@ -438,7 +446,7 @@ client.on('message', (target) => {
       } else {
         client.say(
           target,
-          `/me ${preso} está nas mãos do panda do mal. Digite !salvar para poder salvar.`,
+          `/me ${preso} está nas minhas mãos. Digite !salvar para tentar salvar.`,
         );
       }
     }, 600000);
