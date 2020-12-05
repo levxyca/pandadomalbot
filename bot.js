@@ -336,6 +336,14 @@ function mensagemChegou(target, context, message, ehBot) {
         preso = username;
         escape = false;
       } else {
+        if (pontos[username]) {
+          pontos[username] += 100;
+        } else {
+          pontos[username] = 100;
+        }
+
+        salvaPontos(pontos);
+
         client.say(target, `/me ${irritacao} saiu correndo.`);
       }
       break;
