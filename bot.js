@@ -124,7 +124,9 @@ function verRanking(username) {
     }
   });
 
-  for (let i = 0; i < 3; i += 1) {
+  let counter = ranking.length < 3 ? ranking.length : 3;
+
+  for (let i = 0; i < counter; i += 1) {
     const user = ranking[i];
 
     msg += `${i + 1}º ${user[0]} com ${user[1]} pontos. `;
