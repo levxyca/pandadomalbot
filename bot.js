@@ -303,6 +303,14 @@ function mensagemChegou(target, context, message, ehBot) {
         preso = username;
         escape = false;
       } else {
+        if (pontos[username]) {
+          pontos[username] += 100;
+        } else {
+          pontos[username] = 100;
+        }
+
+        salvaPontos(pontos);
+
         client.say(target, `/me ${irritacao} saiu correndo.`);
       }
       break;
@@ -374,10 +382,7 @@ function mensagemChegou(target, context, message, ehBot) {
           pontos[username] = points;
         }
       } else {
-        client.say(
-          target,
-          `/me Obrigado pelo seu carinho ${username}! 🐼 `
-        )
+        client.say(target, `/me Obrigado pelo seu carinho ${username}! 🐼 `);
       }
   }
 }
