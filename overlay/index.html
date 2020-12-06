@@ -5,13 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 
 <body>
     <div id="app"></div>
 
-    <script src="js/script.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const app = document.querySelector('#app');
+        const socket = io();
+
+        socket.on('alimentar', (msg) => {
+            app.innerHTML = "<h1>Alimentou !</h1>";
+            console.log(msg);
+        })
+    </script>
 </body>
 
 </html>

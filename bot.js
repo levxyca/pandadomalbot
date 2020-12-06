@@ -6,6 +6,15 @@
 const { Client } = require('tmi.js');
 require('dotenv').config();
 const { readdirSync } = require('fs');
+const express = require('express');
+
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/overlay/index.html`);
+});
 
 const {
   lerDados,
@@ -374,10 +383,7 @@ function mensagemChegou(target, context, message, ehBot) {
           pontos[username] = points;
         }
       } else {
-        client.say(
-          target,
-          `/me Obrigado pelo seu carinho ${username}! 🐼 `
-        )
+        client.say(target, `/me Obrigado pelo seu carinho ${username}! 🐼 `);
       }
   }
 }
@@ -401,6 +407,19 @@ client.on('message', (target) => {
   }
 });
 
+io.on('connection', (socket) => {
+  // eslint-disable-next-line no-console
+  console.log('Conectou com overlay');
+
+  client.on('message', (target, context, message, ehBot) => {
+    if (ehBot) return;
+
+    if (message === '!alimentar') {
+      socket.broadcast.emit('alimentar', true);
+    }
+  });
+});
+
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
   console.log(`* Bot entrou no endereço ${host}:${port}`);
@@ -412,3 +431,8 @@ client.on('connected', (host, port) => {
 client.on('message', mensagemChegou);
 
 client.connect();
+
+http.listen(3000, () => {
+  // eslint-disable-next-line no-console
+  console.log('Servidor rodando');
+});
