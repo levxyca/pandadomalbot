@@ -3,19 +3,20 @@ exports.default = (client, target, context, message) => {
     case '!caraio':
       client.say(
         target,
-        `Acho que cê ta na live errada Kappa. A certa é essa aqui: twitch.tv/pachicodes`,
+        `A pachi já disse... Espera! Acho que cê ta na live errada Kappa A certa é essa aqui: twitch.tv/pachicodes`,
       );
       break;
-    case '!selvagem':
+    case '!selva':
       client.say(
         target,
-        `Acho que cê ta na live errada Kappa. A certa é essa aqui: twitch.tv/pokemaobr`,
+        `${context.username} você conseguiu uma captura selvagem nova. Digite... Oh não! Acho que cê ta na live errada Kappa A certa é essa aqui: twitch.tv/pokemaobr`,
       );
       break;
     case '!capturar':
+    case '!selvagem':
       client.say(
         target,
-        `Acho que cê ta na live errada Kappa. A certa é essa aqui: twitch.tv/pokemaobr`,
+        `${context.username} você capturou um exemplar da linguagem... Oh não! Acho que cê ta na live errada Kappa A certa é essa aqui: twitch.tv/pokemaobr`,
       );
       break;
     default:

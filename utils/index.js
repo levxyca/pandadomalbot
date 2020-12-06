@@ -65,6 +65,28 @@ module.exports = {
       }
     });
   },
+  lerCarteira() {
+    let dados = {};
+    try {
+      const conteudoArquivo = fs.readFileSync('carteira.json');
+      if (!conteudoArquivo) return;
+      dados = JSON.parse(conteudoArquivo);
+    } finally {
+      return dados;
+    }
+  },
+  salvaCarteira(data) {
+    const obj = JSON.stringify(data);
+    fs.writeFile('carteira.json', obj, 'utf8', (erro) => {
+      if (erro) {
+        // eslint-disable-next-line no-console
+        console.log(erro);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('salvo');
+      }
+    });
+  },
   lerLoja() {
     let dados = {};
     try {

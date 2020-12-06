@@ -19,6 +19,12 @@ const COMANDOS_CONTADORES = {
     contadorDiario: 'qtdOhH',
     temCombo: true,
   },
+  '!esbarrou': {
+    palavra: 'ESBARROU',
+    contadorTotal: 'qtdEsbarrou',
+    contadorDiario: 'qdtEsbarrouH',
+    temCombo: true,
+  },
 };
 
 const DATA_INICIAL = '09/10/2020';
@@ -39,11 +45,12 @@ exports.default = (client, target, context, message, dados) => {
     new Date().getFullYear(),
   ].join('/');
 
-  if (dados.table.ultimaData != data){
-    dados.table["qtdEitaH"] = 0;
-    dados.table["qtdCalmaH"] = 0;
-    dados.table["qtdOhH"] = 0;
-  };
+  if (dados.table.ultimaData != data) {
+    dados.table.qtdEitaH = 0;
+    dados.table.qtdCalmaH = 0;
+    dados.table.qtdOhH = 0;
+    dados.table.qtdEsbarrou = 0;
+  }
 
   const commandName = message.trim();
   const [comando, combo] = commandName.split(' ');
