@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <div id="app"></div>
+    <div id="app">
+        <img class="sorvete" src="./img/sorvete.png" alt="Imagem do sorvete">
+        <img class="panda" src="./img/panda.png" alt="Imagem do Panda">
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -21,7 +20,7 @@
         const socket = io();
 
         socket.on('alimentar', (msg) => {
-            app.innerHTML = "<h1>Alimentou !</h1>";
+            app.innerHTML;
             console.log(msg);
         })
     </script>
