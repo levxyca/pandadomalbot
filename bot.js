@@ -12,6 +12,8 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
+const porta = 5050;
+
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/overlay/index.html`);
 });
@@ -487,7 +489,7 @@ client.on('message', mensagemChegou);
 
 client.connect();
 
-http.listen(3000, () => {
+http.listen(porta, () => {
   // eslint-disable-next-line no-console
-  console.log('Servidor rodando');
+  console.log(`O overlay está rodando em: http://localhost:${porta}`);
 });
