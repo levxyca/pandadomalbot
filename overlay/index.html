@@ -9,21 +9,13 @@
 </head>
 
 <body>
-    <div id="app">
-        <img class="sorvete" src="./img/sorvete.png" alt="Imagem do sorvete">
-        <img class="panda" src="./img/panda.png" alt="Imagem do Panda">
+    <div id="app" class="hidden">
+        <img id="sorvete" src="./img/sorvete.png" alt="Imagem do sorvete">
+        <img id="panda" src="./img/panda.png" alt="Imagem do Panda">
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const app = document.querySelector('#app');
-        const socket = io();
-
-        socket.on('alimentar', (msg) => {
-            app.innerHTML;
-            console.log(msg);
-        })
-    </script>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>

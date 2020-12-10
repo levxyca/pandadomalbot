@@ -2,8 +2,12 @@ img {
     width: 112px;
 }
 
+.hidden {
+    display: none;
+}
+
 .panda {
-    animation: 
+    animation:
         movement 5s;
 }
 
@@ -14,15 +18,15 @@ img {
 
 @keyframes movement {
     0% {
-      transform: translate(200px, 0);
+        transform: translate(200px, 0);
     }
-    
+
     50% {
-      transform: translate(-100px, 0);
+        transform: translate(-100px, 0);
     }
-    
+
     100% {
-      transform: translate(200px, 0);
+        transform: translate(200px, 0);
     }
 }
 
@@ -30,12 +34,15 @@ img {
     0% {
         opacity: 1;
     }
+
     25% {
         opacity: 0.5;
     }
+
     50% {
         opacity: 0;
     }
+
     100% {
         opacity: 0;
     }
