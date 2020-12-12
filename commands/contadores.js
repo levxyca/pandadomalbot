@@ -45,7 +45,7 @@ exports.default = (client, target, context, message, dados) => {
     new Date().getFullYear(),
   ].join('/');
 
-  if (dados.table.ultimaData != data) {
+  if (dados.table.ultimaData !== data) {
     dados.table.qtdEitaH = 0;
     dados.table.qtdCalmaH = 0;
     dados.table.qtdOhH = 0;

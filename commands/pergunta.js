@@ -1,5 +1,12 @@
 function getAnswer() {
-  const answers = ['sim', 'não', 'provavelmente', 'com certeza', 'hmmmmmm, será?', 'o que você acha?'];
+  const answers = [
+    'sim',
+    'não',
+    'provavelmente',
+    'com certeza',
+    'hmmmmmm, será?',
+    'o que você acha?',
+  ];
 
   const answersCount = answers.length;
 
