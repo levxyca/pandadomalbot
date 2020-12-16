@@ -325,6 +325,14 @@ function mensagemChegou(target, context, message, ehBot) {
       const index = Math.floor(Math.random() * motivoIrritacao.length);
       const irritacao = `${username} ${motivoIrritacao[index]} e `;
 
+      if (context['mod'] === true) {
+        client.say(
+          target,
+          `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
+        );
+        break;
+      }
+
       if (Math.random() < 0.5) {
         const tempoTO = Math.floor(Math.random() * 30);
         client.say(
