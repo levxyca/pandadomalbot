@@ -6,6 +6,8 @@ function getAnswer() {
     'com certeza',
     'hmmmmmm, será?',
     'o que você acha?',
+    'acredite nos seus sonhos Kappa',
+    'vou ver e te aviso...',
   ];
 
   const answersCount = answers.length;

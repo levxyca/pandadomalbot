@@ -41,6 +41,19 @@ exports.default = (client, target, context, message) => {
         `/me Os nossos sabores são: Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`,
       );
       break;
+    case '!hoje':
+      client.say(
+        target,
+        `/me Estamos começando um projeto do ZERO com HTML/CSS/JS. Este projeto consiste em criar um site para organizar todas as minhas anotações existentes no https://github.com/levxyca/docs`,
+      );
+      break;
+    case '!lola':
+    case '!meleca':
+      client.say(
+        target,
+        `auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau `,
+      );
+      break;
     default:
       break;
   }
