@@ -422,7 +422,9 @@ function mensagemChegou(target, context, message, ehBot) {
     default:
       break;
     case '!carinho':
-      if (Math.random() <= 0.001) {
+      let perfect = Math.random();
+
+      if (perfect <= 0.001) {
         let points = [1000];
         points = points[Math.floor(Math.random() * points.length)];
 
@@ -437,7 +439,12 @@ function mensagemChegou(target, context, message, ehBot) {
           carteira[username] = points;
         }
       } else {
-        client.say(target, `/me Obrigado pelo seu carinho ${username}! 🐼 `);
+        client.say(
+          target,
+          `/me Obrigado pelo seu carinho ${username}! 🐼 (${(
+            perfect * 100
+          ).toFixed(2)}% > 0.1%)`,
+        );
       }
   }
 }
