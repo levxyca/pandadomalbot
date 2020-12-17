@@ -441,9 +441,9 @@ function mensagemChegou(target, context, message, ehBot) {
       } else {
         client.say(
           target,
-          `/me Obrigado pelo seu carinho ${username}! 🐼 (${(
+          `/me Obrigado pelo seu carinho ${username}! 🐼 Apesar de não ser o carinho perfeito foi um carinho muito bom! Seu nível de carinho foi: ${(
             perfect * 100
-          ).toFixed(2)}% > 0.1%)`,
+          ).toFixed(2)}%!`,
         );
       }
   }
