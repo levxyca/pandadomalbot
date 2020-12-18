@@ -424,7 +424,7 @@ function mensagemChegou(target, context, message, ehBot) {
     case '!carinho':
       let perfect = Math.random();
 
-      if (perfect <= 0.001) {
+      if (perfect >= 0.999) {
         let points = [1000];
         points = points[Math.floor(Math.random() * points.length)];
 
