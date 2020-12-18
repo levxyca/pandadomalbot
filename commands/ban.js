@@ -1,24 +1,25 @@
 exports.default = (client, target, context, message, dados) => {
   const splittedMessage = String(message).split(' ');
-
-  if (splittedMessage.length === 1){
-    client.say(target, `${context.username} é pra banir quem?? to perdida Stareeyes `)
-    return;
-  }
+  const username = context.username;
 
   if (splittedMessage[0] === '!ban') {
+    if (splittedMessage.length === 1){
+      client.say(target, `${username} é pra banir quem?? to perdida Stareeyes `)
+      return;
+    }
+
     if (splittedMessage[1][0] === '@') {
       splittedMessage[1] = splittedMessage[1].substring(1);
     }
     let randomBan = Math.floor(Math.random() * 10000);
     if (splittedMessage[1] === dados.protegido) {
-      client.say(target, `/timeout ${context.username} 60`);
+      client.say(target, `/timeout ${username} 60`);
       client.say(
         target,
-        `${context.username} mexeu com ${dados.protegido} então mexeu comigo!`,
+        `${username} mexeu com ${dados.protegido} então mexeu comigo!`,
       );
     } else if (
-      String(context.username).toLowerCase().includes('dev') &&
+      String(username).toLowerCase().includes('dev') &&
       String(splittedMessage[1]).toLowerCase().includes('codes')
     ) {
       randomBan = Math.floor(Math.random() * 1000);
@@ -30,15 +31,15 @@ exports.default = (client, target, context, message, dados) => {
         );
         client.say(target, `/me FAMILIA DEV GANHOU A RINHA DE FAMILIAS!`);
       } else if (randomBan > 500 && randomBan < 1000) {
-        client.say(target, `/timeout ${context.username} 60`);
+        client.say(target, `/timeout ${username} 60`);
         client.say(
           target,
-          `/me ${context.username} perdeu a batalha de familias entra a familia dev e familia codes!`,
+          `/me ${username} perdeu a batalha de familias entra a familia dev e familia codes!`,
         );
         client.say(target, `/me FAMILIA CODES GANHOU A RINHA DE FAMILIAS!`);
       }
     } else if (
-      String(context.username).toLowerCase().includes('codes') &&
+      String(username).toLowerCase().includes('codes') &&
       String(splittedMessage[1]).toLowerCase().includes('dev')
     ) {
       randomBan = Math.floor(Math.random() * 1000);
@@ -50,10 +51,10 @@ exports.default = (client, target, context, message, dados) => {
         );
         client.say(target, `/me FAMILIA CODES GANHOU A RINHA DE FAMILIAS!`);
       } else if (randomBan > 500 && randomBan < 1000) {
-        client.say(target, `/timeout ${context.username} 60`);
+        client.say(target, `/timeout ${username} 60`);
         client.say(
           target,
-          `/me ${context.username} perdeu a batalha de familias entra a familia dev e familia codes!`,
+          `/me ${username} perdeu a batalha de familias entra a familia dev e familia codes!`,
         );
         client.say(target, `/me FAMILIA DEV GANHOU A RINHA DE FAMILIAS!`);
       }
@@ -65,8 +66,8 @@ exports.default = (client, target, context, message, dados) => {
           `/me @${splittedMessage[1]} foi pego pelo panda do mal.`,
         );
       } else if (randomBan > 1000 && randomBan < 7000) {
-        client.say(target, `/timeout ${context.username} 10`);
-        client.say(target, `${context.username} foi pego pelo panda do mal.`);
+        client.say(target, `/timeout ${username} 10`);
+        client.say(target, `${username} foi pego pelo panda do mal.`);
       } else {
         client.say(target, `Todos escaparam do panda do mal. Grrrr`);
       }
