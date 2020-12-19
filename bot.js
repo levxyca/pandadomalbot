@@ -422,6 +422,7 @@ function mensagemChegou(target, context, message, ehBot) {
     default:
       break;
     case '!carinho':
+      // eslint-disable-next-line no-case-declarations
       let perfect = Math.random();
 
       if (perfect >= 0.999) {
