@@ -1,13 +1,13 @@
 exports.default = (client, target, context, message, dados) => {
   const splittedMessage = String(message).split(' ');
 
-  const username = context.username;
+  const { username } = context;
 
   if (splittedMessage[0] === '!ban') {
     if (splittedMessage.length === 1) {
       client.say(
         target,
-        `${username} é pra banir quem?? to perdida Stareeyes `,
+        `${username} é para dar ban em quem mesmo?! Estou perdido Stareeyes `,
       );
       return;
     }
