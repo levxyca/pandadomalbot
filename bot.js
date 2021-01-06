@@ -6,6 +6,18 @@
 const { Client } = require('tmi.js');
 require('dotenv').config();
 const { readdirSync } = require('fs');
+const express = require('express');
+
+const app = express();
+app.use(express.static('overlay'));
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+const porta = 5050;
+
+app.get('/', (req, res) => {
+  res.sendFile(`${__dirname}/overlay/index.html`);
+});
 
 const {
   lerDados,
@@ -342,6 +354,7 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/timeout ${username} ${tempoTO}`);
 
         preso = username;
+        tentou = [];
         escape = false;
       } else {
         if (pontos[username]) {
@@ -387,6 +400,7 @@ function mensagemChegou(target, context, message, ehBot) {
               `/me ${username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
             );
             preso = '';
+            tentou = [];
             escape = false;
 
             if (pontos[username]) {
@@ -469,6 +483,19 @@ client.on('message', (target) => {
   }
 });
 
+io.on('connection', (socket) => {
+  // eslint-disable-next-line no-console
+  console.log('Conectou com overlay');
+
+  client.on('message', (target, context, message, ehBot) => {
+    if (ehBot) return;
+
+    if (message === '!alimentar') {
+      socket.broadcast.emit('alimentar', true);
+    }
+  });
+});
+
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
   console.log(`* Bot entrou no endereço ${host}:${port}`);
@@ -480,3 +507,8 @@ client.on('connected', (host, port) => {
 client.on('message', mensagemChegou);
 
 client.connect();
+
+http.listen(porta, () => {
+  // eslint-disable-next-line no-console
+  console.log(`O overlay está rodando em: http://localhost:${porta}`);
+});
