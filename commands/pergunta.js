@@ -1,5 +1,14 @@
 function getAnswer() {
-  const answers = ['sim', 'não', 'provavelmente', 'com certeza', 'hmmmmmm, será?', 'o que você acha?'];
+  const answers = [
+    'sim',
+    'não',
+    'provavelmente',
+    'com certeza',
+    'hmmmmmm, será?',
+    'o que você acha?',
+    'acredite nos seus sonhos Kappa',
+    'vou ver e te aviso...',
+  ];
 
   const answersCount = answers.length;
 
@@ -17,8 +26,12 @@ exports.default = (client, target, context, message) => {
       `Para utilizar o comando !pergunta você deve digitar !pergunta 'sua pergunta'`,
     );
   } else if (command[0] === '!pergunta') {
-    const answer = getAnswer();
+    if (message.includes('9?')) {
+      client.say(target, `9? 99? @${context.username}`);
+    } else {
+      const answer = getAnswer();
 
-    client.say(target, `${answer} @${context.username}`);
+      client.say(target, `${answer} @${context.username}`);
+    }
   }
 };
