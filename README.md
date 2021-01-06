@@ -36,7 +36,7 @@ As categorias de comandos do bot são as seguintes:
 2. [Social](#social)
 3. [Contadores](#contadores)
 4. [Brincadeiras](#brincadeiras)
-5. [Doações e Inscrições](#doação)
+5. [Doações e Inscrições](#financeiro)
 
 ## Geral
 
@@ -106,7 +106,7 @@ Exemplo:
 
 ### Sorveteria
 
-Com os pontos do canal você consegue comprar sorvetes geladinhos para refrescar e adocicar sua vida.
+Com os pandacoins🐼 do canal você consegue comprar sorvetes geladinhos para refrescar e adocicar sua vida.
 
 #### !sorvete ou !picole
 
@@ -148,7 +148,7 @@ Quando você obtem sucesso em escapar, você consegue ganhar uma quantidade de p
 
 `!carinho` você pode fazer carinho no panda e caso atinja o carinho PERFEITO, o panda pode te recompensar!
 
-## Doação e Inscrições
+## Financeiro
 
 ### Formas de ajudar o canal financeiramente
 

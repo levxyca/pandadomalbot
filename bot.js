@@ -337,7 +337,7 @@ function mensagemChegou(target, context, message, ehBot) {
       const index = Math.floor(Math.random() * motivoIrritacao.length);
       const irritacao = `${username} ${motivoIrritacao[index]} e `;
 
-      if (context['mod'] === true) {
+      if (context.mod === true) {
         client.say(
           target,
           `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
@@ -354,6 +354,7 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/timeout ${username} ${tempoTO}`);
 
         preso = username;
+        tentou = [];
         escape = false;
       } else {
         if (pontos[username]) {
@@ -399,6 +400,7 @@ function mensagemChegou(target, context, message, ehBot) {
               `/me ${username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
             );
             preso = '';
+            tentou = [];
             escape = false;
 
             if (pontos[username]) {
@@ -434,6 +436,7 @@ function mensagemChegou(target, context, message, ehBot) {
     default:
       break;
     case '!carinho':
+      // eslint-disable-next-line no-case-declarations
       let perfect = Math.random();
 
       if (perfect >= 0.999) {
