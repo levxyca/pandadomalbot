@@ -342,6 +342,7 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/timeout ${username} ${tempoTO}`);
 
         preso = username;
+        tentou = [];
         escape = false;
       } else {
         if (pontos[username]) {
@@ -387,6 +388,7 @@ function mensagemChegou(target, context, message, ehBot) {
               `/me ${username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
             );
             preso = '';
+            tentou = [];
             escape = false;
 
             if (pontos[username]) {
