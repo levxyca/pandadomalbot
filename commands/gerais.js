@@ -32,7 +32,7 @@ exports.default = (client, target, context, message) => {
     case '!hoje':
       client.say(
         target,
-        `/me Estamos começando um projeto do ZERO com HTML/CSS/JS. Este projeto consiste em criar um site para organizar todas as minhas anotações existentes no https://github.com/levxyca/docs`,
+        `Criando funcionalidades novas para o pandadomalbot! Para saber como o nosso bot funciona digita !help`,
       );
       break;
     case '!lola':
@@ -40,6 +40,12 @@ exports.default = (client, target, context, message) => {
       client.say(
         target,
         `auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau `,
+      );
+      break;
+    case '!premio':
+      client.say(
+        target,
+        `Na nossa última live de janeiro, quem estiver em 1º lugar no !rank irá ganhar um curso da udemy no valor de até R$36,99. Para saber como subir no rank é só digitar !help`,
       );
       break;
     default:
