@@ -42,6 +42,12 @@ exports.default = (client, target, context, message) => {
         `auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau `,
       );
       break;
+    case '!podcast':
+      client.say(
+        target,
+        `Siga o Podcast Moças da Web! https://anchor.fm/mocasdaweb/`,
+      );
+      break;
     default:
       break;
   }
