@@ -3,7 +3,7 @@ exports.default = (client, target, context, message, dados) => {
   const { username } = context;
 
   if (splittedMessage[0] === '!amizade' && splittedMessage.length === 2) {
-    const amizade = Math.random();
+    const amizade = Math.random() * 100;
     const pessoaAmiga = splittedMessage[1].replace('#', '');
 
     const amizadeFormated = new Intl.NumberFormat('en-US', {
