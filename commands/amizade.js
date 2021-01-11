@@ -12,7 +12,7 @@ exports.default = (client, target, context, message, dados) => {
 
     client.say(
       target,
-      `${username} tem ${amizadeFormated}% de amizade com ${pessoaAmiga}`,
+      `${username} tem ${amizadeFormated}% de amizade com ${pessoaAmiga} PogChamp`,
     );
   }
 };
