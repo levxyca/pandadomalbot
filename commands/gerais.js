@@ -32,7 +32,8 @@ exports.default = (client, target, context, message) => {
     case '!hoje':
       client.say(
         target,
-        `Criando funcionalidades novas para o pandadomalbot! Para saber como o nosso bot funciona digita !help`,
+
+        `Criando um "clone" do Linktree com HTML e CSS`,
       );
       break;
     case '!lola':
