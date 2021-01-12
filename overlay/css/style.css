@@ -1,0 +1,49 @@
+img {
+    width: 112px;
+}
+
+.hidden {
+    display: none;
+}
+
+.panda {
+    animation:
+        movement 5s;
+}
+
+.sorvete {
+    animation:
+        sorvete 5s;
+}
+
+@keyframes movement {
+    0% {
+        transform: translate(200px, 0);
+    }
+
+    50% {
+        transform: translate(-100px, 0);
+    }
+
+    100% {
+        transform: translate(200px, 0);
+    }
+}
+
+@keyframes sorvete {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

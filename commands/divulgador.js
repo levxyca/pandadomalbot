@@ -19,6 +19,19 @@ exports.default = (client, target, context, message) => {
         `${context.username} você capturou um exemplar da linguagem... Oh não! Acho que cê ta na live errada Kappa A certa é essa aqui: twitch.tv/pokemaobr`,
       );
       break;
+    case '!spin':
+      if (Math.random() < 0.5) {
+        client.say(
+          target,
+          `Parabéns sua sorte está em pleno dia, você ganhou o link da live correta ${context.username} CoolCat https://www.twitch.tv/vitthin`,
+        );
+      } else {
+        client.say(
+          target,
+          `Parabéns sua sorte está em grande falta, você perdeu ${context.username} LUL porém como sou um panda generoso, eu te dou o link da live correta CoolCat https://www.twitch.tv/vitthin`,
+        );
+      }
+      break;
     default:
       break;
   }

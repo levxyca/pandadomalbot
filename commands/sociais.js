@@ -27,6 +27,13 @@ exports.default = (client, target, context, message) => {
     case '!github':
       client.say(target, `https://github.com/levxyca`);
       break;
+    case '!podcast':
+      client.say(
+        target,
+
+        `Siga o Podcast Moças da Web! https://anchor.fm/mocasdaweb/`,
+      );
+      break;
     default:
       break;
   }
