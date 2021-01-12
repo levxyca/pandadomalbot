@@ -49,13 +49,6 @@ exports.default = (client, target, context, message) => {
         `Na nossa última live de janeiro, quem estiver em 1º lugar no !rank irá ganhar um curso da udemy no valor de até R$36,99. Para saber como subir no rank é só digitar !help`,
       );
       break;
-    case '!podcast':
-      client.say(
-        target,
-
-        `Siga o Podcast Moças da Web! https://anchor.fm/mocasdaweb/`,
-      );
-      break;
     case '!docs':
       client.say(
         target,
