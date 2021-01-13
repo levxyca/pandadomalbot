@@ -288,6 +288,10 @@ function mensagemChegou(target, context, message, ehBot) {
   switch (message) {
     case '!salvar':
       if (preso) {
+        if (preso.toLowerCase() === 'chicocodes') {
+          client.say(target, '/me o chico não tem salvação');
+          break;
+        }
         if (!tentou.includes(username)) {
           if (preso === username) {
             client.say(target, `/me ${username}, você não pode se salvar.`);
