@@ -33,7 +33,7 @@ exports.default = (client, target, context, message) => {
       client.say(
         target,
 
-        `Criando um "clone" do Linktree com HTML e CSS`,
+        `Fazendo alterações no pandadomalbot, documentação e site.`,
       );
       break;
     case '!lola':

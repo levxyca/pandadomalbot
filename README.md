@@ -36,13 +36,22 @@ As categorias de comandos do bot são as seguintes:
 2. [Social](#social)
 3. [Contadores](#contadores)
 4. [Brincadeiras](#brincadeiras)
-5. [Doações e Inscrições](#financeiro)
+5. [Regras](#regras)
+6. [Doações e Inscrições](#financeiro)
 
 ## Geral
 
 #### !comandos ou !commands
 
 `!comandos` ou `!commands` trás um lista de todos os comandos ativos no canal.
+
+`!theme` retorna qual tema eu estou utilizando no meu VSCode.
+
+`!hoje` mostra o que estamos fazendo na stream daquele dia.
+
+`!docs` manda o link do meu repositório no github onde eu armazeno as minhas anotações de estudo.
+
+`!help ou !site` para pegar o link da documentação do pandadomalbot.
 
 ## Social
 
@@ -57,6 +66,10 @@ Lista dos comandos de cada rede social:
 #### !telegram
 
 #### !discord
+
+#### !caverna
+
+#### !podcast
 
 #### !github
 
@@ -104,6 +117,10 @@ Exemplo:
 
 `!ban levxyca` ou `!ban @levxyca`
 
+### Descubra o seu nível de amizade com as outras pessoas do chat
+
+Você pode utilizar `!amizade @username` para descobrir se você realmente é amigo de alguém do chat.
+
 ### Sorveteria
 
 Com os pandacoins🐼 do canal você consegue comprar sorvetes geladinhos para refrescar e adocicar sua vida.
@@ -119,6 +136,8 @@ Olha o sorvete e o picole fresquinho a toda hooora. Por apenas a sua ALMA!!!
 #### !comprar
 
 `!comprar` para comprar um sorvete fresquinho.
+
+Você também pode escolher um sabor específico de sorvete utilizando o `!comprar nomedosabor`. Para ver a lista de sabor4es use o `!sabores`.
 
 #### !geladeira
 
@@ -147,6 +166,23 @@ Quando você obtem sucesso em escapar, você consegue ganhar uma quantidade de p
 #### !carinho
 
 `!carinho` você pode fazer carinho no panda e caso atinja o carinho PERFEITO, o panda pode te recompensar!
+
+### Chuva de emotes
+
+#### !amor
+Utilize o `!amor` para mandar uma chuva de amor no chat.
+
+#### !banheiro
+Use o `!banheiro` para quando a streamer for no banheiro.
+
+#### !lola ou !meleca
+Use quando estiver ouvindo latidos na live.
+
+## Regras
+Em construção...
+
+#### !premio
+Parar qual é o premio do mês.
 
 ## Financeiro
 

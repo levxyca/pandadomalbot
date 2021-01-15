@@ -277,7 +277,7 @@ function mensagemChegou(target, context, message, ehBot) {
         msg = `/me ${user} possui 0 panda coins`;
       }
     } else if (carteira[username]) {
-      msg = `/me ${username} você possui ${pontos[username]} pandacoins🐼.`;
+      msg = `/me ${username} você possui ${carteira[username]} pandacoins🐼.`;
     } else {
       msg = `/me Poxa, ${username}! Você ainda não possui pandacoins🐼.`;
     }
@@ -357,14 +357,6 @@ function mensagemChegou(target, context, message, ehBot) {
         tentou = [];
         escape = false;
       } else {
-        if (pontos[username]) {
-          pontos[username] += 100;
-        } else {
-          pontos[username] = 100;
-        }
-
-        salvaPontos(pontos);
-
         if (carteira[username]) {
           carteira[username] += 100;
         } else {
