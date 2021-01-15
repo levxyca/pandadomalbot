@@ -4,7 +4,7 @@ exports.default = (client, target, context, message) => {
     case '!commands':
       client.say(
         target,
-        `!ban | !social | !telegram | !discord | !fofinho | !github | !eita | !calma | !oh | !donate | !prime | !picpay | !sub | !pergunta | !irritar | !carinho | !salvar | !escapar | !amor | !banheiro | !caverna | !sorvete | !sabores | !comprar | !geladeira | !pontos | !carteira | !protegido | !livecodergirls |
+        `!ban | !social | !telegram | !podcast | !discord | !fofinho | !github | !eita | !calma | !oh | !donate | !prime | !picpay | !sub | !amizade | !pergunta | !irritar | !carinho | !salvar | !escapar | !amor | !banheiro | !caverna | !sorvete | !sabores | !comprar | !geladeira | !pontos | !carteira | !protegido | !livecodergirls |
         ⭐Caso esteja com dúvidas é só usar o !help⭐`,
       );
       break;
