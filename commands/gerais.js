@@ -29,13 +29,6 @@ exports.default = (client, target, context, message) => {
         `/me Os nossos sabores são: Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`,
       );
       break;
-    case '!hoje':
-      client.say(
-        target,
-
-        `Fazendo alterações no pandadomalbot, documentação e site.`,
-      );
-      break;
     case '!lola':
     case '!meleca':
       client.say(
