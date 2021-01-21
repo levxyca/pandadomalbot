@@ -7,6 +7,7 @@ const { Client } = require('tmi.js');
 require('dotenv').config();
 const { readdirSync } = require('fs');
 const express = require('express');
+const axios = require('axios');
 
 const app = express();
 app.use(express.static('overlay'));
@@ -283,6 +284,72 @@ function mensagemChegou(target, context, message, ehBot) {
     }
 
     client.say(target, msg);
+  } else if (message.split(' ')[0].toLowerCase() === '!addpoints') {
+    if (username.toLowerCase !== CHANNEL_NAME) {
+      client.say(target, '/me Você não tem permissão para adicionar pontos');
+      return;
+    }
+
+    let user = message.split(' ')[1];
+    let qtdPontos = message.split(' ')[2];
+
+    if (isNaN(qtdPontos)) {
+      client.say(
+        target,
+        '/me Valor de pontos invalidos. Adicione apenas números',
+      );
+      return;
+    }
+
+    qtdPontos = parseInt(qtdPontos);
+
+    if (user.toLowerCase() === 'all') {
+      axios
+        .get(`https://tmi.twitch.tv/group/user/${CHANNEL_NAME}/chatters`)
+        .then((response) => {
+          let vips = [...response.data.chatters.vips];
+          let mods = [...response.data.chatters.moderators];
+          let viewers = [...response.data.chatters.viewers];
+          let users = vips.concat(mods, viewers);
+
+          users.forEach((user) => {
+            if (pontos[user]) {
+              pontos[user] += qtdPontos;
+            } else {
+              pontos[user] = qtdPontos;
+            }
+
+            salvaPontos(pontos);
+
+            if (carteira[user]) {
+              carteira[user] += qtdPontos;
+            } else {
+              carteira[user] = qtdPontos;
+            }
+
+            salvaCarteira(carteira);
+          });
+        })
+        .catch((error) => {
+          client.say(target, '/me, Erro ao adicionar pontos.');
+        });
+    } else {
+      if (pontos[user]) {
+        pontos[user] += qtdPontos;
+      } else {
+        pontos[user] = qtdPontos;
+      }
+
+      salvaPontos(pontos);
+
+      if (carteira[user]) {
+        carteira[user] += qtdPontos;
+      } else {
+        carteira[user] = qtdPontos;
+      }
+
+      salvaCarteira(carteira);
+    }
   }
 
   switch (message) {
@@ -401,11 +468,15 @@ function mensagemChegou(target, context, message, ehBot) {
               pontos[username] = points;
             }
 
+            salvaPontos(pontos);
+
             if (carteira[username]) {
               carteira[username] += points;
             } else {
               carteira[username] = points;
             }
+
+            salvaCarteira(carteira);
           } else {
             client.say(
               target,
