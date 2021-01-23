@@ -63,6 +63,10 @@ Retorna os links para todas as redes da streamer.
 
 Lista dos comandos de cada rede social:
 
+#### !podcast
+
+#### !youtube
+
 #### !telegram
 
 #### !discord

@@ -30,8 +30,13 @@ exports.default = (client, target, context, message) => {
     case '!podcast':
       client.say(
         target,
-
         `Siga o Podcast Moças da Web! https://anchor.fm/mocasdaweb/`,
+      );
+      break;
+    case '!youtube':
+      client.say(
+        target,
+        `Conheça o meu canal no youtube sobre tecnologia 🎥 -> https://www.youtube.com/channel/UC0oAypdScDI9WiwvebIqiOQ`,
       );
       break;
     default:
