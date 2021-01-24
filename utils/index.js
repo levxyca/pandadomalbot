@@ -109,4 +109,24 @@ module.exports = {
       }
     });
   },
+  lerRT() {
+    let msgRT;
+    try {
+      msgRT = fs.readFileSync('rt.txt');
+      if (!msgRT) return;
+    } finally {
+      return msgRT;
+    }
+  },
+  salvaRT(data) {
+    fs.writeFile('rt.txt', data, 'utf8', (erro) => {
+      if (erro) {
+        // eslint-disable-next-line no-console
+        console.log(erro);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('salvo');
+      }
+    });
+  },
 };

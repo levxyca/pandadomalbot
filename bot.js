@@ -29,6 +29,8 @@ const {
   salvaCarteira,
   lerLoja,
   salvaLoja,
+  lerRT,
+  salvaRT,
 } = require('./utils');
 
 const { BOT_USERNAME } = process.env;
@@ -67,6 +69,7 @@ let preso = '';
 let tentou = [];
 let protegido = '';
 let escape = false;
+let msgRt;
 
 const motivoIrritacao = [
   'puxou a orelha do panda do mal',
@@ -350,6 +353,10 @@ function mensagemChegou(target, context, message, ehBot) {
 
       salvaCarteira(carteira);
     }
+  } else if (message.split(' ')[0] === '!addrt' && context.mod) {
+    const msg = message.replace('!addrt', '');
+
+    salvaRT(msg);
   }
 
   switch (message) {
@@ -496,8 +503,6 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/me não tem ninguem em minhas mãos.`);
       }
       break;
-    default:
-      break;
     case '!carinho':
       // eslint-disable-next-line no-case-declarations
       let perfect = Math.random();
@@ -524,6 +529,13 @@ function mensagemChegou(target, context, message, ehBot) {
           ).toFixed(2)}%!`,
         );
       }
+      break;
+    case '!rt':
+      msgRt = lerRT();
+      client.say(target, `/me ${msgRt}`);
+      break;
+    default:
+      break;
   }
 }
 
