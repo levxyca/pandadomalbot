@@ -356,7 +356,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
       salvaCarteira(carteira);
     }
-  } else if (message.split(' ')[0] === '!addrt' && context.mod) {
+  } else if (message.split(' ')[0] === '!addrt' && (context.mod || CHANNEL_NAME)) {
     const msg = message.replace('!addrt', '');
 
     salvaRT(msg);
