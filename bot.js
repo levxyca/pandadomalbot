@@ -29,6 +29,8 @@ const {
   salvaCarteira,
   lerLoja,
   salvaLoja,
+  lerPiadas,
+  salvaPiadas,
   lerRT,
   salvaRT,
 } = require('./utils');
@@ -52,6 +54,7 @@ const dados = lerDados();
 const pontos = lerPontos();
 const carteira = lerCarteira();
 const loja = lerLoja();
+const piadas = lerPiadas();
 
 const sabores = [
   'Shacolate',
@@ -288,7 +291,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
     client.say(target, msg);
   } else if (message.split(' ')[0].toLowerCase() === '!addpoints') {
-    if (username.toLowerCase !== CHANNEL_NAME) {
+    if (username.toLowerCase() !== CHANNEL_NAME) {
       client.say(target, '/me Você não tem permissão para adicionar pontos');
       return;
     }
@@ -357,6 +360,21 @@ function mensagemChegou(target, context, message, ehBot) {
     const msg = message.replace('!addrt', '');
 
     salvaRT(msg);
+  }
+  if (message.split(' ')[0] === '!piada') {
+    let piada = piadas[Math.floor(Math.random() * piadas.length)];
+    client.say(
+      target,
+
+      `/me ${piada.pergunta}`,
+    );
+    setTimeout(() => {
+      client.say(
+        target,
+
+        `/me ${piada.resposta}`,
+      );
+    }, 3000);
   }
 
   switch (message) {
@@ -444,7 +462,7 @@ function mensagemChegou(target, context, message, ehBot) {
       break;
     }
     case '!proteger':
-      if (context.username === 'levxyca') {
+      if (username.toLowerCase() === CHANNEL_NAME) {
         protegerSub();
       }
       break;

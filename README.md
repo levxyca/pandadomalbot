@@ -63,6 +63,10 @@ Retorna os links para todas as redes da streamer.
 
 Lista dos comandos de cada rede social:
 
+#### !podcast
+
+#### !youtube
+
 #### !telegram
 
 #### !discord
@@ -116,6 +120,14 @@ Digite o comando `!ban` com o nome da pessoa.
 Exemplo:
 
 `!ban levxyca` ou `!ban @levxyca`
+
+### Piadas de qualidade
+
+#### !piada
+
+Temos um banco íncrivel de piadas criados especialmente pelo nosso chat, é só digitar `!piada` e se preparar para rolar de rir.
+
+Inclusive, você pode contribuir para o nosso banco de piadas, basta resgatar a recompensa !piada que existe no nosso [canal da twitch](https://www.twitch.tv/levxyca).
 
 ### Descubra o seu nível de amizade com as outras pessoas do chat
 
