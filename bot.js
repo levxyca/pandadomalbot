@@ -639,7 +639,7 @@ client.on('connected', (host, port) => {
   }, 1500);
   setInterval(() => {
     darPontos(CHANNEL_NAME);
-  }, 10000);
+  }, 300000);
 });
 
 client.on('message', mensagemChegou);
