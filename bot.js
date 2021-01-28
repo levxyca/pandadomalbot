@@ -30,7 +30,7 @@ const {
   lerLoja,
   salvaLoja,
   lerPiadas,
-  salvaPiadas,
+  lerEnsinamentos,
   lerRT,
   salvaRT,
 } = require('./utils');
@@ -55,6 +55,7 @@ const pontos = lerPontos();
 const carteira = lerCarteira();
 const loja = lerLoja();
 const piadas = lerPiadas();
+const ensinamentos = lerEnsinamentos();
 
 const sabores = [
   'Shacolate',
@@ -376,6 +377,15 @@ function mensagemChegou(target, context, message, ehBot) {
       );
     }, 3000);
   }
+  if (message.split(' ')[0] === '!ensinamento') {
+    let ensinamento = ensinamentos[Math.floor(Math.random() * ensinamentos.length)];
+
+    client.say(
+      target,
+
+      `/me ${ensinamento.ensinamento}`,
+    );
+  }
 
   switch (message) {
     case '!salvar':
@@ -585,6 +595,10 @@ io.on('connection', (socket) => {
 
     if (message === '!alimentar') {
       socket.broadcast.emit('alimentar', true);
+    }
+
+    if (message === '!loira') {
+      socket.broadcast.emit('loira', true);
     }
   });
 });
