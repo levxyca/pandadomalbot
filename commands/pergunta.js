@@ -8,6 +8,7 @@ function getAnswer() {
     'o que você acha?',
     'acredite nos seus sonhos Kappa',
     'vou ver e te aviso...',
+    'só tem um jeito de saber...',
   ];
 
   const answersCount = answers.length;

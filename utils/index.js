@@ -112,24 +112,22 @@ module.exports = {
   lerPiadas() {
     let dados = {};
     try {
-      const conteudoArquivo = fs.readFileSync('piadas.json');
+      const conteudoArquivo = fs.readFileSync('./data/piadas.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
     } finally {
       return dados;
     }
   },
-  salvaPiadas(data) {
-    const obj = JSON.stringify(data);
-    fs.writeFile('piadas.json', obj, 'utf8', (erro) => {
-      if (erro) {
-        // eslint-disable-next-line no-console
-        console.log(erro);
-      } else {
-        // eslint-disable-next-line no-console
-        console.log('salvo');
-      }
-    });
+  lerEnsinamentos() {
+    let dados = {};
+    try {
+      const conteudoArquivo = fs.readFileSync('./data/ensinamentos.json');
+      if (!conteudoArquivo) return;
+      dados = JSON.parse(conteudoArquivo);
+    } finally {
+      return dados;
+    }
   },
   lerRT() {
     let msgRT;

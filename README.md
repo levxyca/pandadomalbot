@@ -129,6 +129,10 @@ Temos um banco íncrivel de piadas criados especialmente pelo nosso chat, é só
 
 Inclusive, você pode contribuir para o nosso banco de piadas, basta resgatar a recompensa !piada que existe no nosso [canal da twitch](https://www.twitch.tv/levxyca).
 
+#### !ensinamento
+
+Digite esse comando a live e pandadomalbot te dirá um grande ensinamento sobre a vida.
+
 ### Descubra o seu nível de amizade com as outras pessoas do chat
 
 Você pode utilizar `!amizade @username` para descobrir se você realmente é amigo de alguém do chat.

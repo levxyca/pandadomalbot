@@ -1,5 +1,10 @@
-img {
+.alimentar {
     width: 112px;
+}
+
+.loira {
+    width: 250px;
+    height: 450px;
 }
 
 .hidden {
