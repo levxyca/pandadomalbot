@@ -1,29 +1,34 @@
-const { lerPontos } = require('../utils');
+const { lerCarteira } = require('../utils');
 
 exports.default = (client, target, context, message) => {
   const messageSplited = message.split(' ');
-  const pontos = lerPontos();
+  const carteira = lerCarteira();
   if (messageSplited[0] === '!gold') {
-    if (messageSplited.length === 2 && pontos[messageSplited[1]]) {
+    if (messageSplited.length === 2 && carteira[messageSplited[1]]) {
       console.log('oi');
       client.say(
         target,
         `${context.username} ${messageSplited[1]} tem ${
-          pontos[messageSplited[1]]
-        } pontos`,
+          carteira[messageSplited[1]]
+        } na carteira`,
       );
-    } else if (messageSplited.length === 2 && !pontos[messageSplited[1]]) {
+    } else if (messageSplited.length === 2 && !carteira[messageSplited[1]]) {
       client.say(
         target,
-        `${context.username} ${messageSplited[1]} não tem nenhum ponto :(`,
+        `${context.username} ${messageSplited[1]} não tem nada na carteira :(`,
       );
-    } else if (pontos[context.username]) {
+    } else if (carteira[context.username]) {
       client.say(
         target,
-        `${context.username} você tem ${pontos[context.username]} pontos.`,
+        `${context.username} você tem ${
+          carteira[context.username]
+        } na carteira.`,
       );
     } else {
-      client.say(target, `${context.username} você não tem nenhum ponto :(`);
+      client.say(
+        target,
+        `${context.username} você não tem nada na carteira :(`,
+      );
     }
   }
 };

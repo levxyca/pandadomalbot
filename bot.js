@@ -603,13 +603,13 @@ function darPontos(channel) {
       );
 
       total.forEach((user) => {
-        if (pontos[user]) {
-          pontos[user] += 5;
+        if (carteira[user]) {
+          carteira[user] += 5;
         } else {
-          pontos[user] = 5;
+          carteira[user] = 5;
         }
 
-        salvaPontos(pontos);
+        salvaCarteira(carteira);
       });
     });
 }
