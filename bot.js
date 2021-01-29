@@ -4,6 +4,7 @@
 /* eslint-disable global-require */
 
 const { Client } = require('tmi.js');
+const fetch = require('node-fetch');
 require('dotenv').config();
 const { readdirSync } = require('fs');
 const express = require('express');
@@ -357,7 +358,10 @@ function mensagemChegou(target, context, message, ehBot) {
 
       salvaCarteira(carteira);
     }
-  } else if (message.split(' ')[0] === '!addrt' && (context.mod || CHANNEL_NAME)) {
+  } else if (
+    message.split(' ')[0] === '!addrt' &&
+    (context.mod || CHANNEL_NAME)
+  ) {
     const msg = message.replace('!addrt', '');
 
     salvaRT(msg);
@@ -378,7 +382,8 @@ function mensagemChegou(target, context, message, ehBot) {
     }, 3000);
   }
   if (message.split(' ')[0] === '!ensinamento') {
-    let ensinamento = ensinamentos[Math.floor(Math.random() * ensinamentos.length)];
+    let ensinamento =
+      ensinamentos[Math.floor(Math.random() * ensinamentos.length)];
 
     client.say(
       target,
@@ -586,6 +591,29 @@ client.on('message', (target) => {
   }
 });
 
+function darPontos(channel) {
+  fetch(`https://tmi.twitch.tv/group/user/${channel}/chatters`)
+    .then((res) => res.json())
+    .then((json) => {
+      const total = [].concat(
+        json.chatters.vips,
+        json.chatters.moderators,
+        json.chatters.viewers,
+        json.chatters.broadcaster,
+      );
+
+      total.forEach((user) => {
+        if (carteira[user]) {
+          carteira[user] += 5;
+        } else {
+          carteira[user] = 5;
+        }
+
+        salvaCarteira(carteira);
+      });
+    });
+}
+
 io.on('connection', (socket) => {
   // eslint-disable-next-line no-console
   console.log('Conectou com overlay');
@@ -609,6 +637,9 @@ client.on('connected', (host, port) => {
   setTimeout(() => {
     client.say(CHANNEL_NAME, 'Estou de olho em vocês.');
   }, 1500);
+  setInterval(() => {
+    darPontos(CHANNEL_NAME);
+  }, 300000);
 });
 
 client.on('message', mensagemChegou);
