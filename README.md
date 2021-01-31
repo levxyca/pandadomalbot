@@ -129,6 +129,8 @@ Temos um banco íncrivel de piadas criados especialmente pelo nosso chat, é só
 
 Inclusive, você pode contribuir para o nosso banco de piadas, basta resgatar a recompensa !piada que existe no nosso [canal da twitch](https://www.twitch.tv/levxyca).
 
+### Ensinamentos sobre a vida
+
 #### !ensinamento
 
 Digite esse comando a live e pandadomalbot te dirá um grande ensinamento sobre a vida.
@@ -195,10 +197,13 @@ Use o `!banheiro` para quando a streamer for no banheiro.
 Use quando estiver ouvindo latidos na live.
 
 ## Regras
-Em construção...
+Quem ficar em primeiro lugar no fim do mês no nosso `!rank` tem direito ao nosso `!premio`.
+Para ganhar pontos, você pode:
+- [Salvando](#!salvar)
+- [Escapando](#!escapar)
 
 #### !premio
-Parar qual é o premio do mês.
+Para saber qual é o premio do mês.
 
 ## Financeiro
 
