@@ -357,7 +357,10 @@ function mensagemChegou(target, context, message, ehBot) {
 
       salvaCarteira(carteira);
     }
-  } else if (message.split(' ')[0] === '!addrt' && (context.mod || CHANNEL_NAME)) {
+  } else if (
+    message.split(' ')[0] === '!addrt' &&
+    (context.mod || CHANNEL_NAME)
+  ) {
     const msg = message.replace('!addrt', '');
 
     salvaRT(msg);
@@ -378,7 +381,8 @@ function mensagemChegou(target, context, message, ehBot) {
     }, 3000);
   }
   if (message.split(' ')[0] === '!ensinamento') {
-    let ensinamento = ensinamentos[Math.floor(Math.random() * ensinamentos.length)];
+    let ensinamento =
+      ensinamentos[Math.floor(Math.random() * ensinamentos.length)];
 
     client.say(
       target,
