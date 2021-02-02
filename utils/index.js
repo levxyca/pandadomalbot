@@ -3,7 +3,7 @@ const fs = require('fs');
 module.exports = {
   salvarDados(data) {
     const obj = JSON.stringify(data);
-    fs.writeFile('dados.json', obj, 'utf8', (erro) => {
+    fs.writeFile('./data/dados.json', obj, 'utf8', (erro) => {
       if (erro) {
         // eslint-disable-next-line no-console
         console.log(erro);
@@ -16,7 +16,7 @@ module.exports = {
   lerDados() {
     let dados = {};
     try {
-      const conteudoArquivo = fs.readFileSync('dados.json');
+      const conteudoArquivo = fs.readFileSync('./data/dados.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
 
@@ -31,7 +31,7 @@ module.exports = {
   lerSubs() {
     const subs = [];
     try {
-      const data = fs.readFileSync('subs.txt', 'utf8');
+      const data = fs.readFileSync('./data/subs.txt', 'utf8');
       if (!data) return;
 
       const lines = data.split(/\r?\n/);
@@ -46,7 +46,7 @@ module.exports = {
   lerPontos() {
     let dados = {};
     try {
-      const conteudoArquivo = fs.readFileSync('pontos.json');
+      const conteudoArquivo = fs.readFileSync('./data/pontos.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
     } finally {
@@ -55,7 +55,7 @@ module.exports = {
   },
   salvaPontos(data) {
     const obj = JSON.stringify(data);
-    fs.writeFile('pontos.json', obj, 'utf8', (erro) => {
+    fs.writeFile('./data/pontos.json', obj, 'utf8', (erro) => {
       if (erro) {
         // eslint-disable-next-line no-console
         console.log(erro);
@@ -68,7 +68,7 @@ module.exports = {
   lerCarteira() {
     let dados = {};
     try {
-      const conteudoArquivo = fs.readFileSync('carteira.json');
+      const conteudoArquivo = fs.readFileSync('./data/carteira.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
     } finally {
@@ -77,7 +77,7 @@ module.exports = {
   },
   salvaCarteira(data) {
     const obj = JSON.stringify(data);
-    fs.writeFile('carteira.json', obj, 'utf8', (erro) => {
+    fs.writeFile('./data/carteira.json', obj, 'utf8', (erro) => {
       if (erro) {
         // eslint-disable-next-line no-console
         console.log(erro);
@@ -90,7 +90,7 @@ module.exports = {
   lerLoja() {
     let dados = {};
     try {
-      const conteudoArquivo = fs.readFileSync('lojinha.json');
+      const conteudoArquivo = fs.readFileSync('./data/lojinha.json');
       if (!conteudoArquivo) return;
       dados = JSON.parse(conteudoArquivo);
     } finally {
@@ -99,7 +99,7 @@ module.exports = {
   },
   salvaLoja(data) {
     const obj = JSON.stringify(data);
-    fs.writeFile('lojinha.json', obj, 'utf8', (erro) => {
+    fs.writeFile('./data/lojinha.json', obj, 'utf8', (erro) => {
       if (erro) {
         // eslint-disable-next-line no-console
         console.log(erro);
@@ -132,14 +132,14 @@ module.exports = {
   lerRT() {
     let msgRT;
     try {
-      msgRT = fs.readFileSync('rt.txt');
+      msgRT = fs.readFileSync('./data/rt.txt');
       if (!msgRT) return;
     } finally {
       return msgRT;
     }
   },
   salvaRT(data) {
-    fs.writeFile('rt.txt', data, 'utf8', (erro) => {
+    fs.writeFile('./data/rt.txt', data, 'utf8', (erro) => {
       if (erro) {
         // eslint-disable-next-line no-console
         console.log(erro);

@@ -11,14 +11,14 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-app.use(express.static('overlay'));
+app.use(express.static('public'));
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 const porta = 5050;
 
 app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/overlay/index.html`);
+  res.sendFile(`${__dirname}/public/index.html`);
 });
 
 const {
@@ -610,6 +610,14 @@ function darPontos(channel) {
         }
 
         salvaCarteira(carteira);
+
+        if (pontos[user]) {
+          pontos[user] += 5;
+        } else {
+          pontos[user] = 5;
+        }
+
+        salvaPontos(pontos);
       });
     });
 }
