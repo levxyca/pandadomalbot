@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-shadow */
 /* eslint-disable prefer-const */
 /* eslint-disable import/no-dynamic-require */
@@ -338,6 +340,7 @@ function mensagemChegou(target, context, message, ehBot) {
             salvaCarteira(carteira);
           });
         })
+        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           client.say(target, '/me, Erro ao adicionar pontos.');
         });
