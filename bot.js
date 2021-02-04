@@ -544,7 +544,7 @@ function mensagemChegou(target, context, message, ehBot) {
       let perfect = Math.random();
 
       if (perfect >= 0.999) {
-        let points = [1000];
+        let points = [300];
         points = points[Math.floor(Math.random() * points.length)];
 
         client.say(
@@ -557,6 +557,16 @@ function mensagemChegou(target, context, message, ehBot) {
         } else {
           carteira[username] = points;
         }
+
+        salvaCarteira(carteira);
+
+        if (pontos[username]) {
+          pontos[username] += points;
+        } else {
+          pontos[username] = points;
+        }
+
+        salvaPontos(pontos);
       } else {
         client.say(
           target,
