@@ -1,9 +1,9 @@
 function getAnswer() {
   const answers = [
-    'sim',
-    'não',
-    'provavelmente',
-    'com certeza',
+    'sim.',
+    'não.',
+    'provavelmente.',
+    'com certeza!',
     'hmmmmmm, será?',
     'o que você acha?',
     'acredite nos seus sonhos Kappa',
