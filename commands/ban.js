@@ -7,7 +7,7 @@ exports.default = (client, target, context, message, dados) => {
     if (splittedMessage.length === 1) {
       client.say(
         target,
-        `${username} é para dar ban em quem mesmo?! Estou perdido Stareeyes `,
+        `${username} é para dar ban em quem mesmo?! Estou perdido 🤔`,
       );
       return;
     }
@@ -20,7 +20,7 @@ exports.default = (client, target, context, message, dados) => {
       client.say(target, `/timeout ${username} 60`);
       client.say(
         target,
-        `${username} mexeu com ${dados.protegido} então mexeu comigo!`,
+        `${username} mexeu com ${dados.protegido} então mexeu comigo! 🐼`,
       );
     } else if (
       String(username).toLowerCase().includes('dev') &&
