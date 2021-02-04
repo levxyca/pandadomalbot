@@ -60,7 +60,7 @@ const bannedWords = [
 
 exports.default = (client, target, context, message) => {
   mensagens.push(message);
-  mensagemSplited = message.split(' ');
+  const mensagemSplited = message.split(' ');
 
   if (
     mensagens[mensagens.length - 1] === mensagens[mensagens.length - 2] &&
