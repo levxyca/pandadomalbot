@@ -1,64 +1,11 @@
 /* eslint-disable no-console */
-const mensagens = [];
+let mensagens = [];
 const padroesFeitos = [];
-const bannedWords = [
-  'ban',
-  'timeout',
-  'unban',
-  'untimeout',
-  'predict',
-  'poll',
-  'clear',
-  'deletepoll',
-  'emoteonly',
-  'emoteonlyoff',
-  'endpoll',
-  'followers',
-  'followersoff',
-  'slow',
-  'subscribers',
-  'subscribersoff',
-  'uniquechat',
-  'uniquechatoff',
-  '/ban',
-  '/timeout',
-  '/unban',
-  '/untimeout',
-  '/predict',
-  '/poll',
-  '/clear',
-  '/deletepoll',
-  '/emoteonly',
-  '/emoteonlyoff',
-  '/endpoll',
-  '/followers',
-  '/followersoff',
-  '/slow',
-  '/subscribers',
-  '/subscribersoff',
-  '/uniquechat',
-  '/uniquechatoff',
-  '.ban',
-  '.timeout',
-  '.unban',
-  '.untimeout',
-  '.predict',
-  '.poll',
-  '.clear',
-  '.deletepoll',
-  '.emoteonly',
-  '.emoteonlyoff',
-  '.endpoll',
-  '.followers',
-  '.followersoff',
-  '.slow',
-  '.subscribers',
-  '.subscribersoff',
-  '.uniquechat',
-  '.uniquechatoff',
-];
 
 exports.default = (client, target, context, message) => {
+  if (message.startsWith('.') || message.startsWith('/')) {
+    return;
+  }
   mensagens.push(message);
   const mensagemSplited = message.split(' ');
 
@@ -69,5 +16,9 @@ exports.default = (client, target, context, message) => {
   ) {
     padroesFeitos.push(message);
     client.say(target, message);
+  }
+
+  if (mensagens.length > 2) {
+    mensagens = mensages.splice(1);
   }
 };
