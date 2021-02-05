@@ -3,30 +3,40 @@ exports.default = (client, target, context, message) => {
     case '!repocoders':
       client.say(
         target,
-        `https://github.com/Caaddss/awesome-live-coding-streams`,
+        `Conheça outras pessoas que fazem live coding 🔴 https://github.com/Caaddss/awesome-live-coding-streams`,
       );
       break;
     case '!theme':
       client.say(
         target,
-        `https://marketplace.visualstudio.com/items?itemName=jolaleye.horizon-theme-vscode`,
+        `Esse é o tema que eu uso no meu VSCode levxycAnimada https://marketplace.visualstudio.com/items?itemName=jolaleye.horizon-theme-vscode`,
       );
       break;
     case '!help':
     case '!site':
-      client.say(target, `levxyca.github.io/pandadomalbot/`);
+      client.say(
+        target,
+        `
+        Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.codes/site-pandadomalbot/`,
+      );
+      break;
+    case '!repopanda':
+      client.say(
+        target,
+        `Repositório do pandadomalbot 🐼 https://github.com/levxyca/pandadomalbot`,
+      );
       break;
     case '!picole':
     case '!sorvete':
       client.say(
         target,
-        `/me Olha o sorvete e o picole fresquinho a toda hooora. Por apenas a sua ALMA!!!`,
+        `/me Olha o sorveteeeeeeee, fresquinho a toda hora. Por apenas a sua ALMA 😈`,
       );
       break;
     case '!sabores':
       client.say(
         target,
-        `/me Os nossos sabores são: Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`,
+        `/me Sabores da casa 🍦 Shacolate, Leite Compensado, Frocus, Napolialma, Trucado, Motankum e Vambruesha.`,
       );
       break;
     case '!lola':
@@ -39,14 +49,14 @@ exports.default = (client, target, context, message) => {
     case '!premio':
       client.say(
         target,
-        `Na nossa última live de janeiro, quem estiver em 1º lugar no !rank irá ganhar um curso da udemy no valor de até R$36,99. Para saber como subir no rank é só digitar !help`,
+        `Na nossa última live de fevereiro, quem estiver em 1º lugar no !rank irá ganhar um curso da udemy no valor de até R$36,99 🏆 Para saber como subir no rank é só digitar !help`,
       );
       break;
     case '!docs':
       client.say(
         target,
 
-        `https://levxyca.codes/docs/`,
+        `Repositório que reúne todas as minhas anotações de estudo 📂 https://levxyca.codes/docs/`,
       );
       break;
     default:

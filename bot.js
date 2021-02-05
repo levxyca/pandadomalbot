@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-shadow */
 /* eslint-disable prefer-const */
 /* eslint-disable import/no-dynamic-require */
@@ -338,6 +340,7 @@ function mensagemChegou(target, context, message, ehBot) {
             salvaCarteira(carteira);
           });
         })
+        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           client.say(target, '/me, Erro ao adicionar pontos.');
         });
@@ -541,7 +544,7 @@ function mensagemChegou(target, context, message, ehBot) {
       let perfect = Math.random();
 
       if (perfect >= 0.999) {
-        let points = [1000];
+        let points = [300];
         points = points[Math.floor(Math.random() * points.length)];
 
         client.say(
@@ -554,6 +557,16 @@ function mensagemChegou(target, context, message, ehBot) {
         } else {
           carteira[username] = points;
         }
+
+        salvaCarteira(carteira);
+
+        if (pontos[username]) {
+          pontos[username] += points;
+        } else {
+          pontos[username] = points;
+        }
+
+        salvaPontos(pontos);
       } else {
         client.say(
           target,
