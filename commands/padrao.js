@@ -19,6 +19,6 @@ exports.default = (client, target, context, message) => {
   }
 
   if (mensagens.length > 2) {
-    mensagens = mensages.splice(1);
+    mensagens = mensagens.splice(1);
   }
 };
