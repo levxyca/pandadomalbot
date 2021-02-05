@@ -298,7 +298,7 @@ function mensagemChegou(target, context, message, ehBot) {
       return;
     }
 
-    let user = message.split(' ')[1];
+    let user = message.split(' ')[1].replace("@", "");
     let qtdPontos = message.split(' ')[2];
 
     if (isNaN(qtdPontos)) {
