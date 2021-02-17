@@ -129,6 +129,26 @@ module.exports = {
       return dados;
     }
   },
+  lerGeradorNario() {
+    let dados = {};
+    try {
+      const conteudoArquivo = fs.readFileSync('./data/gerador-de-narios.json');
+      if (!conteudoArquivo) return;
+      dados = JSON.parse(conteudoArquivo);
+    } finally {
+      return dados;
+    }
+  },
+  lerGeradorLev() {
+    let dados = {};
+    try {
+      const conteudoArquivo = fs.readFileSync('./data/gerador-de-levs.json');
+      if (!conteudoArquivo) return;
+      dados = JSON.parse(conteudoArquivo);
+    } finally {
+      return dados;
+    }
+  },
   lerRT() {
     let msgRT;
     try {

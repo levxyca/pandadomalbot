@@ -17,6 +17,8 @@ app.use(express.static('public'));
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
+const timer = require('./timers');
+
 const porta = 5050;
 
 app.get('/', (req, res) => {
@@ -34,9 +36,12 @@ const {
   salvaLoja,
   lerPiadas,
   lerEnsinamentos,
+  lerGeradorNario,
+  lerGeradorLev,
   lerRT,
   salvaRT,
 } = require('./utils');
+const { default: timers } = require('./timers');
 
 const { BOT_USERNAME } = process.env;
 const { CHANNEL_NAME } = process.env;
@@ -59,6 +64,8 @@ const carteira = lerCarteira();
 const loja = lerLoja();
 const piadas = lerPiadas();
 const ensinamentos = lerEnsinamentos();
+const geradorNarios = lerGeradorNario();
+const geradorLevs = lerGeradorLev();
 
 const sabores = [
   'Shacolate',
@@ -395,6 +402,28 @@ function mensagemChegou(target, context, message, ehBot) {
     );
   }
 
+  if (message.split(' ')[0] === '!nario') {
+    let geradorNario =
+      geradorNarios[Math.floor(Math.random() * geradorNarios.length)];
+
+    client.say(
+      target,
+
+      `/me Gerando uma variação de Nario especial para você @${username}... Bip... Bop... Aqui está, o seu Nario especial é: ${geradorNario.codnario}`,
+    );
+  }
+
+  if (message.split(' ')[0] === '!lev') {
+    let geradorLev =
+      geradorLevs[Math.floor(Math.random() * geradorLevs.length)];
+
+    client.say(
+      target,
+
+      `/me Saindo do forninho uma variação de levxyca especialmente para você @${username}... trililililim... A sua levxyca especial é: ${geradorLev.cod}`,
+    );
+  }
+
   switch (message) {
     case '!salvar':
       if (preso) {
@@ -661,6 +690,7 @@ client.on('connected', (host, port) => {
   setInterval(() => {
     darPontos(CHANNEL_NAME);
   }, 300000);
+  timer.default(client, CHANNEL_NAME);
 });
 
 client.on('message', mensagemChegou);
