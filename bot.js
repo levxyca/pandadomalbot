@@ -78,13 +78,6 @@ let protegido = '';
 let escape = false;
 let msgRt;
 
-const motivoIrritacao = [
-  'puxou a orelha do panda do mal',
-  'imitou a voz do panda do mal',
-  'jogou água no panda do mal',
-  'sugeriu live de deno',
-];
-
 function prendeView() {
   let index = Math.floor(Math.random() * views.length);
 
@@ -443,42 +436,7 @@ function mensagemChegou(target, context, message, ehBot) {
         client.say(target, `/me ${username} não tem ninguem preso.`);
       }
       break;
-    case '!irritar': {
-      const index = Math.floor(Math.random() * motivoIrritacao.length);
-      const irritacao = `${username} ${motivoIrritacao[index]} e `;
 
-      if (context.mod === true) {
-        client.say(
-          target,
-          `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
-        );
-        break;
-      }
-
-      if (Math.random() < 0.5) {
-        const tempoTO = Math.floor(Math.random() * 30);
-        client.say(
-          target,
-          `/me ${irritacao} deu azar. Vou segurar você por ${tempoTO} segundos!`,
-        );
-        client.say(target, `/timeout ${username} ${tempoTO}`);
-
-        preso = username;
-        tentou = [];
-        escape = false;
-      } else {
-        if (carteira[username]) {
-          carteira[username] += 100;
-        } else {
-          carteira[username] = 100;
-        }
-
-        salvaCarteira(carteira);
-
-        client.say(target, `/me ${irritacao} saiu correndo. Grrrr`);
-      }
-      break;
-    }
     case '!proteger':
       if (username.toLowerCase() === CHANNEL_NAME) {
         protegerSub();
