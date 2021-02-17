@@ -7,12 +7,10 @@ exports.default = (client, target, context, message) => {
     return;
   }
   mensagens.push(message);
-  const mensagemSplited = message.split(' ');
 
   if (
     mensagens[mensagens.length - 1] === mensagens[mensagens.length - 2] &&
-    padroesFeitos.indexOf(message) === -1 &&
-    bannedWords.includes(mensagemSplited[0])
+    padroesFeitos.indexOf(message) === -1
   ) {
     padroesFeitos.push(message);
     client.say(target, message);
