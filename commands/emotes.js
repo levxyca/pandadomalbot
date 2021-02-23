@@ -12,6 +12,12 @@ exports.default = (client, target, context, message) => {
         `levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro levxycBanheiro`,
       );
       break;
+    case '!animada':
+      client.say(
+        target,
+        `levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada levxycAnimada `,
+      );
+      break;
     default:
       break;
   }
