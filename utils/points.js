@@ -5,7 +5,17 @@ const { readDataJSON, writeDataJSON } = require('./data');
  *
  * @param {String} user nome do usuário.
  * @param {Array|Number} seed valor dos pontos. Pode ser especificado um Array
- * contendo os possíveis valores a se entregue como pontos.
+ * contendo os possíveis valores a ser entregue como pontos. Ex:
+ * ```
+ * // Entrega um do valores (10, 20, 30, 100) para o usuário jubileu.
+ * const points = giveMoneyAndPointsTo('jubileu', [10, 20, 30, 100]);
+ *
+ * // Entrega o valor 200 para o usuário jubileu.
+ * const points = giveMoneyAndPointsTo('jubileu', 200);
+ *
+ * // Entrega o valor padrão (100) para o usuário jubileu.
+ * const points = giveMoneyAndPointsTo('jubileu');
+ * ```
  *
  * @returns {Number} o número de pontos atribuídos ao usuário.
  */

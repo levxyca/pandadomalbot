@@ -28,11 +28,10 @@ const readDataJSON = (file, defaultValue = {}) => {
 };
 
 /**
- * Lê o conteúdo de um arquivo no diretório /data.
+ * Escreve o conteúdo em um arquivo no diretório /data.
  *
  * @param {String} file nome do arquivo (sem o '.json').
- * @param {Object} defaultValue valor padrão a ser retornado caso o
- * arquivo não exista e/ou esteja vazio.
+ * @param {Object} data dados a serem escritos no arquivo.
  *
  * @returns {Boolean} true se a escrita no arquivo ocorrer sem errros, do contrário false é retornado.
  */
