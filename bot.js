@@ -15,9 +15,7 @@ const app = express();
 app.use(express.static('public'));
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
-
-// ???
-// const timer = require('./timers');
+const timer = require('./timers');
 
 const porta = 5050;
 
