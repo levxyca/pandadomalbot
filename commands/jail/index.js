@@ -6,7 +6,8 @@ const escapar = require('./commands/escapar');
 const irritar = require('./commands/irritar');
 
 const { chatters } = require('../../utils/twitch');
-const { readJailState, writeJailState } = require('./state');
+const { readDataJSON, writeDataJSON } = require('../../utils/data');
+const { JAIL_STATE } = require('./state');
 
 const TIME_BETWEEN_VIEW_ARRESTS = 600000;
 
@@ -23,9 +24,9 @@ exports.default = async (client, target, context, message) => {
 
     if (viewers.length > 0) {
       const viewer = viewers[Math.floor(Math.random() * viewers.length)];
-      const state = readJailState();
+      const state = readDataJSON('jail', JAIL_STATE);
 
-      writeJailState({
+      writeDataJSON('jail', {
         ...state,
         prisoners: [...state.prisoners, viewer],
       });

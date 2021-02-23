@@ -1,13 +1,14 @@
-const { readJailState, writeJailState } = require('../state');
+const { readDataJSON, writeDataJSON } = require('../../../utils/data');
+const { JAIL_STATE } = require('../state');
 const { protectSubscriber } = require('../actions');
 
 exports.default = async (client, target, context, message) => {
   if (message.trim() === '!proteger' && 'broadcaster' in context.badges) {
     const sub = protectSubscriber();
 
-    const state = readJailState();
+    const state = readDataJSON('jail', JAIL_STATE);
 
-    writeJailState({
+    writeDataJSON('jail', {
       ...state,
       protected: sub,
     });

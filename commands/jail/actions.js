@@ -1,6 +1,7 @@
 const { chatters } = require('../../utils/twitch');
 const { lerSubs } = require('../../utils/index');
-const { readJailState, writeJailState } = require('./state');
+const { readDataJSON, writeDataJSON } = require('../../utils/data');
+const { JAIL_STATE } = require('./state');
 
 /**
  * Prende um usuário.
@@ -13,9 +14,9 @@ const arrestView = async () => {
   if (viewers.length === 0) return null;
 
   const viewer = viewers[Math.floor(Math.random() * viewers.length)];
-  const state = readJailState();
+  const state = readDataJSON('jail', JAIL_STATE);
 
-  writeJailState({
+  writeDataJSON('jail', {
     ...state,
     prisoners: [...state.prisoners, viewer],
   });
@@ -36,8 +37,8 @@ const protectSubscriber = () => {
   const sub = subs[Math.floor(Math.random() * subs.length)];
   if (!sub) return null;
 
-  const state = readJailState();
-  writeJailState({
+  const state = readDataJSON('jail', JAIL_STATE);
+  writeDataJSON('jail', {
     ...state,
     protected: sub,
   });

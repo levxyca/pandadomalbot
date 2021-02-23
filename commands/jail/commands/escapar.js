@@ -1,11 +1,12 @@
 const { giveMoneyAndPointsTo } = require('../../../utils/points');
-const { readJailState, writeJailState } = require('../state');
+const { readDataJSON, writeDataJSON } = require('../../../utils/data');
+const { JAIL_STATE } = require('../state');
 
 const POINTS_TO_ESCAPE = [0, 50, 100, 150, 200];
 
 exports.default = (client, target, context, message) => {
   if (message.trim() === '!escapar') {
-    const state = readJailState();
+    const state = readDataJSON('jail', JAIL_STATE);
 
     if (state.prisoners.length === 0) {
       client.say(target, `/me Não tem ninguem em minhas mãos.`);
@@ -32,6 +33,6 @@ exports.default = (client, target, context, message) => {
         `/me ${context.username} não conseguiu escapar das minhas mãos.`,
       );
     }
-    writeJailState(state);
+    writeDataJSON('jail', state);
   }
 };

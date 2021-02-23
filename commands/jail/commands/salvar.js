@@ -1,9 +1,10 @@
+const { readDataJSON, writeDataJSON } = require('../../../utils/data');
+const { JAIL_STATE } = require('../state');
 const { giveMoneyAndPointsTo } = require('../../../utils/points');
-const { readJailState, writeJailState } = require('../state');
 
 exports.default = (client, target, context, message) => {
   if (message.trim() === '!salvar') {
-    const state = readJailState();
+    const state = readDataJSON('jail', JAIL_STATE);
 
     if (state.prisoners.length === 0) {
       client.say(target, `/me Não tem ninguem em minhas mãos.`);
@@ -48,6 +49,6 @@ exports.default = (client, target, context, message) => {
       state.rescuers = [...state.rescuers, context.username];
     }
 
-    writeJailState(state);
+    writeDataJSON('jail', state);
   }
 };
