@@ -2,9 +2,9 @@ const { readDataJSON } = require('../../../utils/data');
 const { JAIL_STATE } = require('../state');
 
 exports.default = (client, target, _, message) => {
-  if ((message.trim() === '!protegido', JAIL_STATE)) {
+  if (message.trim() === '!protegido') {
     let reply;
-    const state = readDataJSON('jail');
+    const state = readDataJSON('jail', JAIL_STATE);
 
     if (!state.protected) {
       reply = 'Não estou protegendo ninguém no momento.';
