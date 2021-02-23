@@ -106,13 +106,13 @@ exports.default = (client, _, context, message) => {
       return;
     }
 
-    // if (mod || 'broadcaster' in badges) {
-    //   client.say(
-    //     process.env.CHANNEL_NAME,
-    //     `/me Para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
-    //   );
-    //   return;
-    // }
+    if (mod || 'broadcaster' in badges) {
+      client.say(
+        process.env.CHANNEL_NAME,
+        `/me Para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
+      );
+      return;
+    }
 
     handleCommand(client, username);
   }

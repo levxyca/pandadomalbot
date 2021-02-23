@@ -1,4 +1,3 @@
-// const { lerCarteira } = require('../utils');
 const { readDataJSON } = require('../utils/data');
 
 exports.default = (client, target, context, message) => {
