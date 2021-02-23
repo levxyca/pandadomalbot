@@ -6,7 +6,6 @@
 /* eslint-disable global-require */
 
 const { Client } = require('tmi.js');
-const fetch = require('node-fetch');
 require('dotenv').config();
 const { readdirSync } = require('fs');
 const express = require('express');
@@ -23,24 +22,12 @@ app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
 });
 
-const {
-  lerDados,
-  lerSubs,
-  lerPontos,
-  salvaPontos,
-  lerCarteira,
-  salvaCarteira,
-  lerLoja,
-  salvaLoja,
-  lerPiadas,
-  lerEnsinamentos,
-  lerRT,
-  salvaRT,
-} = require('./utils');
+const { lerRT, salvaRT } = require('./utils');
+const { protectSubscriber } = require('./commands/jail/actions');
+const { readDataJSON, writeDataJSON } = require('./utils/data');
+const { chatters } = require('./utils/twitch');
 
-const { BOT_USERNAME } = process.env;
-const { CHANNEL_NAME } = process.env;
-const { OAUTH_TOKEN } = process.env;
+const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env;
 
 const opts = {
   identity: {
@@ -52,13 +39,12 @@ const opts = {
 
 const client = new Client(opts);
 
-const subs = lerSubs();
-const dados = lerDados();
-const pontos = lerPontos();
-const carteira = lerCarteira();
-const loja = lerLoja();
-const piadas = lerPiadas();
-const ensinamentos = lerEnsinamentos();
+const dados = readDataJSON('dados');
+const pontos = readDataJSON('pontos');
+const carteira = readDataJSON('carteira');
+const loja = readDataJSON('lojinha');
+const piadas = readDataJSON('piadas');
+const ensinamentos = readDataJSON('ensinamentos');
 
 const sabores = [
   'Shacolate',
@@ -71,33 +57,7 @@ const sabores = [
 ];
 
 // Contadores
-let views = [];
-let preso = '';
-let tentou = [];
-let protegido = '';
-let escape = false;
 let msgRt;
-
-const motivoIrritacao = [
-  'puxou a orelha do panda do mal',
-  'imitou a voz do panda do mal',
-  'jogou água no panda do mal',
-  'sugeriu live de deno',
-];
-
-function prendeView() {
-  let index = Math.floor(Math.random() * views.length);
-
-  return views[index];
-}
-
-function protegerSub() {
-  let index = Math.floor(Math.random() * subs.length);
-
-  protegido = subs[index];
-
-  dados.protegido = protegido;
-}
 
 function compraPicole(message, username) {
   if (!loja[username]) {
@@ -127,8 +87,8 @@ function compraPicole(message, username) {
 
   carteira[username] -= 50;
 
-  salvaLoja(loja);
-  salvaCarteira(carteira);
+  writeDataJSON('lojinha', loja);
+  writeDataJSON('carteira', carteira);
 
   return sabor;
 }
@@ -192,13 +152,14 @@ function verGeladeira(message, username) {
   return msg;
 }
 
-protegerSub();
+protectSubscriber();
 
 readdirSync(`${__dirname}/commands`)
   .filter((file) => file.slice(-3) === '.js')
   .forEach((file) => {
     client.on('message', (target, context, message, isBot) => {
       if (isBot) return;
+
       require(`./commands/${file}`).default(
         client,
         target,
@@ -209,6 +170,11 @@ readdirSync(`${__dirname}/commands`)
     });
   });
 
+client.on('message', (target, context, message, isBot) => {
+  if (isBot) return;
+  require('./commands/jail').default(client, target, context, message);
+});
+
 // intercepta mensagem do chat
 function mensagemChegou(target, context, message, ehBot) {
   if (ehBot) {
@@ -216,12 +182,6 @@ function mensagemChegou(target, context, message, ehBot) {
   }
 
   let { username } = context;
-
-  if (views.indexOf(username) === -1) {
-    if (username !== protegido) {
-      views.push(username);
-    }
-  }
 
   if (message.split(' ')[0] === '!rank') {
     let user = message.split(' ')[1];
@@ -329,7 +289,7 @@ function mensagemChegou(target, context, message, ehBot) {
               pontos[user] = qtdPontos;
             }
 
-            salvaPontos(pontos);
+            writeDataJSON('pontos', pontos);
 
             if (carteira[user]) {
               carteira[user] += qtdPontos;
@@ -337,7 +297,7 @@ function mensagemChegou(target, context, message, ehBot) {
               carteira[user] = qtdPontos;
             }
 
-            salvaCarteira(carteira);
+            writeDataJSON('carteira', carteira);
           });
         })
         // eslint-disable-next-line no-unused-vars
@@ -351,7 +311,7 @@ function mensagemChegou(target, context, message, ehBot) {
         pontos[user] = qtdPontos;
       }
 
-      salvaPontos(pontos);
+      writeDataJSON('pontos', pontos);
 
       if (carteira[user]) {
         carteira[user] += qtdPontos;
@@ -359,7 +319,7 @@ function mensagemChegou(target, context, message, ehBot) {
         carteira[user] = qtdPontos;
       }
 
-      salvaCarteira(carteira);
+      writeDataJSON('carteira', carteira);
     }
   } else if (
     message.split(' ')[0] === '!addrt' &&
@@ -396,149 +356,6 @@ function mensagemChegou(target, context, message, ehBot) {
   }
 
   switch (message) {
-    case '!salvar':
-      if (preso) {
-        if (!tentou.includes(username)) {
-          if (preso === username) {
-            client.say(target, `/me ${username}, você não pode se salvar.`);
-          } else if (Math.random() < 0.5) {
-            client.say(
-              target,
-              `/me ${username} resgatou ${preso} das mãos do panda do mal.`,
-            );
-
-            if (pontos[username]) {
-              pontos[username] += 100;
-            } else {
-              pontos[username] = 100;
-            }
-
-            salvaPontos(pontos);
-
-            if (carteira[username]) {
-              carteira[username] += 100;
-            } else {
-              carteira[username] = 100;
-            }
-
-            salvaCarteira(carteira);
-
-            preso = '';
-            tentou = [];
-            escape = false;
-          } else {
-            client.say(
-              target,
-              `/me ${username} não conseguiu resgatar ${preso} das mãos do panda do mal.`,
-            );
-            tentou.push(username);
-          }
-        } else {
-          client.say(
-            target,
-            `/me ${username} você não pode mais resgatar ${preso} das mãos do panda do mal.`,
-          );
-        }
-      } else {
-        client.say(target, `/me ${username} não tem ninguem preso.`);
-      }
-      break;
-    case '!irritar': {
-      const index = Math.floor(Math.random() * motivoIrritacao.length);
-      const irritacao = `${username} ${motivoIrritacao[index]} e `;
-
-      if (context.mod === true) {
-        client.say(
-          target,
-          `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
-        );
-        break;
-      }
-
-      if (Math.random() < 0.5) {
-        const tempoTO = Math.floor(Math.random() * 30);
-        client.say(
-          target,
-          `/me ${irritacao} deu azar. Vou segurar você por ${tempoTO} segundos!`,
-        );
-        client.say(target, `/timeout ${username} ${tempoTO}`);
-
-        preso = username;
-        tentou = [];
-        escape = false;
-      } else {
-        if (carteira[username]) {
-          carteira[username] += 100;
-        } else {
-          carteira[username] = 100;
-        }
-
-        salvaCarteira(carteira);
-
-        client.say(target, `/me ${irritacao} saiu correndo. Grrrr`);
-      }
-      break;
-    }
-    case '!proteger':
-      if (username.toLowerCase() === CHANNEL_NAME) {
-        protegerSub();
-      }
-      break;
-    case '!protegido':
-      client.say(
-        target,
-        `/me ${protegido} está sob minha proteção, nem adianta tentar!`,
-      );
-      break;
-    case '!escapar':
-      if (preso === username) {
-        if (!escape) {
-          if (Math.random() <= 0.1) {
-            let points = [0, 50, 100, 150, 200];
-            points = points[Math.floor(Math.random() * points.length)];
-
-            client.say(
-              target,
-              `/me ${username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
-            );
-            preso = '';
-            tentou = [];
-            escape = false;
-
-            if (pontos[username]) {
-              pontos[username] += points;
-            } else {
-              pontos[username] = points;
-            }
-
-            salvaPontos(pontos);
-
-            if (carteira[username]) {
-              carteira[username] += points;
-            } else {
-              carteira[username] = points;
-            }
-
-            salvaCarteira(carteira);
-          } else {
-            client.say(
-              target,
-              `/me ${username} não conseguiu escapar das minhas mãos.`,
-            );
-            escape = true;
-          }
-        } else {
-          client.say(target, `/me ${username} você já tentou escapar.`);
-        }
-      }
-      break;
-    case '!preso':
-      if (preso) {
-        client.say(target, `/me ${preso} está em minhas mãos.`);
-      } else {
-        client.say(target, `/me não tem ninguem em minhas mãos.`);
-      }
-      break;
     case '!carinho':
       // eslint-disable-next-line no-case-declarations
       let perfect = Math.random();
@@ -558,7 +375,7 @@ function mensagemChegou(target, context, message, ehBot) {
           carteira[username] = points;
         }
 
-        salvaCarteira(carteira);
+        writeDataJSON('carteira', carteira);
 
         if (pontos[username]) {
           pontos[username] += points;
@@ -566,7 +383,7 @@ function mensagemChegou(target, context, message, ehBot) {
           pontos[username] = points;
         }
 
-        salvaPontos(pontos);
+        writeDataJSON('pontos', pontos);
       } else {
         client.say(
           target,
@@ -585,54 +402,27 @@ function mensagemChegou(target, context, message, ehBot) {
   }
 }
 
-let interval = null;
+async function darPontos() {
+  const { vips, moderators, viewers, broadcaster } = await chatters();
+  const total = [...vips, ...moderators, ...viewers, ...broadcaster];
 
-client.on('message', (target) => {
-  if (interval === null) {
-    interval = setInterval(() => {
-      if (!preso) {
-        preso = prendeView();
+  total.forEach((user) => {
+    if (carteira[user]) {
+      carteira[user] += 5;
+    } else {
+      carteira[user] = 5;
+    }
 
-        client.say(target, `/me prendeu ${preso}`);
-      } else {
-        client.say(
-          target,
-          `/me ${preso} está nas minhas mãos. Digite !salvar para tentar salvar.`,
-        );
-      }
-    }, 600000);
-  }
-});
+    writeDataJSON('carteira', carteira);
 
-function darPontos(channel) {
-  fetch(`https://tmi.twitch.tv/group/user/${channel}/chatters`)
-    .then((res) => res.json())
-    .then((json) => {
-      const total = [].concat(
-        json.chatters.vips,
-        json.chatters.moderators,
-        json.chatters.viewers,
-        json.chatters.broadcaster,
-      );
+    if (pontos[user]) {
+      pontos[user] += 5;
+    } else {
+      pontos[user] = 5;
+    }
 
-      total.forEach((user) => {
-        if (carteira[user]) {
-          carteira[user] += 5;
-        } else {
-          carteira[user] = 5;
-        }
-
-        salvaCarteira(carteira);
-
-        if (pontos[user]) {
-          pontos[user] += 5;
-        } else {
-          pontos[user] = 5;
-        }
-
-        salvaPontos(pontos);
-      });
-    });
+    writeDataJSON('pontos', pontos);
+  });
 }
 
 io.on('connection', (socket) => {
@@ -658,8 +448,8 @@ client.on('connected', (host, port) => {
   setTimeout(() => {
     client.say(CHANNEL_NAME, 'Estou de olho em vocês.');
   }, 1500);
-  setInterval(() => {
-    darPontos(CHANNEL_NAME);
+  setInterval(async () => {
+    await darPontos();
   }, 300000);
 });
 
