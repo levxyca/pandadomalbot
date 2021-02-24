@@ -381,43 +381,6 @@ function mensagemChegou(target, context, message, ehBot) {
   }
 
   switch (message) {
-    case '!carinho':
-      // eslint-disable-next-line no-case-declarations
-      let perfect = Math.random();
-
-      if (perfect >= 0.999) {
-        let points = [300];
-        points = points[Math.floor(Math.random() * points.length)];
-
-        client.say(
-          target,
-          `/me ${username} está fazendo o melhor carinho que eu já recebi! nhawwww Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${points} pandacoins🐼.`,
-        );
-
-        if (carteira[username]) {
-          carteira[username] += points;
-        } else {
-          carteira[username] = points;
-        }
-
-        writeDataJSON('carteira', carteira);
-
-        if (pontos[username]) {
-          pontos[username] += points;
-        } else {
-          pontos[username] = points;
-        }
-
-        writeDataJSON('pontos', pontos);
-      } else {
-        client.say(
-          target,
-          `/me Obrigado pelo seu carinho ${username}! 🐼 Apesar de não ser o carinho perfeito foi um carinho muito bom! Seu nível de carinho foi: ${(
-            perfect * 100
-          ).toFixed(2)}%!`,
-        );
-      }
-      break;
     case '!rt':
       msgRt = lerRT();
       client.say(target, `/me ${msgRt}`);
