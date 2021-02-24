@@ -8,7 +8,7 @@ const REASONS = [
 ];
 
 const USAGE_COUNT = {};
-const USAGE_MAX = 10; // Número máximo de usos do comando.
+const USAGE_MAX = 1; // Número máximo de usos do comando.
 const SUCCESSFULLY_IRRITATE_POINTS = 0; // Quantidade de pontos dada ao irritar sem ser preso.
 
 /**
