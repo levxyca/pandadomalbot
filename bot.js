@@ -156,6 +156,7 @@ function verGeladeira(message, username) {
 }
 
 protectSubscriber();
+require('./commands/jail/arrest-viewers').default(client);
 
 readdirSync(`${__dirname}/commands`)
   .filter((file) => file.slice(-3) === '.js')
