@@ -5,7 +5,6 @@ exports.default = (client, target, context, message) => {
   const carteira = readDataJSON('carteira');
   if (messageSplited[0] === '!gold') {
     if (messageSplited.length === 2 && carteira[messageSplited[1]]) {
-      console.log('oi');
       client.say(
         target,
         `${context.username} ${messageSplited[1]} tem ${

@@ -9,7 +9,7 @@ exports.default = (client, target, context, message) => {
     const state = readDataJSON('jail', JAIL_STATE);
 
     if (state.prisoners.length === 0) {
-      client.say(target, `/me Não tem ninguem em minhas mãos.`);
+      client.say(target, `/me Você não foi pego por mim.`);
       return;
     }
 
