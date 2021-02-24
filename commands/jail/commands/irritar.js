@@ -1,4 +1,6 @@
 const { readDataJSON, writeDataJSON } = require('../../../utils/data');
+const { arrest } = require('../actions');
+const { JAIL_STATE } = require('../state');
 
 const REASONS = [
   'puxou a orelha do panda do mal',
@@ -77,11 +79,7 @@ const unsuccessfulIrritate = (client, username, reason) => {
   );
   client.say(process.env.CHANNEL_NAME, `/timeout ${username} ${timeout}`);
 
-  const state = readDataJSON('jail');
-  writeDataJSON('jail', {
-    ...state,
-    prisoners: [...state.prisoners, username],
-  });
+  arrest(username);
 };
 
 /**
@@ -102,7 +100,7 @@ const handleCommand = (client, username) => {
 
 exports.default = (client, _, context, message) => {
   if (message === '!irritar') {
-    const { badges, mod, username } = context;
+    const { mod, username } = context;
 
     if (!canUseCommand(username)) {
       client.say(

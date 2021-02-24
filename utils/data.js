@@ -19,12 +19,13 @@ const readDataJSON = (file, defaultValue = {}) => {
     return defaultValue;
   }
 
-  const content = readFileSync(path, { encoding: 'utf-8' });
-  if (!content) {
+  const content = readFileSync(path, { encoding: 'utf-8' }) ?? {};
+  const json = JSON.parse(content);
+  if (Object.keys(json).length === 0) {
     return defaultValue;
   }
 
-  return JSON.parse(content);
+  return json;
 };
 
 /**

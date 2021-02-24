@@ -11,8 +11,11 @@ exports.default = (client, target, context, message) => {
       return;
     }
 
-    if (state.fugitives.includes(context.username)) {
-      client.say(target, `/me ${context.username}, você já tentou se salvar.`);
+    if (state.prisoners.includes(context.username)) {
+      client.say(
+        target,
+        `/me ${context.username}, você não pode se salvar! Mas pode tentar escapar usando o comando !escapar.`,
+      );
       return;
     }
 
@@ -46,7 +49,7 @@ exports.default = (client, target, context, message) => {
       state.rescuers = [];
       state.fugitives = [];
     } else {
-      state.rescuers = [...state.rescuers, context.username];
+      state.rescuers = [...new Set([...state.rescuers, context.username])];
     }
 
     writeDataJSON('jail', state);
