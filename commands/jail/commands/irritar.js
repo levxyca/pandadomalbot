@@ -76,6 +76,12 @@ const unsuccessfulIrritate = (client, username, reason) => {
     `/me ${username} ${reason} e deu azar. Vou segurar você por ${timeout} segundos!`,
   );
   client.say(process.env.CHANNEL_NAME, `/timeout ${username} ${timeout}`);
+
+  const state = readDataJSON('jail');
+  writeDataJSON('jail', {
+    ...state,
+    prisoners: [...state.prisoners, username],
+  });
 };
 
 /**
