@@ -307,6 +307,8 @@ function mensagemChegou(target, context, message, ehBot) {
         .catch((error) => {
           client.say(target, '/me, Erro ao adicionar pontos.');
         });
+
+        client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`)
     } else {
       if (pontos[user]) {
         pontos[user] += qtdPontos;
