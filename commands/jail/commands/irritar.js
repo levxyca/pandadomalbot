@@ -115,7 +115,7 @@ exports.default = (client, _, context, message) => {
     if (mod) {
       client.say(
         process.env.CHANNEL_NAME,
-        `/me Para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
+        `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
       );
       return;
     }
