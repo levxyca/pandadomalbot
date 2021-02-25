@@ -1,6 +1,5 @@
 const { readDataJSON, writeDataJSON } = require('../../../utils/data');
 const { arrest } = require('../actions');
-const { JAIL_STATE } = require('../state');
 
 const REASONS = [
   'puxou a orelha do panda do mal',
@@ -10,7 +9,7 @@ const REASONS = [
 ];
 
 const USAGE_COUNT = {};
-const USAGE_MAX = 10; // Número máximo de usos do comando.
+const USAGE_MAX = 1; // Número máximo de usos do comando.
 const SUCCESSFULLY_IRRITATE_POINTS = 0; // Quantidade de pontos dada ao irritar sem ser preso.
 
 /**
@@ -113,7 +112,7 @@ exports.default = (client, _, context, message) => {
     if (mod) {
       client.say(
         process.env.CHANNEL_NAME,
-        `/me Para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
+        `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
       );
       return;
     }

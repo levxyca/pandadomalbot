@@ -9,12 +9,15 @@ exports.default = (client, target, context, message) => {
     const state = readDataJSON('jail', JAIL_STATE);
 
     if (state.prisoners.length === 0) {
-      client.say(target, `/me Você não foi pego por mim.`);
+      client.say(target, `/me Você não foi pego por mim, ainda...`);
       return;
     }
 
     if (state.fugitives.includes(context.username)) {
-      client.say(target, `/me ${context.username}, você já tentou escapar.`);
+      client.say(
+        target,
+        `/me PunOko ${context.username}, você já tentou escapar.`,
+      );
       return;
     }
 
@@ -24,7 +27,7 @@ exports.default = (client, target, context, message) => {
 
       client.say(
         target,
-        `/me ${context.username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
+        `/me Wowwwww, ${context.username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
       );
     } else {
       state.fugitives = [...new Set([...state.fugitives, context.username])];
