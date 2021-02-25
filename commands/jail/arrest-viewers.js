@@ -1,6 +1,5 @@
 const { chatters } = require('../../utils/twitch');
-const { readDataJSON, writeDataJSON } = require('../../utils/data');
-const { JAIL_STATE } = require('./state');
+const { arrest } = require('./actions');
 
 const ARREST_INTERVAL = parseInt(
   process.env.MINUTOS_ENTRE_PRISAO_DE_VIEWERS,
@@ -15,14 +14,7 @@ exports.default = (client) => {
     const { viewers } = await chatters();
     if (viewers.length > 0) {
       const viewer = viewers[Math.floor(Math.random() * viewers.length)];
-      const state = readDataJSON('jail', JAIL_STATE);
-
-      writeDataJSON('jail', {
-        ...state,
-        prisoners: [...state.prisoners, viewer],
-      });
-
-      client.say(process.env.CHANNEL_NAME, `/me prendeu ${viewer}.`);
+      client.say(process.env.CHANNEL_NAME, `/me prendeu ${arrest(viewer)}.`);
     }
   }, millis);
 };

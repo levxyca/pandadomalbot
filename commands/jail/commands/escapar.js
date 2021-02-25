@@ -30,7 +30,7 @@ exports.default = (client, target, context, message) => {
         `/me Wowwwww, ${context.username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`,
       );
     } else {
-      state.fugitives.push(context.username);
+      state.fugitives = [...new Set([...state.fugitives, context.username])];
       client.say(
         target,
         `/me ${context.username} não conseguiu escapar das minhas mãos.`,
