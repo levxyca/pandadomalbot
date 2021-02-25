@@ -34,6 +34,8 @@ exports.default = (client, target, context, message) => {
         state.prisoners[Math.floor(Math.random() * state.prisoners.length)];
 
       state.prisoners = state.prisoners.filter((u) => u !== rescued);
+
+      client.say(`/untimeout ${rescued}`);
       client.say(
         target,
         `/me ${context.username} resgatou ${rescued} das mãos do panda do mal.`,
