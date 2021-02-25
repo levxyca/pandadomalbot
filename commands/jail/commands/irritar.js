@@ -8,8 +8,8 @@ const REASONS = [
 ];
 
 const USAGE_COUNT = {};
-const USAGE_MAX = 10; // Número máximo de usos do comando.
-const SUCCESSFULLY_IRRITATE_POINTS = 100; // Quantidade de pontos dada ao irritar sem ser preso.
+const USAGE_MAX = 1; // Número máximo de usos do comando.
+const SUCCESSFULLY_IRRITATE_POINTS = 0; // Quantidade de pontos dada ao irritar sem ser preso.
 
 /**
  * Verifica se o usuário pode utilizar o comando.
@@ -76,6 +76,12 @@ const unsuccessfulIrritate = (client, username, reason) => {
     `/me ${username} ${reason} e deu azar. Vou segurar você por ${timeout} segundos!`,
   );
   client.say(process.env.CHANNEL_NAME, `/timeout ${username} ${timeout}`);
+
+  const state = readDataJSON('jail');
+  writeDataJSON('jail', {
+    ...state,
+    prisoners: [...state.prisoners, username],
+  });
 };
 
 /**
@@ -106,10 +112,10 @@ exports.default = (client, _, context, message) => {
       return;
     }
 
-    if (mod || 'broadcaster' in badges) {
+    if (mod) {
       client.say(
         process.env.CHANNEL_NAME,
-        `/me Para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
+        `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
       );
       return;
     }

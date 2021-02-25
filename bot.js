@@ -156,6 +156,7 @@ function verGeladeira(message, username) {
 }
 
 protectSubscriber();
+require('./commands/jail/arrest-viewers').default(client);
 
 readdirSync(`${__dirname}/commands`)
   .filter((file) => file.slice(-3) === '.js')
@@ -307,6 +308,8 @@ function mensagemChegou(target, context, message, ehBot) {
         .catch((error) => {
           client.say(target, '/me, Erro ao adicionar pontos.');
         });
+
+        client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`)
     } else {
       if (pontos[user]) {
         pontos[user] += qtdPontos;
