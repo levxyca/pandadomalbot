@@ -35,7 +35,8 @@ exports.default = (client, target, context, message) => {
 
       state.prisoners = state.prisoners.filter((u) => u !== rescued);
 
-      client.say(`/untimeout ${rescued}`);
+      // Adicionar um try catch aqui
+      // client.say(`/untimeout ${rescued}`);
       client.say(
         target,
         `/me ${context.username} resgatou ${rescued} das mãos do panda do mal.`,
