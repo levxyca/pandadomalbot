@@ -218,53 +218,13 @@ function mensagemChegou(target, context, message, ehBot) {
     const msg = verGeladeira(message, username);
 
     client.say(target, msg);
-  } else if (message.split(' ')[0] === '!pontos') {
-    let msg = '';
-    let user = message.split(' ')[1];
-
-    if (user) {
-      user = user.replace('@', '');
-      user = user.toLowerCase();
-
-      if (pontos[user]) {
-        msg = `/me ${user} possui ${pontos[user]} pontos.`;
-      } else {
-        msg = `/me ${user} possui 0 pontos`;
-      }
-    } else if (pontos[username]) {
-      msg = `/me ${username} você possui ${pontos[username]} pontos.`;
-    } else {
-      msg = `/me Poxa, ${username}! Você ainda não possui pontos.`;
-    }
-
-    client.say(target, msg);
-  } else if (message.split(' ')[0] === '!carteira') {
-    let msg = '';
-    let user = message.split(' ')[1];
-
-    if (user) {
-      user = user.replace('@', '');
-      user = user.toLowerCase();
-
-      if (carteira[user]) {
-        msg = `/me ${user} possui ${carteira[user]} pandacoins🐼.`;
-      } else {
-        msg = `/me ${user} possui 0 panda coins`;
-      }
-    } else if (carteira[username]) {
-      msg = `/me ${username} você possui ${carteira[username]} pandacoins🐼.`;
-    } else {
-      msg = `/me Poxa, ${username}! Você ainda não possui pandacoins🐼.`;
-    }
-
-    client.say(target, msg);
   } else if (message.split(' ')[0].toLowerCase() === '!addpoints') {
     if (username.toLowerCase() !== CHANNEL_NAME) {
       client.say(target, '/me Você não tem permissão para adicionar pontos');
       return;
     }
 
-    let user = message.split(' ')[1].replace("@", "");
+    let user = message.split(' ')[1].replace('@', '');
     let qtdPontos = message.split(' ')[2];
 
     if (isNaN(qtdPontos)) {
@@ -309,7 +269,7 @@ function mensagemChegou(target, context, message, ehBot) {
           client.say(target, '/me, Erro ao adicionar pontos.');
         });
 
-        client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`)
+      client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
     } else {
       if (pontos[user]) {
         pontos[user] += qtdPontos;
