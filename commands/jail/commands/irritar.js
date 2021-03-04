@@ -9,8 +9,11 @@ const REASONS = [
 ];
 
 const USAGE_COUNT = {};
-const USAGE_MAX = 1; // Número máximo de usos do comando.
-const SUCCESSFULLY_IRRITATE_POINTS = 0; // Quantidade de pontos dada ao irritar sem ser preso.
+const USAGE_MAX = parseInt(process.env.MAXIMO_DE_IRRITAR_DIARIOS, 10); // Número máximo de usos do comando.
+const SUCCESSFULLY_IRRITATE_POINTS = parseInt(
+  process.env.SUCCESSFULLY_IRRITATE_POINTS,
+  10,
+); // Quantidade de pontos dada ao irritar sem ser preso.
 
 /**
  * Verifica se o usuário pode utilizar o comando.
