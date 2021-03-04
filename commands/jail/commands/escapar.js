@@ -13,6 +13,11 @@ exports.default = (client, target, context, message) => {
       return;
     }
 
+    if (!state.prisoners.includes(context.username)) {
+      client.say(target, `/me Você não foi pego por mim, ainda...`);
+      return;
+    }
+
     if (state.fugitives.includes(context.username)) {
       client.say(
         target,
