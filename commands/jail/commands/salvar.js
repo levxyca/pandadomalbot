@@ -41,6 +41,7 @@ exports.default = (client, target, context, message) => {
         target,
         `/me ${context.username} resgatou ${rescued} das mãos do panda do mal.`,
       );
+      state.rescuers = [];
     } else {
       client.say(
         target,
