@@ -241,6 +241,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
       writeDataJSON('carteira', carteira);
     }
+    client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
   } else if (
     message.split(' ')[0] === '!addrt' &&
     (context.mod || CHANNEL_NAME)
