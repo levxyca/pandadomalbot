@@ -22,11 +22,10 @@ const porta = 5050;
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
 });
-
-const { lerRT, salvaRT } = require('./utils');
 const { protectSubscriber } = require('./commands/jail/actions');
 const { readDataJSON, writeDataJSON } = require('./utils/data');
 const { chatters } = require('./utils/twitch');
+const { getTodaysLiveAnnouncement, mountTweetUrl } = require('./utils/twitter');
 
 const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env;
 
@@ -58,9 +57,6 @@ const sabores = [
   'Motankum',
   'Vambruesha',
 ];
-
-// Contadores
-let msgRt;
 
 function compraPicole(message, username) {
   if (!loja[username]) {
@@ -287,13 +283,6 @@ function mensagemChegou(target, context, message, ehBot) {
 
       writeDataJSON('carteira', carteira);
     }
-  } else if (
-    message.split(' ')[0] === '!addrt' &&
-    (context.mod || CHANNEL_NAME)
-  ) {
-    const msg = message.replace('!addrt', '');
-
-    salvaRT(msg);
   }
   if (message.split(' ')[0] === '!piada') {
     let piada = piadas[Math.floor(Math.random() * piadas.length)];
@@ -342,15 +331,6 @@ function mensagemChegou(target, context, message, ehBot) {
       `/me Saindo do forninho uma variação de levxyca especialmente para você @${username}... trililililim... A sua levxyca especial é: ${geradorLev.cod}`,
     );
   }
-
-  switch (message) {
-    case '!rt':
-      msgRt = lerRT();
-      client.say(target, `/me ${msgRt}`);
-      break;
-    default:
-      break;
-  }
 }
 
 async function darPontos() {
@@ -395,13 +375,38 @@ io.on('connection', (socket) => {
 
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
+
   console.log(`* Bot entrou no endereço ${host}:${port}`);
+
   setTimeout(() => {
     client.say(CHANNEL_NAME, 'Estou de olho em vocês.');
   }, 1500);
+
+  const RETWEET_INTERVAL = parseInt(
+    process.env.MINUTOS_ENTRE_PEDIDO_DE_RETWEET,
+    10,
+  );
+  setInterval(async () => {
+    const tweet = await getTodaysLiveAnnouncement();
+
+    let retweetMessage = '';
+    if (tweet.public_metrics.retweet_count > 0) {
+      retweetMessage += `🔁 ${tweet.public_metrics.retweet_count}. `;
+    }
+    if (tweet.public_metrics.like_count > 0) {
+      retweetMessage += `❤️ ${tweet.public_metrics.like_count}. `;
+    }
+
+    retweetMessage += `Dá um RT aí por favorzinho levxycAnimada ${mountTweetUrl(
+      tweet.id,
+    )}`;
+    client.say(process.env.CHANNEL_NAME, retweetMessage);
+  }, RETWEET_INTERVAL * 1000 * 60);
+
   setInterval(async () => {
     await darPontos();
   }, 300000);
+
   timer.default(client, CHANNEL_NAME);
 });
 
