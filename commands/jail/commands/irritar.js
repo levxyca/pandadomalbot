@@ -1,5 +1,41 @@
 const { readDataJSON, writeDataJSON } = require('../../../utils/data');
+const { dateToString, isToday } = require('../../../utils/datetime');
 const { arrest } = require('../actions');
+
+const MAX = parseInt(process.env.MAXIMO_DE_IRRITAR_DIARIOS, 10); // Número máximo de usos do comando.
+const POINTS = parseInt(process.env.SUCCESSFULLY_IRRITATE_POINTS, 10); // Quantidade de pontos dada ao irritar sem ser preso.
+
+const canUseCommand = (username) => {
+  const state = readDataJSON('irritadores');
+
+  if (state.last_date === isToday) {
+    state.users = {};
+  }
+
+  state.users = state.users ?? {};
+
+  if (!state.last_date || !isToday(state.last_date)) {
+    state.last_date = dateToString(new Date());
+    state.users[username] = 1;
+    writeDataJSON('irritadores', state);
+    return true;
+  }
+
+  if (!(username in state.users)) {
+    state.users[username] = 1;
+    writeDataJSON('irritadores', state);
+    return true;
+  }
+
+  const usage = state.users[username];
+  if (usage < MAX) {
+    state.users[username] = usage + 1;
+    writeDataJSON('irritadores', state);
+    return true;
+  }
+
+  return false;
+};
 
 const REASONS = [
   'puxou a orelha do panda do mal',
@@ -8,40 +44,11 @@ const REASONS = [
   'sugeriu live de deno',
 ];
 
-const USAGE_COUNT = {};
-const USAGE_MAX = parseInt(process.env.MAXIMO_DE_IRRITAR_DIARIOS, 10); // Número máximo de usos do comando.
-const SUCCESSFULLY_IRRITATE_POINTS = parseInt(
-  process.env.SUCCESSFULLY_IRRITATE_POINTS,
-  10,
-); // Quantidade de pontos dada ao irritar sem ser preso.
-
-/**
- * Verifica se o usuário pode utilizar o comando.
- *
- * @param {String} username nome do usuário.
- *
- * @returns {Boolean} `true`caso não tenha atingido o número máximo,
- * do contrário `false` é retornado.
- */
-const canUseCommand = (username) => {
-  if (!(username in USAGE_COUNT)) {
-    USAGE_COUNT[username] = 1;
-    return true;
-  }
-
-  if (USAGE_COUNT[username] < USAGE_MAX) {
-    USAGE_COUNT[username] += 1;
-    return true;
-  }
-
-  return false;
-};
-
 /**
  * Executado quando o usuário irrita o pandadomal com sucesso.
  *
  * Ação realizada: adição de pontos na carteira do respectivo usuário
- * com base no valor da constante `SUCCESSFULLY_IRRITATE_POINTS`.
+ * com base no valor da constante `POINTS`.
  *
  * @param {Client} client cliente do TMI.
  * @param {String} login nome do usuário.
@@ -51,9 +58,9 @@ const successfullyIrritate = (client, username, reason) => {
   const wallet = readDataJSON('carteira');
 
   if (username in wallet) {
-    wallet[username] += SUCCESSFULLY_IRRITATE_POINTS;
+    wallet[username] += POINTS;
   } else {
-    wallet[username] = SUCCESSFULLY_IRRITATE_POINTS;
+    wallet[username] = POINTS;
   }
   writeDataJSON('carteira', wallet);
 
