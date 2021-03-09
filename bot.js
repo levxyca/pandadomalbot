@@ -391,13 +391,15 @@ client.on('connected', (host, port) => {
   );
   setInterval(async () => {
     const tweet = await getTodaysLiveAnnouncement();
-    const metrics = formatTweetMetrics(tweet);
-    const url = mountTweetUrl(tweet.id);
+    if (tweet) {
+      const metrics = formatTweetMetrics(tweet);
+      const url = mountTweetUrl(tweet.id);
 
-    client.say(
-      process.env.CHANNEL_NAME,
-      `/me ${metrics}Dá um RT aí por favorzinho levxycAnimada ${url}`,
-    );
+      client.say(
+        process.env.CHANNEL_NAME,
+        `/me ${metrics}Dá um RT aí por favorzinho levxycAnimada ${url}`,
+      );
+    }
   }, RETWEET_INTERVAL * 1000 * 60);
 
   setInterval(async () => {
