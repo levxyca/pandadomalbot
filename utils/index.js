@@ -43,24 +43,4 @@ module.exports = {
       return subs;
     }
   },
-  lerRT() {
-    let msgRT;
-    try {
-      msgRT = fs.readFileSync('./data/rt.txt');
-      if (!msgRT) return;
-    } finally {
-      return msgRT;
-    }
-  },
-  salvaRT(data) {
-    fs.writeFile('./data/rt.txt', data, 'utf8', (erro) => {
-      if (erro) {
-        // eslint-disable-next-line no-console
-        console.log(erro);
-      } else {
-        // eslint-disable-next-line no-console
-        console.log('salvo');
-      }
-    });
-  },
 };
