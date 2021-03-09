@@ -25,7 +25,11 @@ app.get('/', (req, res) => {
 const { protectSubscriber } = require('./commands/jail/actions');
 const { readDataJSON, writeDataJSON } = require('./utils/data');
 const { chatters } = require('./utils/twitch');
-const { getTodaysLiveAnnouncement, mountTweetUrl } = require('./utils/twitter');
+const {
+  getTodaysLiveAnnouncement,
+  mountTweetUrl,
+  formatTweetMetrics,
+} = require('./utils/twitter');
 
 const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env;
 
@@ -375,7 +379,6 @@ io.on('connection', (socket) => {
 
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
-
   console.log(`* Bot entrou no endereço ${host}:${port}`);
 
   setTimeout(() => {
@@ -388,19 +391,13 @@ client.on('connected', (host, port) => {
   );
   setInterval(async () => {
     const tweet = await getTodaysLiveAnnouncement();
+    const metrics = formatTweetMetrics(tweet);
+    const url = mountTweetUrl(tweet.id);
 
-    let retweetMessage = '';
-    if (tweet.public_metrics.retweet_count > 0) {
-      retweetMessage += `🔁 ${tweet.public_metrics.retweet_count}. `;
-    }
-    if (tweet.public_metrics.like_count > 0) {
-      retweetMessage += `❤️ ${tweet.public_metrics.like_count}. `;
-    }
-
-    retweetMessage += `Dá um RT aí por favorzinho levxycAnimada ${mountTweetUrl(
-      tweet.id,
-    )}`;
-    client.say(process.env.CHANNEL_NAME, retweetMessage);
+    client.say(
+      process.env.CHANNEL_NAME,
+      `/me ${metrics}Dá um RT aí por favorzinho levxycAnimada ${url}`,
+    );
   }, RETWEET_INTERVAL * 1000 * 60);
 
   setInterval(async () => {

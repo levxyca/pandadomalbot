@@ -1,24 +1,18 @@
 const {
   getTodaysLiveAnnouncement,
   mountTweetUrl,
+  formatTweetMetrics,
 } = require('../utils/twitter');
 
 exports.default = async (client, target, _, message) => {
   if (message.trim() === '!rt') {
     const tweet = await getTodaysLiveAnnouncement();
+    const metrics = formatTweetMetrics(tweet);
+    const url = mountTweetUrl(tweet.id);
 
-    let retweetMessage = '';
-    if (tweet.public_metrics.retweet_count > 0) {
-      retweetMessage += `🔁 ${tweet.public_metrics.retweet_count}. `;
-    }
-    if (tweet.public_metrics.like_count > 0) {
-      retweetMessage += `❤️ ${tweet.public_metrics.like_count}. `;
-    }
-
-    retweetMessage += `Dá um RT aí por favorzinho levxycAnimada ${mountTweetUrl(
-      tweet.id,
-    )}`;
-
-    client.say(target, retweetMessage);
+    client.say(
+      target,
+      `/me ${metrics}Dá um RT aí por favorzinho levxycAnimada ${url}`,
+    );
   }
 };

@@ -95,12 +95,38 @@ const getTodaysLiveAnnouncement = async () => {
   return todayTweets[0] ?? undefined;
 };
 
+/**
+ * Obtém a url de um tweet.
+ * @param {String|Number} id identificador do tweet.
+ * @returns {String} a url do tweet.
+ */
 const mountTweetUrl = (id) => {
   return `https://twitter.com/${process.env.TWITTER_USERNAME}/status/${id}`;
+};
+
+/**
+ * Formata as métricas do tweet.
+ * @param {Object} tweet informações do tweet.
+ * @returns {String} a contagem de retweets/likes como texto. Ex:
+ * 🔁 10. -> Quando a quantidade de retweets for maior que 0.
+ * ❤️ 10. -> Quando a quantidade de likes for maior que 0.
+ * 🔁 10. 15 ❤️. -> Quando a quantidade de retweets e likes forem maior que 0.
+ *
+ */
+const formatTweetMetrics = (tweet) => {
+  let message = '';
+  if (tweet.public_metrics.retweet_count > 0) {
+    message += `🔁 ${tweet.public_metrics.retweet_count}. `;
+  }
+  if (tweet.public_metrics.like_count > 0) {
+    message += `❤️ ${tweet.public_metrics.like_count}. `;
+  }
+  return message;
 };
 
 module.exports = {
   mountTweetUrl,
   getLatestTweets,
   getTodaysLiveAnnouncement,
+  formatTweetMetrics,
 };
