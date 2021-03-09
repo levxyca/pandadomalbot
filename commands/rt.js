@@ -18,7 +18,7 @@ exports.default = async (client, target, _, message) => {
     } else {
       client.say(
         target,
-        '/me Não encontrei nenhum tweet relacionado a live hoje.',
+        '/me Não encontrei nenhum tweet relacionado a live de hoje.',
       );
     }
   }
