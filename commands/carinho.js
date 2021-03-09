@@ -7,6 +7,11 @@ const POINTS = parseInt(process.env.PONTOS_POR_CARINHO_PERFEITO, 10);
 
 const canUseCommand = (username) => {
   const state = readDataJSON('carinhos');
+
+  if (state.last_date === isToday) {
+    state.users = {};
+  }
+
   state.users = state.users ?? {};
 
   if (!state.last_date || !isToday(state.last_date)) {

@@ -22,11 +22,14 @@ const porta = 5050;
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
 });
-
-const { lerRT, salvaRT } = require('./utils');
 const { protectSubscriber } = require('./commands/jail/actions');
 const { readDataJSON, writeDataJSON } = require('./utils/data');
 const { chatters } = require('./utils/twitch');
+const {
+  getTodaysLiveAnnouncement,
+  mountTweetUrl,
+  formatTweetMetrics,
+} = require('./utils/twitter');
 
 const { BOT_USERNAME, CHANNEL_NAME, OAUTH_TOKEN } = process.env;
 
@@ -58,9 +61,6 @@ const sabores = [
   'Motankum',
   'Vambruesha',
 ];
-
-// Contadores
-let msgRt;
 
 function compraPicole(message, username) {
   if (!loja[username]) {
@@ -94,39 +94,6 @@ function compraPicole(message, username) {
   writeDataJSON('carteira', carteira);
 
   return sabor;
-}
-
-function verRanking(username) {
-  let indexUser = null;
-  let msg = 'O ranking atual é ';
-
-  const ranking = Object.entries(
-    Object.fromEntries(Object.entries(pontos).sort(([, a], [, b]) => b - a)),
-  );
-
-  ranking.forEach((user, index) => {
-    if (user[0] === username) {
-      indexUser = index;
-    }
-  });
-
-  let counter = ranking.length < 3 ? ranking.length : 3;
-
-  for (let i = 0; i < counter; i += 1) {
-    const user = ranking[i];
-
-    msg += `${i + 1}º ${user[0]} com ${user[1]} pontos. `;
-  }
-
-  if (indexUser != null) {
-    msg += `${username} está ${indexUser + 1}º com ${
-      ranking[indexUser][1]
-    } pontos`;
-  } else {
-    msg += `${username} não possui pontos :(`;
-  }
-
-  return msg;
 }
 
 function verGeladeira(message, username) {
@@ -187,20 +154,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
   let { username } = context;
 
-  if (message.split(' ')[0] === '!rank') {
-    let user = message.split(' ')[1];
-
-    if (user) {
-      user = user.replace('@', '');
-      user = user.toLowerCase();
-
-      username = user;
-    }
-
-    const msg = verRanking(username);
-
-    client.say(target, msg);
-  } else if (message.split(' ')[0] === '!comprar') {
+  if (message.split(' ')[0] === '!comprar') {
     if (carteira[username] >= 50) {
       const sabor = compraPicole(message, username);
 
@@ -287,14 +241,10 @@ function mensagemChegou(target, context, message, ehBot) {
 
       writeDataJSON('carteira', carteira);
     }
-  } else if (
-    message.split(' ')[0] === '!addrt' &&
-    (context.mod || CHANNEL_NAME)
-  ) {
-    const msg = message.replace('!addrt', '');
 
-    salvaRT(msg);
-  }
+    client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
+  } 
+
   if (message.split(' ')[0] === '!piada') {
     let piada = piadas[Math.floor(Math.random() * piadas.length)];
     client.say(
@@ -342,15 +292,6 @@ function mensagemChegou(target, context, message, ehBot) {
       `/me Saindo do forninho uma variação de levxyca especialmente para você @${username}... trililililim... A sua levxyca especial é: ${geradorLev.cod}`,
     );
   }
-
-  switch (message) {
-    case '!rt':
-      msgRt = lerRT();
-      client.say(target, `/me ${msgRt}`);
-      break;
-    default:
-      break;
-  }
 }
 
 async function darPontos() {
@@ -396,12 +337,32 @@ io.on('connection', (socket) => {
 client.on('connected', (host, port) => {
   // eslint-disable-next-line no-console
   console.log(`* Bot entrou no endereço ${host}:${port}`);
+
   setTimeout(() => {
     client.say(CHANNEL_NAME, 'Estou de olho em vocês.');
   }, 1500);
+
+  const RETWEET_INTERVAL = parseInt(
+    process.env.MINUTOS_ENTRE_PEDIDO_DE_RETWEET,
+    10,
+  );
+  setInterval(async () => {
+    const tweet = await getTodaysLiveAnnouncement();
+    if (tweet) {
+      const metrics = formatTweetMetrics(tweet);
+      const url = mountTweetUrl(tweet.id);
+
+      client.say(
+        process.env.CHANNEL_NAME,
+        `/me ${metrics}Dá um RT aí por favorzinho levxycAnimada ${url}`,
+      );
+    }
+  }, RETWEET_INTERVAL * 1000 * 60);
+
   setInterval(async () => {
     await darPontos();
   }, 300000);
+
   timer.default(client, CHANNEL_NAME);
 });
 
