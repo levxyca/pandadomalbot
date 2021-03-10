@@ -29,6 +29,7 @@ exports.default = (client, target, context, message) => {
 
     if (Math.random() < 0.5) {
       giveMoneyAndPointsTo(context.username);
+      state.rescuers = [];
 
       const rescued =
         state.prisoners[Math.floor(Math.random() * state.prisoners.length)];
@@ -41,7 +42,6 @@ exports.default = (client, target, context, message) => {
         target,
         `/me ${context.username} resgatou ${rescued} das mãos do panda do mal.`,
       );
-      state.rescuers = [];
     } else {
       client.say(
         target,
