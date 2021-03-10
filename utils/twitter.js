@@ -57,23 +57,6 @@ const getLatestTweets = async (limit = 20) => {
 
 /**
  * Obtém o tweet diário de anúncio da live.
- *
- * @returns {Object} os dados do tweet. Ex:
- * ```
- * {
- *    entities: { urls: [ [Object], [Object] ], mentions: [ [Object] ] },
- *    text: 'live ONNN 🌟\n' +
- *      '\n' +
- *      'YAAAY! Ás segundas nós estudamos Javascript 💻 Avisando também que hoje teremos SORTEIO de um ebook da @casadocodigo !!!\n' +
- *      '\n' +
- *      'Caso não possa assistir a live, deixa ela aberta e abaixa o volume no navegador pra ajudar, é o famoso lurk!\n' +
- *      '\n' +
- *      'Link: https://t.co/vYnX9G1Yuy https://t.co/PQ3M3UaYdm',
- *    id: '1368962227261292551',
- *    public_metrics: { retweet_count: 14, reply_count: 0, like_count: 18, quote_count: 0 },
- *    created_at: '2021-03-08T16:30:03.000Z'
- * }
- * ```
  */
 const getTodaysLiveAnnouncement = async () => {
   const hasLookupUrl = (urls) =>
