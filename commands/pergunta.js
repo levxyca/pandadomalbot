@@ -9,6 +9,7 @@ function getAnswer() {
     'acredite nos seus sonhos Kappa',
     'vou ver e te aviso...',
     'só tem um jeito de saber...',
+    'não conte com isso',
   ];
 
   const answersCount = answers.length;
