@@ -45,7 +45,7 @@ exports.default = (client, target, context, message) => {
     case '!youtube':
       client.say(
         target,
-        `Conheça o meu canal no youtube sobre tecnologia, bate-papo, rotina e afins 🎥 https://www.youtube.com/channel/UC0oAypdScDI9WiwvebIqiOQ`,
+        `Conheça o meu canal no youtube sobre tecnologia, bate-papo, rotina e afins 🎥 www.youtube.com/levxyca`,
       );
       break;
     default:

@@ -1,4 +1,4 @@
-exports.default = (client, target, context, message, dados) => {
+exports.default = (client, target, context, message) => {
   const splittedMessage = String(message).split(' ');
   const { username } = context;
 

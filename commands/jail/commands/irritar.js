@@ -8,10 +8,6 @@ const POINTS = parseInt(process.env.SUCCESSFULLY_IRRITATE_POINTS, 10); // Quanti
 const canUseCommand = (username) => {
   const state = readDataJSON('irritadores');
 
-  if (state.last_date === isToday) {
-    state.users = {};
-  }
-
   state.users = state.users ?? {};
 
   if (!state.last_date || !isToday(state.last_date)) {

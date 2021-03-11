@@ -1,11 +1,5 @@
 exports.default = (client, target, context, message) => {
   switch (message) {
-    case '!repocoders':
-      client.say(
-        target,
-        `Conheça outras pessoas que fazem live coding 🔴 https://github.com/Caaddss/awesome-live-coding-streams`,
-      );
-      break;
     case '!theme':
       client.say(
         target,
@@ -49,13 +43,13 @@ exports.default = (client, target, context, message) => {
     case '!premio':
       client.say(
         target,
-        `Na nossa última live de fevereiro, quem estiver em 1º lugar no !rank irá ganhar um curso da udemy no valor de até R$36,99 🏆 Para saber como subir no rank é só digitar !help`,
+        // `Na nossa última live de fevereiro, quem estiver em 1º lugar no !rank irá ganhar um curso da udemy no valor de até R$36,99 🏆 Para saber como subir no rank é só digitar !help`,
+        `Esse mês nós iremos sortear um curso da udemy no valor de até R$36,99 🏆 no último dia do mês`,
       );
       break;
     case '!docs':
       client.say(
         target,
-
         `Repositório que reúne todas as minhas anotações de estudo 📂 https://levxyca.codes/docs/`,
       );
       break;
