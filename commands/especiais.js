@@ -10,6 +10,11 @@ exports.default = (client, target, context, message) => {
         client.say(target, `/me Dê um sub grátis pro nesclimn10.`);
       }
       break;
+    case '!lanchinho':
+      if (context.username === 'PresidenteBolinho') {
+        client.say(target, `/me É o momento perfeito para comer um bolinho.`);
+      }
+      break;
     default:
       break;
   }
