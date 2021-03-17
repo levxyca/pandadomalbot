@@ -53,6 +53,11 @@ exports.default = (client, target, context, message) => {
         `Repositório que reúne todas as minhas anotações de estudo 📂 https://levxyca.codes/docs/`,
       );
       break;
+    case '!modlider':
+      client.say(
+        target,
+        `Veja quem é a Líder dos Mods: https://clips.twitch.tv/CarefulSassyPancakeWow-Pu6-8Hfgcg7YaPyr`,)
+      break;
     default:
       break;
   }
