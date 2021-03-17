@@ -12,6 +12,7 @@ const canUseCommand = (username) => {
 
   if (!state.last_date || !isToday(state.last_date)) {
     state.last_date = dateToString(new Date());
+    state.users = {};
     state.users[username] = 1;
     writeDataJSON('carinhos', state);
     return true;
