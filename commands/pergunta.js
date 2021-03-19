@@ -10,6 +10,8 @@ function getAnswer() {
     'vou ver e te aviso...',
     'só tem um jeito de saber...',
     'não conte com isso',
+    'é sério que você tá me perguntando isso?',
+    'eu gostaria de saber...',
   ];
 
   const answersCount = answers.length;

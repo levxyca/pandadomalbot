@@ -5,7 +5,7 @@ exports.default = (client, target, context, message) => {
 
   function verRanking(username) {
     let indexUser = null;
-    let msg = 'O ranking atual é ';
+    let msg = 'O ranking atual 🥇 ';
 
     const ranking = Object.entries(
       Object.fromEntries(Object.entries(pontos).sort(([, a], [, b]) => b - a)),

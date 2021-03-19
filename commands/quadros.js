@@ -9,8 +9,7 @@ exports.default = (client, target, context, message) => {
     case '!levxoque':
       client.say(
         target,
-        `/me Levxoque ⚡ é um quadro do canal onde quebramos... digo, brincamos com hardware 
-          ⚙️ Isso não é um tutorial, a pessoa streamer não faz ideia do que está fazendo.`,
+        `/me O Levxoque ⚡ é um quadro do canal onde quebramos... digo, brincamos com hardware ⚙️ Isso não é um tutorial, a pessoa streamer não faz ideia do que está fazendo.`,
       );
       break;
     default:
