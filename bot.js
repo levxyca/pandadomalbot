@@ -178,7 +178,8 @@ function mensagemChegou(target, context, message, ehBot) {
       return;
     }
 
-    let user = message.split(' ')[1].replace('@', '');
+    let user = message.split(' ')[1].toLowerCase().replace('@', '');
+    console.log(user);
     let qtdPontos = message.split(' ')[2];
 
     if (isNaN(qtdPontos)) {
