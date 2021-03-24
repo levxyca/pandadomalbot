@@ -56,7 +56,14 @@ exports.default = (client, target, context, message) => {
     case '!modlider':
       client.say(
         target,
-        `Veja quem é a Líder dos Mods: https://clips.twitch.tv/CarefulSassyPancakeWow-Pu6-8Hfgcg7YaPyr`,)
+        `Veja quem é a Líder dos Mods: https://clips.twitch.tv/CarefulSassyPancakeWow-Pu6-8Hfgcg7YaPyr`,
+      );
+      break;
+    case '!horarios':
+      client.say(
+        target,
+        `/me Temos lives todas ás segundas, quartas e sextas das 13:30h até 15:30h. Normalmente nas segundas estudamos Javascript, nas quartas fazemos projetos aleatórios e nas sextas temos o nosso querido !levxoque onde queimamos hardware.`,
+      );
       break;
     default:
       break;
