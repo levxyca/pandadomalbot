@@ -179,7 +179,6 @@ function mensagemChegou(target, context, message, ehBot) {
     }
 
     let user = message.split(' ')[1].toLowerCase().replace('@', '');
-    console.log(user);
     let qtdPontos = message.split(' ')[2];
 
     if (isNaN(qtdPontos)) {
@@ -244,7 +243,7 @@ function mensagemChegou(target, context, message, ehBot) {
     }
 
     client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
-  } 
+  }
 
   if (message.split(' ')[0] === '!piada') {
     let piada = piadas[Math.floor(Math.random() * piadas.length)];
@@ -327,10 +326,18 @@ io.on('connection', (socket) => {
 
     if (message === '!alimentar') {
       socket.broadcast.emit('alimentar', true);
+      client.say(
+        target,
+        `/me ${context.username} alimentou o pandadomalbot com um sorvete.`,
+      );
     }
 
     if (message === '!loira') {
       socket.broadcast.emit('loira', true);
+      client.say(
+        target,
+        `/me Quem soltou essa loira? Meu deus leva ela de volta ${context.username}!`,
+      );
     }
   });
 });
