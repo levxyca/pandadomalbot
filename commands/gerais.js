@@ -11,7 +11,7 @@ exports.default = (client, target, context, message) => {
       client.say(
         target,
         `
-        Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.codes/site-pandadomalbot/`,
+        Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.codes/pandadomalsite/`,
       );
       break;
     case '!repopanda':
@@ -62,7 +62,7 @@ exports.default = (client, target, context, message) => {
     case '!horarios':
       client.say(
         target,
-        `/me Temos lives todas ás segundas, quartas e sextas das 13:30h até 15:30h. Normalmente nas segundas estudamos Javascript, nas quartas fazemos projetos aleatórios e nas sextas temos o nosso querido !levxoque onde queimamos hardware.`,
+        `/me Temos lives todas ás segundas, quartas e sextas das 16h até ás 18h. Normalmente nas segundas estudamos Javascript, nas quartas fazemos projetos aleatórios e nas sextas temos o nosso querido !levxoque onde queimamos hardware.`,
       );
       break;
     default:
