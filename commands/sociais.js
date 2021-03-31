@@ -21,7 +21,7 @@ exports.default = (client, target, context, message) => {
     case '!caverna':
       client.say(
         target,
-        `/me Uma comunidade voltada para programação em geral com o objetivo de ajudar uns aos outros, estudar coletivamente, e outros. https://discord.io/caverna ⭐Por favor, não se esqueça de passar no canal #regras para liberar o acesso á todas as salas do nosso servidor⭐`,
+        `/me Uma comunidade voltada para programação em geral com o objetivo de ajudar uns aos outros, estudar coletivamente, e outros. http://caverna.live/discord ⭐Por favor, não se esqueça de passar no canal #regras para liberar o acesso á todas as salas do nosso servidor⭐`,
       );
       break;
     case '!fofinho':
