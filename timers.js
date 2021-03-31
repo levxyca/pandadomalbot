@@ -52,14 +52,7 @@ exports.default = (client, target) => {
   setInterval(() => {
     ajuda();
   }, 1500000); // 25min
-  setInterval(() => {
-    recado();
-  }, 600000); // 10min
-
-  clearInterval(comandos);
-  clearInterval(soundAlerts);
-  clearInterval(sub);
-  clearInterval(vantagens);
-  clearInterval(ajuda);
-  clearInterval(recado);
+  // setInterval(() => {
+  //   recado();
+  // }, 600000); // 10min
 };
