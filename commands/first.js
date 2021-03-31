@@ -5,6 +5,8 @@ const { dateToString, isToday } = require('../utils/datetime');
 // Posição desse usuário
 // Data
 
+// Em construção...
+
 exports.default = (client, target, context, message) => {
   if (message.trim() === '!first') {
     const state = readDataJSON('first');
