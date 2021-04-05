@@ -1,6 +1,7 @@
 exports.default = (client, target, context, message) => {
   switch (message) {
     case '!theme':
+    case '!tema':
       client.say(
         target,
         `Esse é o tema que eu uso no meu VSCode levxycAnimada https://marketplace.visualstudio.com/items?itemName=jolaleye.horizon-theme-vscode`,

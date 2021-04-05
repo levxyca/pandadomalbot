@@ -12,6 +12,7 @@ function getAnswer() {
     'não conte com isso',
     'é sério que você tá me perguntando isso?',
     'eu gostaria de saber...',
+    'minha resposta vai mudar em algo?',
   ];
 
   const answersCount = answers.length;
@@ -32,9 +33,10 @@ exports.default = (client, target, context, message) => {
   } else if (command[0] === '!pergunta') {
     if (message.includes('9?')) {
       client.say(target, `9? 99? @${context.username}`);
+    } else if (message.includes('já pode?')) {
+      client.say(target, `Nunca pode @${context.username} Kappa`);
     } else {
       const answer = getAnswer();
-
       client.say(target, `${answer} @${context.username}`);
     }
   }

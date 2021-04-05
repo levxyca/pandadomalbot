@@ -30,13 +30,6 @@ exports.default = (client, target) => {
     );
   }
 
-  function recado() {
-    client.say(
-      target,
-      `/me ATENÇÃO O MEU SISTEMA DE PONTUAÇÃO ESTÁ COM MAL FUNCIONAMENTO POR FAVOR SEJAM GENTIS COMIGO 🐼`,
-    );
-  }
-
   setInterval(() => {
     comandos();
   }, 1200000); // 20min
@@ -52,7 +45,4 @@ exports.default = (client, target) => {
   setInterval(() => {
     ajuda();
   }, 1500000); // 25min
-  // setInterval(() => {
-  //   recado();
-  // }, 600000); // 10min
 };
