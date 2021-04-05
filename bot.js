@@ -44,8 +44,6 @@ const opts = {
 const client = new Client(opts);
 
 const dados = readDataJSON('dados');
-const pontos = readDataJSON('pontos');
-const carteira = readDataJSON('carteira');
 const loja = readDataJSON('lojinha');
 const piadas = readDataJSON('piadas');
 const ensinamentos = readDataJSON('ensinamentos');
@@ -63,6 +61,8 @@ const sabores = [
 ];
 
 function compraPicole(message, username) {
+  const carteira = readDataJSON('carteira');
+
   if (!loja[username]) {
     loja[username] = {
       Shacolate: 0,
@@ -148,6 +148,9 @@ client.on('message', (target, context, message, isBot) => {
 
 // intercepta mensagem do chat
 function mensagemChegou(target, context, message, ehBot) {
+  const pontos = readDataJSON('pontos');
+  const carteira = readDataJSON('carteira');
+
   if (ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
   }
@@ -297,6 +300,9 @@ function mensagemChegou(target, context, message, ehBot) {
 async function darPontos() {
   const { vips, moderators, viewers, broadcaster } = await chatters();
   const total = [...vips, ...moderators, ...viewers, ...broadcaster];
+
+  const pontos = readDataJSON('pontos');
+  const carteira = readDataJSON('carteira');
 
   total.forEach((user) => {
     if (carteira[user]) {

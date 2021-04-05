@@ -28,30 +28,27 @@ exports.default = (client, target, context, message) => {
     }
 
     if (Math.random() < 0.5) {
-      giveMoneyAndPointsTo(context.username, 100);
-      state.rescuers = [];
+      // eslint-disable-next-line no-unused-vars
+      const points = giveMoneyAndPointsTo(context.username.toLowerCase(), 100);
 
       const rescued =
         state.prisoners[Math.floor(Math.random() * state.prisoners.length)];
 
       state.prisoners = state.prisoners.filter((u) => u !== rescued);
 
+      state.rescuers = [];
+      state.fugitives = [];
+
       client.say(
         target,
         `/me ${context.username} resgatou ${rescued} das mãos do panda do mal.`,
       );
     } else {
+      state.rescuers = [...new Set([...state.rescuers, context.username])];
       client.say(
         target,
         `/me ${context.username} não conseguiu resgatar ninguém das mãos do panda do mal.`,
       );
-    }
-
-    if (state.prisoners.length === 0) {
-      state.rescuers = [];
-      state.fugitives = [];
-    } else {
-      state.rescuers = [...new Set([...state.rescuers, context.username])];
     }
 
     writeDataJSON('jail', state);

@@ -19,7 +19,7 @@ const { readDataJSON, writeDataJSON } = require('./data');
  *
  * @returns {Number} o número de pontos atribuídos ao usuário.
  */
-const giveMoneyAndPointsTo = (user, seed = 100) => {
+const giveMoneyAndPointsTo = (user, seed) => {
   let point = seed;
 
   if (seed instanceof Array) {
