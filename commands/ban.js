@@ -1,4 +1,8 @@
-exports.default = (client, target, context, message, dados) => {
+const { readDataJSON } = require('../utils/data');
+const { JAIL_STATE } = require('./jail/state');
+
+exports.default = (client, target, context, message) => {
+  const state = readDataJSON('jail', JAIL_STATE);
   const splittedMessage = String(message).split(' ');
 
   const { username } = context;
@@ -16,11 +20,11 @@ exports.default = (client, target, context, message, dados) => {
       splittedMessage[1] = splittedMessage[1].substring(1);
     }
     let randomBan = Math.floor(Math.random() * 10000);
-    if (splittedMessage[1] === dados.protegido) {
+    if (splittedMessage[1] === state.protected) {
       client.say(target, `/timeout ${username} 60`);
       client.say(
         target,
-        `${username} mexeu com ${dados.protegido} então mexeu comigo! 🐼`,
+        `${username} mexeu com ${state.protected} então mexeu comigo! 🐼`,
       );
     } else if (
       String(username).toLowerCase().includes('dev') &&
