@@ -44,8 +44,7 @@ exports.default = (client, target, context, message) => {
     case '!premio':
       client.say(
         target,
-        // `Na nossa última live de fevereiro, quem estiver em 1º lugar no !rank irá ganhar um curso da udemy no valor de até R$36,99 🏆 Para saber como subir no rank é só digitar !help`,
-        `Esse mês nós iremos sortear um curso da udemy no valor de até R$36,99 🏆 no último dia do mês`,
+        `Na nossa última live de abril, quem estiver em 1º lugar no !rank irá ganhar R$50 em produtos na Amazon, 2º lugar 1000 pandacoins🐼 e 3º lugar 500 pandacoins🐼 🏆 Para saber como subir no rank é só digitar !help`,
       );
       break;
     case '!docs':
