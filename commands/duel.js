@@ -76,7 +76,11 @@ exports.default = (client, target, context, message) => {
     if (splittedMessage[2] !== undefined) {
       // eslint-disable-next-line radix
       pandacoins = parseInt(splittedMessage[2]);
-      verificaPontos();
+      // verificaPontos();
+      client.say(
+        target,
+        `Perdão ${context.username}, eu ainda estou aprendendo a como deixar vocês apostarem no duelo!`,
+      );
     } else {
       const winner = Math.floor(Math.random() * 1000);
       if (winner > 0 && winner < 499) {
