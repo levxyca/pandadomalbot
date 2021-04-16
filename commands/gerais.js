@@ -65,6 +65,9 @@ exports.default = (client, target, context, message) => {
         `/me Temos lives todas ás segundas, quartas e sextas das 16h até ás 18h. Normalmente nas segundas estudamos Javascript, nas quartas fazemos projetos aleatórios e nas sextas temos o nosso querido !levxoque onde queimamos hardware.`,
       );
       break;
+    case '!panda':
+      client.say(target, `░░░░░░░░▄██▄░░░░░░▄▄░░ ░░░░░░░▐███▀░░░░░▄███▌ ░░▄▀░░▄█▀▀░░░░░░░░▀██░ ░█░░░██░░░░░░░░░░░░░░░ █▌░░▐██░░▄██▌░░▄▄▄░░░▄ ██░░▐██▄░▀█▀░░░▀██░░▐▌ ██▄░▐███▄▄░░▄▄▄░▀▀░▄██ ▐███▄██████▄░▀░▄█████▌ ▐████████████▀▀██████░ ░▐████▀██████░░█████░░ ░░░▀▀▀░░█████▌░████▀░░ ░░░░░░░░░▀▀███░▀▀▀░░░░`)
+      break
     default:
       break;
   }
