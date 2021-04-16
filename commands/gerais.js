@@ -50,7 +50,7 @@ exports.default = (client, target, context, message) => {
     case '!docs':
       client.say(
         target,
-        `Repositório que reúne todas as minhas anotações de estudo 📂 https://levxyca.codes/docs/`,
+        `Repositório que reúne todas as minhas anotações de estudo 📂 https://docs.levxyca.codes/`,
       );
       break;
     case '!modlider':
