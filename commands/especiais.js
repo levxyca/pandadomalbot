@@ -8,6 +8,7 @@ exports.default = (client, target, context, message) => {
     case '!subgratis':
       if (context.username.toLowerCase() === 'nesclimn10') {
         client.say(target, `/me Dê um sub grátis pro nesclimn10.`);
+        client.say(target, `/timeout nesclimn10 20000`);
       }
       break;
     case '!lanchinho':
