@@ -17,7 +17,7 @@ exports.default = (client, target, context, message) => {
       }
     });
 
-    let counter = ranking.length < 3 ? ranking.length : 3;
+    const counter = ranking.length < 3 ? ranking.length : 3;
 
     for (let i = 0; i < counter; i += 1) {
       const user = ranking[i];
