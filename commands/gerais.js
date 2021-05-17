@@ -71,7 +71,13 @@ exports.default = (client, target, context, message) => {
     case '!maratona':
       client.say(
         target,
-        `No dia 29/05/2021, às 12h00, daremos início a III Edição da Maratona Live Coders Girls. Será um sábado de 12 horas de conteúdo incrível feito pela própria comunidade para compartilhar conhecimento, experiências e tudo que há de bom. :heart: https://maratona3.live/`,
+        `No dia 29/05/2021, às 12h00, daremos início a III Edição da Maratona Live Coders Girls. Será um sábado de 12 horas de conteúdo incrível feito pela própria comunidade para compartilhar conhecimento, experiências e tudo que há de bom :heart: https://maratona3.live/`,
+      );
+      break;
+    case '!rato':
+      client.say(
+        target,
+        `Conheça a triste história do rato drogado: Parte 1 https://clips.twitch.tv/DistinctSullenFinchPanicVis--UOp8KLFzZnWjphI Parte 2 https://clips.twitch.tv/KitschyCrunchyGorillaFrankerZ-09ee6rAxdrpmPU6e`,
       );
       break;
     default:
