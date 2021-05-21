@@ -7,9 +7,7 @@ exports.default = (client, target, context, message) => {
     let indexUser = null;
     let msg = 'O ranking atual 🥇 ';
 
-    const ranking = Object.entries(
-      Object.fromEntries(Object.entries(pontos).sort(([, a], [, b]) => b - a)),
-    );
+    const ranking = Object.entries(pontos).sort(([, a], [, b]) => b - a);
 
     ranking.forEach((user, index) => {
       if (user[0] === username) {
