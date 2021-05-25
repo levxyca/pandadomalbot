@@ -80,6 +80,12 @@ exports.default = (client, target, context, message) => {
         `Conheça a triste história do rato drogado: Parte 1 https://clips.twitch.tv/DistinctSullenFinchPanicVis--UOp8KLFzZnWjphI Parte 2 https://clips.twitch.tv/KitschyCrunchyGorillaFrankerZ-09ee6rAxdrpmPU6e`,
       );
       break;
+    case '!carol':
+      client.say(
+        target,
+        `Nossa querida amiga e moderadora mais Braba Carol do Nadel esta com um notebookizinho pior do que o da Xuxa, e queremos ajuda-la a comprar um novo.Carol prometeu que vai fazer live se ela conseguir um note bom! As doações até atingir R$1500,00 vão para ela, mas você pode mandar pela vaquinha também! http://vaka.me/2101985`,
+      );
+      break;
     default:
       break;
   }

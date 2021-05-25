@@ -11,7 +11,7 @@ exports.default = (client, target, context, message) => {
     if (splittedMessage.length === 1) {
       client.say(
         target,
-        `${username} é para dar ban em quem mesmo?! Estou perdido 🤔`,
+        `/me ${username} é para dar ban em quem mesmo?! Estou perdido 🤔`,
       );
       return;
     }
@@ -24,7 +24,7 @@ exports.default = (client, target, context, message) => {
       client.say(target, `/timeout ${username} 60`);
       client.say(
         target,
-        `${username} mexeu com ${state.protected} então mexeu comigo! 🐼`,
+        `/me ${username} mexeu com ${state.protected} então mexeu comigo! 🐼`,
       );
     } else if (
       String(username).toLowerCase().includes('dev') &&
@@ -75,9 +75,9 @@ exports.default = (client, target, context, message) => {
         );
       } else if (randomBan > 1000 && randomBan < 7000) {
         client.say(target, `/timeout ${username} 10`);
-        client.say(target, `${username} foi pego pelo panda do mal.`);
+        client.say(target, `/me ${username} foi pego pelo panda do mal.`);
       } else {
-        client.say(target, `Todos escaparam do panda do mal. Grrrr`);
+        client.say(target, `/me Todos escaparam do panda do mal. Grrrr`);
       }
     }
   }

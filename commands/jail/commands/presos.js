@@ -7,10 +7,10 @@ exports.default = (client, target, _, message) => {
     const { prisoners } = readDataJSON('jail', JAIL_STATE);
 
     if (prisoners.length === 0) {
-      reply = 'Não tem ninguem em minhas mãos.';
+      reply = '/me Não tem ninguem em minhas mãos.';
     } else {
       const users = prisoners.join(', ');
-      reply = `Usuários que estão em minhas mãos: ${users}.`;
+      reply = `/me Usuários que estão em minhas mãos: ${users}.`;
     }
 
     client.say(target, `/me ${reply}`);

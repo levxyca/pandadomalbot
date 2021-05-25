@@ -7,7 +7,7 @@ exports.default = (client, target, _, message) => {
     const state = readDataJSON('jail', JAIL_STATE);
 
     if (!state.protected) {
-      reply = 'Não estou protegendo ninguém no momento.';
+      reply = '/me Não estou protegendo ninguém no momento.';
     } else {
       reply = `${state.protected} está sob minha proteção, nem adianta tentar!`;
     }

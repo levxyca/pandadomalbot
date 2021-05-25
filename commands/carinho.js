@@ -41,17 +41,17 @@ exports.default = (client, target, context, message) => {
     let reply;
     if (canUseCommand(context.username)) {
       if (perfect === 100) {
-        reply = `${
+        reply = `/me ${
           context.username
         } está fazendo o melhor carinho que eu já recebi! nhawwww Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${giveMoneyAndPointsTo(
           context.username,
           POINTS,
         )} pandacoins🐼.`;
       } else {
-        reply = `Obrigado pelo seu carinho ${context.username}! 🐼 Apesar de não ser o carinho perfeito foi um carinho muito bom! Seu nível de carinho foi ${perfect}%.`;
+        reply = `/me Obrigado pelo seu carinho ${context.username}! 🐼 Apesar de não ser o carinho perfeito foi um carinho muito bom! Seu nível de carinho foi ${perfect}%.`;
       }
     } else {
-      reply = `${context.username}, você só pode fazer carinho no panda ${MAX} vezes por dia.`;
+      reply = `/me ${context.username}, você só pode fazer carinho no panda ${MAX} vezes por dia.`;
     }
 
     client.say(target, `/me ${reply}`);
