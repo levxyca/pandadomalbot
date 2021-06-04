@@ -56,7 +56,7 @@ exports.default = (client, target, context, message) => {
     case '!horarios':
       client.say(
         target,
-        `/me Temos lives todas ás segundas, quartas e sextas das 16h até ás 18h. Normalmente nas segundas estudamos Javascript, nas quartas fazemos projetos aleatórios e nas sextas temos o nosso querido !levxoque onde queimamos hardware.`,
+        `/me Temos lives todas ás segundas, quartas e sextas das 16h até ás 18h.`,
       );
       break;
     case '!panda':
@@ -65,25 +65,10 @@ exports.default = (client, target, context, message) => {
         `░░░░░░░░▄██▄░░░░░░▄▄░░ ░░░░░░░▐███▀░░░░░▄███▌ ░░▄▀░░▄█▀▀░░░░░░░░▀██░ ░█░░░██░░░░░░░░░░░░░░░ █▌░░▐██░░▄██▌░░▄▄▄░░░▄ ██░░▐██▄░▀█▀░░░▀██░░▐▌ ██▄░▐███▄▄░░▄▄▄░▀▀░▄██ ▐███▄██████▄░▀░▄█████▌ ▐████████████▀▀██████░ ░▐████▀██████░░█████░░ ░░░▀▀▀░░█████▌░████▀░░ ░░░░░░░░░▀▀███░▀▀▀░░░░`,
       );
       break;
-    case '!forms':
-      client.say(target, `https://forms.gle/px6F5S2xxhpq53vb8`);
-      break;
-    case '!maratona':
-      client.say(
-        target,
-        `No dia 29/05/2021, às 12h00, daremos início a III Edição da Maratona Live Coders Girls. Será um sábado de 12 horas de conteúdo incrível feito pela própria comunidade para compartilhar conhecimento, experiências e tudo que há de bom :heart: https://maratona3.live/`,
-      );
-      break;
     case '!rato':
       client.say(
         target,
         `Conheça a triste história do rato drogado: Parte 1 https://clips.twitch.tv/DistinctSullenFinchPanicVis--UOp8KLFzZnWjphI Parte 2 https://clips.twitch.tv/KitschyCrunchyGorillaFrankerZ-09ee6rAxdrpmPU6e`,
-      );
-      break;
-    case '!carol':
-      client.say(
-        target,
-        `Nossa querida amiga e moderadora mais Braba Carol do Nadel esta com um notebookizinho pior do que o da Xuxa, e queremos ajuda-la a comprar um novo.Carol prometeu que vai fazer live se ela conseguir um note bom! As doações até atingir R$1500,00 vão para ela, mas você pode mandar pela vaquinha também! http://vaka.me/2101985`,
       );
       break;
     default:
