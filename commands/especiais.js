@@ -24,6 +24,23 @@ exports.default = (client, target, context, message) => {
         );
       }
       break;
+    case '!pancada':
+      if (context.username.toLowerCase() === 'vitthin') {
+        const perfect = Math.floor(Math.random() * 100) + 1;
+
+        let reply;
+
+        if (perfect === 100) {
+          reply = `${context.username} está dando a MAIOR PANCADA que eu já recebi 🐼 Obrigada por sua gentileza, eu estou muito feliz agora graças a você PandaFurious
+          `;
+        } else if (perfect >= 70) {
+          reply = `Obrigado pela sua pancada ${context.username}! 🐼 Apesar de não ser a pancada perfeita foi uma pancada muito boa! Seu nível de pancada foi ${perfect}%.`;
+        } else {
+          reply = `Obrigado pela sua pancada ${context.username}! 🐼 Se é que posso chamar isso de pancada né, por eu acho que você me deu um carinho PandaRoll Seu nível de pancada foi ${perfect}%.`;
+        }
+        client.say(target, `/me ${reply}`);
+      }
+      break;
     default:
       break;
   }
