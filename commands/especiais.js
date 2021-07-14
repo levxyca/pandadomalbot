@@ -36,7 +36,7 @@ exports.default = (client, target, context, message) => {
         } else if (perfect >= 70) {
           reply = `Obrigado pela sua pancada ${context.username}! 🐼 Apesar de não ser a pancada perfeita foi uma pancada muito boa! Seu nível de pancada foi ${perfect}%.`;
         } else {
-          reply = `Obrigado pela sua pancada ${context.username}! 🐼 Se é que posso chamar isso de pancada né, por eu acho que você me deu um carinho PandaRoll Seu nível de pancada foi ${perfect}%.`;
+          reply = `Obrigado pela sua pancada ${context.username}! 🐼 Se é que posso chamar isso de pancada né, porque eu acho que você me deu um carinho PandaRoll Seu nível de pancada foi ${perfect}%.`;
         }
         client.say(target, `/me ${reply}`);
       }
