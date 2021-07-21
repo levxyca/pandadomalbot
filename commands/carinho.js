@@ -2,7 +2,7 @@ const { giveMoneyAndPointsTo } = require('../utils/points');
 const { readDataJSON, writeDataJSON } = require('../utils/data');
 const { dateToString, isToday } = require('../utils/datetime');
 
-const MAX = parseInt(process.env.MAXIMO_DE_CARINHOS_DIARIOS, 10);
+const DEFAULT_MAX = parseInt(process.env.MAXIMO_DE_CARINHOS_DIARIOS, 10);
 const POINTS = parseInt(process.env.PONTOS_POR_CARINHO_PERFEITO, 10);
 
 const canUseCommand = (username) => {
@@ -23,9 +23,19 @@ const canUseCommand = (username) => {
     writeDataJSON('carinhos', state);
     return true;
   }
-
+  // é aqui que precisa mexer
+  // ele só ve diario, preciso que seja algo pra sempre
   const usage = state.users[username];
-  if (usage < MAX) {
+  const MAX = readDataJSON('carinhos-individuais');
+  console.log(usage);
+
+  if (username in MAX.users) {
+    if (usage < MAX.users[username]) {
+      state.users[username] = usage + 1;
+      writeDataJSON('carinhos', state);
+      return true;
+    }
+  } else if (usage < DEFAULT_MAX) {
     state.users[username] = usage + 1;
     writeDataJSON('carinhos', state);
     return true;
@@ -79,7 +89,7 @@ exports.default = (client, target, context, message) => {
         reply = `Obrigado pelo seu carinho ${context.username}! 🐼 Apesar de não ser o carinho perfeito foi um carinho muito bom! Seu nível de carinho foi ${perfect}%.`;
       }
     } else {
-      reply = `${context.username}, você só pode fazer carinho no panda ${MAX} vezes por dia.`;
+      reply = `${context.username}, você já esgotou os seus carinhos.`;
     }
 
     client.say(target, `/me ${reply}`);
