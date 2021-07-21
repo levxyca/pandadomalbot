@@ -4,21 +4,20 @@ exports.default = (client, target, context, message) => {
     case '!tema':
       client.say(
         target,
-        `Esse é o tema que eu uso no meu VSCode levxycAnimada https://marketplace.visualstudio.com/items?itemName=jolaleye.horizon-theme-vscode`,
+        `/me Esse é o tema que eu uso no meu VSCode levxycAnimada https://marketplace.visualstudio.com/items?itemName=jolaleye.horizon-theme-vscode`,
       );
       break;
     case '!help':
     case '!site':
       client.say(
         target,
-        `
-        Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.codes/pandadomalsite/`,
+        `/me Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.codes/pandadomalsite/`,
       );
       break;
     case '!repopanda':
       client.say(
         target,
-        `Repositório do pandadomalbot 🐼 https://github.com/levxyca/pandadomalbot`,
+        `/me Repositório do pandadomalbot 🐼 https://github.com/levxyca/pandadomalbot`,
       );
       break;
     case '!picole':
@@ -38,19 +37,19 @@ exports.default = (client, target, context, message) => {
     case '!meleca':
       client.say(
         target,
-        `auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau `,
+        `/me auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau auau `,
       );
       break;
     case '!docs':
       client.say(
         target,
-        `Repositório que reúne todas as minhas anotações de estudo 📂 https://docs.levxyca.codes/`,
+        `/me Repositório que reúne todas as minhas anotações de estudo 📂 https://docs.levxyca.codes/`,
       );
       break;
     case '!modlider':
       client.say(
         target,
-        `Veja quem é a Líder dos Mods: https://clips.twitch.tv/CarefulSassyPancakeWow-Pu6-8Hfgcg7YaPyr`,
+        `/me Veja quem é a Líder dos Mods: https://clips.twitch.tv/CarefulSassyPancakeWow-Pu6-8Hfgcg7YaPyr`,
       );
       break;
     case '!horarios':
@@ -68,7 +67,13 @@ exports.default = (client, target, context, message) => {
     case '!rato':
       client.say(
         target,
-        `Conheça a triste história do rato drogado: Parte 1 https://clips.twitch.tv/DistinctSullenFinchPanicVis--UOp8KLFzZnWjphI Parte 2 https://clips.twitch.tv/KitschyCrunchyGorillaFrankerZ-09ee6rAxdrpmPU6e`,
+        `/me Conheça a triste história do rato drogado: Parte 1 https://clips.twitch.tv/DistinctSullenFinchPanicVis--UOp8KLFzZnWjphI Parte 2 https://clips.twitch.tv/KitschyCrunchyGorillaFrankerZ-09ee6rAxdrpmPU6e`,
+      );
+      break;
+    case '!uri':
+      client.say(
+        target,
+        `/me O URI Online Judge é um repositório de problemas de programação. Os problemas são separados por tópicos (iniciante, ad-hoc, strings, etc) e por dificuldade, variando de 1 a 10. Meu perfil no uri 🔗 https://www.urionlinejudge.com.br/judge/pt/profile/565766`,
       );
       break;
     default:

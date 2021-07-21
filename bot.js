@@ -49,6 +49,7 @@ const piadas = readDataJSON('piadas');
 const ensinamentos = readDataJSON('ensinamentos');
 const geradorNarios = readDataJSON('gerador-de-narios');
 const geradorLevs = readDataJSON('gerador-de-levs');
+dados.first = null;
 
 const sabores = [
   'Shacolate',
@@ -344,6 +345,10 @@ io.on('connection', (socket) => {
         target,
         `/me Quem soltou essa loira? Meu deus leva ela de volta ${context.username}!`,
       );
+    }
+
+    if (message === '!gato') {
+      socket.broadcast.emit('gato', true);
     }
   });
 });

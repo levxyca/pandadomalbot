@@ -71,11 +71,14 @@ exports.default = (client, target, context, message) => {
         client.say(target, `/timeout @${splittedMessage[1]} 10`);
         client.say(
           target,
-          `/me @${splittedMessage[1]} foi pego pelo panda do mal.`,
+          `/me @${splittedMessage[1]} foi pego pelo panda do mal. Não confundir com ser preso pelo panda do mal Kappa`,
         );
       } else if (randomBan > 1000 && randomBan < 7000) {
         client.say(target, `/timeout ${username} 10`);
-        client.say(target, `/me ${username} foi pego pelo panda do mal.`);
+        client.say(
+          target,
+          `/me ${username} foi pego pelo panda do mal. Não confundir com ser preso pelo panda do mal Kappa`,
+        );
       } else {
         client.say(target, `/me Todos escaparam do panda do mal. Grrrr`);
       }
