@@ -58,12 +58,22 @@ const canUseCommand = (username) => {
 };
 
 exports.default = (client, target, context, message) => {
+  const muralcarinhos = readDataJSON('muralcarinhos');
+
   if (message.trim() === '!carinho') {
     const perfect = Math.floor(Math.random() * 100) + 1;
 
     let reply;
     if (canUseCommand(context.username)) {
       if (perfect === 100) {
+        if (context.username in muralcarinhos.users) {
+          const qtdPerfeitos = muralcarinhos.users[context.username];
+          muralcarinhos.users[context.username] = qtdPerfeitos + 1;
+          writeDataJSON('muralcarinhos', muralcarinhos);
+        } else {
+          muralcarinhos.users[context.username] = 1;
+          writeDataJSON('muralcarinhos', muralcarinhos);
+        }
         reply = `${
           context.username
         } está fazendo o melhor carinho que eu já recebi! nhawwww Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${giveMoneyAndPointsTo(
