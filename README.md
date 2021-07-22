@@ -1,8 +1,8 @@
-# pandadomalbot
+# pandadomalbot 🐼
 
-> O **pandadomalbot** foi pensado para as lives do canal da [levxyca](https://twitch.tv/levxyca). Foi criado para divertir e alegrar o chat da melhor live da galacta. Faz brincadeiras, ajuda a streamer e entretem seus queridos amigos.
+> O **pandadomalbot** foi pensado para as lives do canal da [levxyca](https://twitch.tv/levxyca). Criado para divertir e alegrar o chat da melhor live da galacta. Faz brincadeiras, ajuda a streamer e entretêm. Para ver todas as funcionalidades do bot leia sua documentação [aqui](https://levxyca.codes/pandadomalsite/).
 
-## ☕ Usando pandadomalbot
+## Usando pandadomalbot
 
 Para executar este projeto, você precisa do [NodeJS](https://nodejs.org/en/download/) instalado e um token de acesso para uma conta existente na Twitch. Pode-se utilizar usa própria conta para testes, mas o ideal é ter uma exclusiva para o bot.
 
@@ -11,35 +11,53 @@ Para obter o token, entre [neste serviço](https://twitchapps.com/tmi/) e autori
 ```
 npm install
 
-BOT_USERNAME=pandadomal         # nome de usuário da sua conta.
-CHANNEL_NAME=levxyca            # canal que irá escutar pelos comandos.
-OAUTH_TOKEN=                    # token de acesso obtido anteriormente.
+BOT_USERNAME=pandadomal # nome de usuário da sua conta.
+OAUTH_TOKEN=            # token de acesso obtido anteriormente.
+CHANNEL_NAME=levxyca    # canal que irá escutar pelos comandos.
+
+CLIENT_ID=clienteIDdeumaappdatwitch
+CHANNEL_ID=IDdocanalqueobotvairodar
+
+##### Configurações das brincadeiras da live #####
+
+MAXIMO_DE_IRRITAR_DIARIOS=     #limita a quantidade de !irritar que o usuário pode usar por dia.
+SUCCESSFULLY_IRRITATE_POINTS=    #pontos que o usuário ganhar por conseguir irritar o pandadomalbot.
+
+MAXIMO_DE_CARINHOS_DIARIOS=    #quantidade padrão de carinhos que o usuário tem por dia.
+PONTOS_POR_CARINHO_PERFEITO=    #pontos que o usuário ganha ao conseguir um carinho perfeito.
+
+MINUTOS_ENTRE_PRISAO_DE_VIEWERS=    #minutos entre o pandadomalbot "prender" alguém do chat.
+
+##### Configurações do twitter #####
+
+TWITTER_USERNAME=
+TWITTER_API_KEY=
+TWITTER_API_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_ACCESS_TOKEN_SECRET=
+
+##### Filtros para obter o tweet diário de anúncio da live #####
+
+#   RETWEET_URL_LOOKUP: a url que deve estar presente.
+#   RETWEET_TEXT_LOOKUP: texto que deve existir no tweet (em lowercase).
+RETWEET_URL_LOOKUP=twitch.tv/levxyca
+RETWEET_TEXT_LOOKUP=live on
+
+MINUTOS_ENTRE_PEDIDO_DE_RETWEET=10
+
+##### Comando para rodar o bot #####
 
 npm run start
 
     Bot is running at irc-ws.chat.twitch.tv:80
 ```
 
-## 📫 Contribuindo para pandadomalbot
+## Seja um dos contribuidores<br>
 
-Para contribuir com _pandadomalbot_, siga estas etapas:
+Quer fazer parte desse projeto? Você pode nos ajudar criando issues novas, caso encontre erros ou também nos mandando sugestões de funcionalidades novas. Fique a vontade para verificar as issues já existentes e resolve-lás.
 
-1. Faça o fork desse repositório em sua conta do GitHub.
-2. Clone o seu fork no seu ambiente e crie uma branch a partir da `main`.
-3. Faça o commit das suas alterações e envie um novo pull request tendo a branch `test` como destino.
-4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
+Para contribuir com _pandadomalbot_ leia nosso [CONTRIBUTING](CONTRIBUTING.md).
 
-Caso tenha dificuldades, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-
-
-## 😄 Seja um dos contribuidores<br>
-
-Quer fazer parte desse projeto? Você pode nos ajudar criando issues novas, caso encontre erros ou também nos mandando sugestões de funcionalidades novas. Fique a vontade para verificar as issues já existentes e resolve-lás, basta comentar na issue que você irá fazer ela.
-
-## 📝 Licença
+## Licença
 
 Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
-
-[⬆ Voltar ao topo](#pandadomalbot)<br>
-
----
