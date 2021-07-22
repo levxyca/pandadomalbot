@@ -1,6 +1,6 @@
-const { giveMoneyAndPointsTo } = require('../utils/points');
-const { readDataJSON, writeDataJSON } = require('../utils/data');
-const { dateToString, isToday } = require('../utils/datetime');
+const { giveMoneyAndPointsTo } = require('../../../utils/points');
+const { readDataJSON, writeDataJSON } = require('../../../utils/data');
+const { dateToString, isToday } = require('../../../utils/datetime');
 
 const DEFAULT_MAX = parseInt(process.env.MAXIMO_DE_CARINHOS_DIARIOS, 10);
 const POINTS = parseInt(process.env.PONTOS_POR_CARINHO_PERFEITO, 10);

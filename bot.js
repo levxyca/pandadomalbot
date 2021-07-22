@@ -141,9 +141,15 @@ readdirSync(`${__dirname}/commands`)
     });
   });
 
+// Exporta as mensagens do chat e usuários para os commands
 client.on('message', (target, context, message, isBot) => {
   if (isBot) return;
   require('./commands/jail').default(client, target, context, message);
+});
+
+client.on('message', (target, context, message, isBot) => {
+  if (isBot) return;
+  require('./commands/carinho').default(client, target, context, message);
 });
 
 // intercepta mensagem do chat
@@ -175,7 +181,7 @@ function mensagemChegou(target, context, message, ehBot) {
     const msg = verGeladeira(message, username);
 
     client.say(target, msg);
-  } else if (message.split(' ')[0].toLowerCase() === '!addpoints') {
+  } else if (message.split(' ')[0].toLowerCase() === '!addpontos') {
     if (username.toLowerCase() !== CHANNEL_NAME) {
       client.say(target, '/me Você não tem permissão para adicionar pontos');
       return;

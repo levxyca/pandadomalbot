@@ -1,7 +1,7 @@
-const { readDataJSON } = require('../utils/data');
+const { readDataJSON } = require('../../../utils/data');
 
 exports.default = (client, target, context, message) => {
-  if (message.trim() === '!carinhoextra') {
+  if (message.trim() === '!carinhoadicional') {
     const estoque = readDataJSON('estoque-carinhos');
     if (
       context.username in estoque.users &&
@@ -16,7 +16,7 @@ exports.default = (client, target, context, message) => {
     } else {
       client.say(
         target,
-        `/me ${context.username} infelizmente você não possui nenhum carinho extra PandaFurious`,
+        `/me ${context.username} infelizmente você não possui nenhum carinho adicional PandaFurious`,
       );
     }
   }
