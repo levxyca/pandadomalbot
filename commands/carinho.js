@@ -7,6 +7,9 @@ const POINTS = parseInt(process.env.PONTOS_POR_CARINHO_PERFEITO, 10);
 
 const canUseCommand = (username) => {
   const state = readDataJSON('carinhos');
+  const MAX = readDataJSON('estoque-carinhos');
+
+  let subtract = MAX.users[username];
 
   state.users = state.users ?? {};
 
@@ -15,23 +18,33 @@ const canUseCommand = (username) => {
     state.users = {};
     state.users[username] = 1;
     writeDataJSON('carinhos', state);
+    if (username in MAX.users) {
+      MAX.users[username] = subtract + 1;
+      writeDataJSON('estoque-carinhos', MAX);
+      subtract = MAX.users[username];
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-carinhos', MAX);
+    }
     return true;
   }
 
   if (!(username in state.users)) {
     state.users[username] = 1;
     writeDataJSON('carinhos', state);
+    if (username in MAX.users) {
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-carinhos', MAX);
+    }
     return true;
   }
-  // é aqui que precisa mexer
-  // ele só ve diario, preciso que seja algo pra sempre
+
   const usage = state.users[username];
-  const MAX = readDataJSON('carinhos-individuais');
-  console.log(usage);
 
   if (username in MAX.users) {
-    if (usage < MAX.users[username]) {
+    if (subtract > 0) {
       state.users[username] = usage + 1;
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-carinhos', MAX);
       writeDataJSON('carinhos', state);
       return true;
     }
