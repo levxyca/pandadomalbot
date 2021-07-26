@@ -12,6 +12,12 @@ exports.default = (client, target, context, message) => {
         `/me O Levxoque ⚡ é um quadro do canal onde quebramos... digo, brincamos com hardware ⚙️ Isso não é um tutorial, a pessoa streamer não faz ideia do que está fazendo.`,
       );
       break;
+    case '!logicadelevs':
+      client.say(
+        target,
+        `/me O logicadelevs 🤔 é um quadro do canal onde resolvemos exercícios de lógica do URI com Javascript 💻 Lemos os problemas, rascunhamos o processamento dos dados e criamos o algoritmo 🔗 Confira o que já fizemos em: https://github.com/levxyca/uri`,
+      );
+      break;
     default:
       break;
   }

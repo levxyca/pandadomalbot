@@ -81,7 +81,7 @@ const unsuccessfulIrritate = (client, username, reason) => {
 
   client.say(
     process.env.CHANNEL_NAME,
-    `/me ${username} ${reason} e deu azar. Vou segurar você por ${timeout} segundos!`,
+    `/me ${username} ${reason} e deu azar. Vou prender você por ${timeout} segundos!`,
   );
   client.say(process.env.CHANNEL_NAME, `/timeout ${username} ${timeout}`);
 
