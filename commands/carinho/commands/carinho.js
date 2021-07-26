@@ -1,12 +1,15 @@
-const { giveMoneyAndPointsTo } = require('../utils/points');
-const { readDataJSON, writeDataJSON } = require('../utils/data');
-const { dateToString, isToday } = require('../utils/datetime');
+const { giveMoneyAndPointsTo } = require('../../../utils/points');
+const { readDataJSON, writeDataJSON } = require('../../../utils/data');
+const { dateToString, isToday } = require('../../../utils/datetime');
 
-const MAX = parseInt(process.env.MAXIMO_DE_CARINHOS_DIARIOS, 10);
+const DEFAULT_MAX = parseInt(process.env.MAXIMO_DE_CARINHOS_DIARIOS, 10);
 const POINTS = parseInt(process.env.PONTOS_POR_CARINHO_PERFEITO, 10);
 
 const canUseCommand = (username) => {
   const state = readDataJSON('carinhos');
+  const MAX = readDataJSON('estoque-carinhos');
+
+  let subtract = MAX.users[username];
 
   state.users = state.users ?? {};
 
@@ -15,17 +18,37 @@ const canUseCommand = (username) => {
     state.users = {};
     state.users[username] = 1;
     writeDataJSON('carinhos', state);
+    if (username in MAX.users) {
+      MAX.users[username] = subtract + 1;
+      writeDataJSON('estoque-carinhos', MAX);
+      subtract = MAX.users[username];
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-carinhos', MAX);
+    }
     return true;
   }
 
   if (!(username in state.users)) {
     state.users[username] = 1;
     writeDataJSON('carinhos', state);
+    if (username in MAX.users) {
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-carinhos', MAX);
+    }
     return true;
   }
 
   const usage = state.users[username];
-  if (usage < MAX) {
+
+  if (username in MAX.users) {
+    if (subtract > 0) {
+      state.users[username] = usage + 1;
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-carinhos', MAX);
+      writeDataJSON('carinhos', state);
+      return true;
+    }
+  } else if (usage < DEFAULT_MAX) {
     state.users[username] = usage + 1;
     writeDataJSON('carinhos', state);
     return true;
@@ -35,12 +58,22 @@ const canUseCommand = (username) => {
 };
 
 exports.default = (client, target, context, message) => {
+  const muralcarinhos = readDataJSON('muralcarinhos');
+
   if (message.trim() === '!carinho') {
     const perfect = Math.floor(Math.random() * 100) + 1;
 
     let reply;
     if (canUseCommand(context.username)) {
       if (perfect === 100) {
+        if (context.username in muralcarinhos.users) {
+          const qtdPerfeitos = muralcarinhos.users[context.username];
+          muralcarinhos.users[context.username] = qtdPerfeitos + 1;
+          writeDataJSON('muralcarinhos', muralcarinhos);
+        } else {
+          muralcarinhos.users[context.username] = 1;
+          writeDataJSON('muralcarinhos', muralcarinhos);
+        }
         reply = `${
           context.username
         } está fazendo o melhor carinho que eu já recebi! nhawwww Obrigada por sua gentileza, eu estou muito feliz agora graças a você e por isso vou te dar ${giveMoneyAndPointsTo(
@@ -79,7 +112,7 @@ exports.default = (client, target, context, message) => {
         reply = `Obrigado pelo seu carinho ${context.username}! 🐼 Apesar de não ser o carinho perfeito foi um carinho muito bom! Seu nível de carinho foi ${perfect}%.`;
       }
     } else {
-      reply = `${context.username}, você só pode fazer carinho no panda ${MAX} vezes por dia.`;
+      reply = `${context.username}, você já esgotou os seus carinhos.`;
     }
 
     client.say(target, `/me ${reply}`);
