@@ -1,8 +1,21 @@
-# pandadomalbot 🐼
+# Contribuindo
 
-> O **pandadomalbot** foi pensado para as lives do canal da [levxyca](https://twitch.tv/levxyca). Criado para divertir e alegrar o chat da melhor live da galacta. Faz brincadeiras, ajuda a streamer e entretêm. Para ver todas as funcionalidades do bot leia sua documentação [aqui](https://levxyca.codes/pandadomalsite/).
+Ao contribuir com este repositório, discuta primeiro a mudança que deseja fazer por meio da issue.
 
-## Usando pandadomalbot
+Para que você entenda todas as funcionalidades existentes no nosso bot recomenda-se a leitura [dessa documentação](https://levxyca.codes/pandadomalsite/). Caso tenha alguma dúvida mande um comentário na issue.
+
+## Como Contribuir
+
+Para contribuir com projeto _pandadomalbot_, siga estas etapas:
+
+1. Faça o fork desse repositório em sua conta do GitHub.
+2. Clone o seu fork no seu ambiente e crie uma branch a partir da `main`.
+3. Faça o commit das suas alterações e envie um novo pull request tendo a branch `main` como destino.
+4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
+
+Caso tenha dificuldades, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
+
+## Configurações Importantes
 
 Para executar este projeto, você precisa do [NodeJS](https://nodejs.org/en/download/) instalado e um token de acesso para uma conta existente na Twitch. Pode-se utilizar usa própria conta para testes, mas o ideal é ter uma exclusiva para o bot.
 
@@ -51,13 +64,3 @@ npm run start
 
     Bot is running at irc-ws.chat.twitch.tv:80
 ```
-
-## Seja um dos contribuidores<br>
-
-Quer fazer parte desse projeto? Você pode nos ajudar criando issues novas, caso encontre erros ou também nos mandando sugestões de funcionalidades novas. Fique a vontade para verificar as issues já existentes e resolve-lás.
-
-Para contribuir com _pandadomalbot_ leia nosso [CONTRIBUTING](CONTRIBUTING.md).
-
-## Licença
-
-Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE) para mais detalhes.
