@@ -12,7 +12,7 @@ exports.default = (client, target, context, message, dados) => {
         }! Você foi a pessoa first da livexyca de hoje levxycAnimada Por isso, irei lhe presentear com ${giveMoneyAndPointsTo(
           context.username,
           100,
-        )} pontos e pandacoins🐼.`,
+        )} pontos.`,
       );
     } else {
       client.say(

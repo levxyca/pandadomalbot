@@ -3,7 +3,6 @@ const protegido = require('./commands/protegido');
 const proteger = require('./commands/proteger');
 const salvar = require('./commands/salvar');
 const escapar = require('./commands/escapar');
-const irritar = require('./commands/irritar');
 
 exports.default = async (client, target, context, message) => {
   presos.default(client, target, context, message);
@@ -11,5 +10,4 @@ exports.default = async (client, target, context, message) => {
   proteger.default(client, target, context, message);
   salvar.default(client, target, context, message);
   escapar.default(client, target, context, message);
-  irritar.default(client, target, context, message);
 };

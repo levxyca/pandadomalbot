@@ -1,12 +1,15 @@
-const { readDataJSON, writeDataJSON } = require('../../../utils/data');
-const { dateToString, isToday } = require('../../../utils/datetime');
-const { arrest } = require('../actions');
+const { readDataJSON, writeDataJSON } = require('../../../../utils/data');
+const { dateToString, isToday } = require('../../../../utils/datetime');
+const { arrest } = require('../../../jail/actions');
 
-const MAX = parseInt(process.env.MAXIMO_DE_IRRITAR_DIARIOS, 10); // Número máximo de usos do comando.
+const DEFAULT_MAX = parseInt(process.env.MAXIMO_DE_IRRITAR_DIARIOS, 10); // Número máximo de usos do comando.
 const POINTS = parseInt(process.env.SUCCESSFULLY_IRRITATE_POINTS, 10); // Quantidade de pontos dada ao irritar sem ser preso.
 
 const canUseCommand = (username) => {
   const state = readDataJSON('irritadores');
+  const MAX = readDataJSON('estoque-irritar');
+
+  let subtract = MAX.users[username];
 
   state.users = state.users ?? {};
 
@@ -15,17 +18,38 @@ const canUseCommand = (username) => {
     state.users = {};
     state.users[username] = 1;
     writeDataJSON('irritadores', state);
+    if (username in MAX.users) {
+      MAX.users[username] = subtract + 1;
+      writeDataJSON('estoque-irritar', MAX);
+      subtract = MAX.users[username];
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-irritar', MAX);
+    }
     return true;
   }
 
   if (!(username in state.users)) {
     state.users[username] = 1;
     writeDataJSON('irritadores', state);
+    if (username in MAX.users) {
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-irritar', MAX);
+    }
     return true;
   }
 
   const usage = state.users[username];
-  if (usage < MAX) {
+
+  if (username in MAX.users) {
+    if (subtract > 0) {
+      state.users[username] = usage + 1;
+      MAX.users[username] = subtract - 1;
+      writeDataJSON('estoque-irritar', MAX);
+      writeDataJSON('irritadores', state);
+      return true;
+    }
+    // eslint-disable-next-line no-else-return
+  } else if (usage < DEFAULT_MAX) {
     state.users[username] = usage + 1;
     writeDataJSON('irritadores', state);
     return true;
@@ -39,6 +63,10 @@ const REASONS = [
   'imitou a voz do panda do mal',
   'jogou água no panda do mal',
   'sugeriu live de deno',
+  'falou que a lagostinha é melhor que o panda do mal',
+  'não deu carinho no panda do mal',
+  'salvou alguém da prisão do panda do mal, deixou ele sozinho',
+  'deu um carinho ruim no panda do mal',
 ];
 
 /**
@@ -53,17 +81,18 @@ const REASONS = [
  */
 const successfullyIrritate = (client, username, reason) => {
   const wallet = readDataJSON('carteira');
+  const points = readDataJSON('pontos');
 
-  if (username in wallet) {
-    wallet[username] += POINTS;
+  if (username in points) {
+    points[username] += POINTS;
   } else {
-    wallet[username] = POINTS;
+    points[username] = POINTS;
   }
-  writeDataJSON('carteira', wallet);
+  writeDataJSON('pontos', wallet);
 
   client.say(
     process.env.CHANNEL_NAME,
-    `/me ${username} ${reason} e saiu correndo. Grrrr`,
+    `/me AAAAAAAAAA ${username} ${reason} e saiu correndo com ${POINTS} pontos. Grrrr`,
   );
 };
 
@@ -76,14 +105,22 @@ const successfullyIrritate = (client, username, reason) => {
  * @param {String} username nome de usuário
  * @param {String} reason motivo usado para irritar o pandadomal.
  */
-const unsuccessfulIrritate = (client, username, reason) => {
-  const timeout = Math.floor(Math.random() * 30);
+const unsuccessfulIrritate = (client, username) => {
+  // const timeout = Math.floor(Math.random() * 30);
+
+  const wallet = readDataJSON('carteira');
+  const points = readDataJSON('pontos');
+
+  if (username in points) {
+    points[username] -= 5;
+  }
+  writeDataJSON('pontos', wallet);
 
   client.say(
     process.env.CHANNEL_NAME,
-    `/me ${username} ${reason} e deu azar. Vou prender você por ${timeout} segundos!`,
+    `/me ${username} tentou mas deu azar. Vou prender você e roubar 5 pontos seus.`,
   );
-  client.say(process.env.CHANNEL_NAME, `/timeout ${username} ${timeout}`);
+  // client.say(process.env.CHANNEL_NAME, `/timeout ${username} ${timeout}`);
 
   arrest(username);
 };
@@ -96,8 +133,9 @@ const unsuccessfulIrritate = (client, username, reason) => {
  */
 const handleCommand = (client, username) => {
   const reason = REASONS[Math.floor(Math.random() * REASONS.length)];
+  const luck = Math.random();
 
-  if (Math.random() < 0.5) {
+  if (luck < 0.5) {
     unsuccessfulIrritate(client, username, reason);
   } else {
     successfullyIrritate(client, username, reason);
@@ -106,20 +144,12 @@ const handleCommand = (client, username) => {
 
 exports.default = (client, _, context, message) => {
   if (message === '!irritar') {
-    const { mod, username } = context;
+    const { username } = context;
 
     if (!canUseCommand(username)) {
       client.say(
         process.env.CHANNEL_NAME,
         `/me ${username}, você já irritou bastante o pandadomal por hoje.`,
-      );
-      return;
-    }
-
-    if (mod) {
-      client.say(
-        process.env.CHANNEL_NAME,
-        `/me PunOko para sua sorte ${username}, meus poderes não são capazes de te prender. Mas não conte com isso, um dia eu te pego e você terá os piores momentos da sua vida!!!`,
       );
       return;
     }

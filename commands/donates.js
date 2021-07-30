@@ -21,7 +21,7 @@ exports.default = (client, target, context, message) => {
     case '!sub':
       client.say(
         target,
-        `Você pode ser sub usando o !prime ou por aqui: https://www.twitch.tv/subs/levxyca 🤗`,
+        `Por apenas R$7,90 você consegue se tornar sub do canal e me ajudar a continuar fazendo o que amo 💙 https://www.twitch.tv/subs/levxyca 🤗`,
       );
       break;
     default:

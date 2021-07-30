@@ -26,13 +26,10 @@ const giveMoneyAndPointsTo = (user, seed) => {
     point = seed[Math.floor(Math.random() * seed.length)];
   }
 
-  const wallet = readDataJSON('carteira');
   const points = readDataJSON('pontos');
 
-  wallet[user] = user in wallet ? wallet[user] + point : point;
   points[user] = user in points ? points[user] + point : point;
 
-  writeDataJSON('carteira', wallet);
   writeDataJSON('pontos', points);
 
   return point;

@@ -62,8 +62,6 @@ const sabores = [
 ];
 
 function compraPicole(message, username) {
-  const carteira = readDataJSON('carteira');
-
   if (!loja[username]) {
     loja[username] = {
       Shacolate: 0,
@@ -89,10 +87,7 @@ function compraPicole(message, username) {
 
   loja[username][sabor] += 1;
 
-  carteira[username] -= 50;
-
   writeDataJSON('lojinha', loja);
-  writeDataJSON('carteira', carteira);
 
   return sabor;
 }
@@ -146,17 +141,24 @@ readdirSync(`${__dirname}/commands`)
 client.on('message', (target, context, message, isBot) => {
   if (isBot) return;
   require('./commands/jail').default(client, target, context, message);
-});
-
-client.on('message', (target, context, message, isBot) => {
-  if (isBot) return;
-  require('./commands/carinho').default(client, target, context, message);
+  require('./commands/interactions').default(client, target, context, message);
+  require('./commands/interactions/carinho').default(
+    client,
+    target,
+    context,
+    message,
+  );
+  require('./commands/interactions/irritar').default(
+    client,
+    target,
+    context,
+    message,
+  );
 });
 
 // intercepta mensagem do chat
 function mensagemChegou(target, context, message, ehBot) {
   const pontos = readDataJSON('pontos');
-  const carteira = readDataJSON('carteira');
 
   if (ehBot) {
     return; // se for mensagens do nosso bot ele não faz nada
@@ -165,19 +167,12 @@ function mensagemChegou(target, context, message, ehBot) {
   let { username } = context;
 
   if (message.split(' ')[0] === '!comprar') {
-    if (carteira[username] >= 50) {
-      const sabor = compraPicole(message, username);
+    const sabor = compraPicole(message, username);
 
-      client.say(
-        target,
-        `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você! 🍦`,
-      );
-    } else {
-      client.say(
-        target,
-        `/me ${username} você não tem pandacoins🐼 suficientes, quem sabe da proxima vez!?`,
-      );
-    }
+    client.say(
+      target,
+      `/me ${username} saindo um picole/sorvete de ${sabor} geladinho para você! 🍦`,
+    );
   } else if (message.split(' ')[0] === '!geladeira') {
     const msg = verGeladeira(message, username);
 
@@ -218,14 +213,6 @@ function mensagemChegou(target, context, message, ehBot) {
             }
 
             writeDataJSON('pontos', pontos);
-
-            if (carteira[user]) {
-              carteira[user] += qtdPontos;
-            } else {
-              carteira[user] = qtdPontos;
-            }
-
-            writeDataJSON('carteira', carteira);
           });
         })
         // eslint-disable-next-line no-unused-vars
@@ -242,14 +229,6 @@ function mensagemChegou(target, context, message, ehBot) {
       }
 
       writeDataJSON('pontos', pontos);
-
-      if (carteira[user]) {
-        carteira[user] += qtdPontos;
-      } else {
-        carteira[user] = qtdPontos;
-      }
-
-      writeDataJSON('carteira', carteira);
     }
 
     client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
@@ -309,17 +288,8 @@ async function darPontos() {
   const total = [...vips, ...moderators, ...viewers, ...broadcaster];
 
   const pontos = readDataJSON('pontos');
-  const carteira = readDataJSON('carteira');
 
   total.forEach((user) => {
-    if (carteira[user]) {
-      carteira[user] += 5;
-    } else {
-      carteira[user] = 5;
-    }
-
-    writeDataJSON('carteira', carteira);
-
     if (pontos[user]) {
       pontos[user] += 5;
     } else {
@@ -366,6 +336,21 @@ client.on('connected', (host, port) => {
   setTimeout(() => {
     client.say(CHANNEL_NAME, 'Estou de olho em vocês.');
   }, 1500);
+
+  // Reseta a prisão
+  const { JAIL_STATE } = require('./commands/jail/state');
+  const state = readDataJSON('jail', JAIL_STATE);
+  const { dateToString, isToday } = require('./utils/datetime');
+
+  if (!state.last_date || !isToday(state.last_date)) {
+    state.last_date = dateToString(new Date());
+    state.prisoners = [];
+    state.rescuers = [];
+    state.fugitives = [];
+    state.protected = [];
+    writeDataJSON('jail', state);
+  }
+  //-------------------------------------
 
   const RETWEET_INTERVAL = parseInt(
     process.env.MINUTOS_ENTRE_PEDIDO_DE_RETWEET,
