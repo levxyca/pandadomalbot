@@ -3,7 +3,7 @@ const { dateToString, isToday } = require('../../../../utils/datetime');
 const { arrest } = require('../../../jail/actions');
 
 const DEFAULT_MAX = parseInt(process.env.MAXIMO_DE_IRRITAR_DIARIOS, 10); // Número máximo de usos do comando.
-const POINTS = parseInt(process.env.SUCCESSFULLY_IRRITATE_POINTS, 10); // Quantidade de pontos dada ao irritar sem ser preso.
+const PONTOZERAS = parseInt(process.env.SUCCESSFULLY_IRRITATE_POINTS, 10); // Quantidade de pontos dada ao irritar sem ser preso.
 
 const canUseCommand = (username) => {
   const state = readDataJSON('irritadores');
@@ -80,19 +80,18 @@ const REASONS = [
  * @param {String} reason motivo utilizado para irritar o pandadomal.
  */
 const successfullyIrritate = (client, username, reason) => {
-  const wallet = readDataJSON('carteira');
   const points = readDataJSON('pontos');
 
   if (username in points) {
-    points[username] += POINTS;
+    points[username] += PONTOZERAS;
   } else {
-    points[username] = POINTS;
+    points[username] = PONTOZERAS;
   }
-  writeDataJSON('pontos', wallet);
+  writeDataJSON('pontos', points);
 
   client.say(
     process.env.CHANNEL_NAME,
-    `/me AAAAAAAAAA ${username} ${reason} e saiu correndo com ${POINTS} pontos. Grrrr`,
+    `/me AAAAAAAAAA ${username} ${reason} e saiu correndo com ${PONTOZERAS} pontos. Grrrr`,
   );
 };
 
@@ -107,14 +106,12 @@ const successfullyIrritate = (client, username, reason) => {
  */
 const unsuccessfulIrritate = (client, username) => {
   // const timeout = Math.floor(Math.random() * 30);
-
-  const wallet = readDataJSON('carteira');
   const points = readDataJSON('pontos');
 
   if (username in points) {
     points[username] -= 5;
   }
-  writeDataJSON('pontos', wallet);
+  writeDataJSON('pontos', points);
 
   client.say(
     process.env.CHANNEL_NAME,
