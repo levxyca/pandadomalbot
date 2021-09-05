@@ -1,20 +1,15 @@
 {
+  "private": true,
   "name": "pandadomalbot",
   "version": "1.0.0",
-  "description": "",
-  "main": "bot.js",
-  "nodemonConfig": {
-    "ignore": [
-      "**/*.json"
-    ]
-  },
+  "description": "Um bot muito carinhoso criado para divertir o chat do canal da levxyca.",
+  "author": "levxyca",
+  "license": "MIT",
+  "homepage": "https://levxyca.codes/pandadomalsite",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/levxyca/pandadomalbot.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/levxyca/pandadomalbot/issues"
   },
@@ -23,7 +18,6 @@
     "dev": "nodemon --watch src",
     "lint": "eslint ."
   },
-  "homepage": "https://github.com/levxyca/pandadomalbot#readme",
   "dependencies": {
     "axios": "^0.21.3",
     "date-fns": "^2.23.0",
