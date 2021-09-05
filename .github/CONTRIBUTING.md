@@ -21,7 +21,7 @@ Para executar este projeto, você precisa do [NodeJS](https://nodejs.org/en/down
 
 Para obter o token, entre [neste serviço](https://twitchapps.com/tmi/) e autorize-o a ter acesso a sua conta da Twitch. Guarde o token obtido em um local seguro. Com o token em mãos: instale as dependências, defina as variáveis de ambiente (você pode criar um arquivo `.env` na raiz do projeto com as variáveis presentes no arquivo [.env.example](.env.example)) e execute a aplicação:
 
-```
+```sh
 npm install
 
 BOT_USERNAME=pandadomal # nome de usuário da sua conta.
