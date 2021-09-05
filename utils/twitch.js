@@ -1,4 +1,6 @@
-const fetch = require('node-fetch');
+const axios = require('axios').default;
+
+const CHATTERS = `https://tmi.twitch.tv/group/user/${process.env.CHANNEL_NAME}/chatters`;
 
 /**
  * Obtém os usuários conectados ao chat.
@@ -21,12 +23,10 @@ const fetch = require('node-fetch');
  */
 const chatters = async () => {
   return new Promise((resolve, reject) => {
-    fetch(
-      `https://tmi.twitch.tv/group/user/${process.env.CHANNEL_NAME}/chatters`,
-    )
-      .then((response) => response.json())
-      .then((json) => {
-        resolve(json.chatters);
+    axios
+      .get(CHATTERS)
+      .then((response) => {
+        resolve(response.data.chatters);
       })
       .catch((err) => {
         reject(new Error(`Falha ao obter os chatters do canal. Err: ${err}.`));
