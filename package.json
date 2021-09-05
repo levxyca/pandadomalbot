@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "bot.js",
-  "scripts": {
-    "start": "node bot.js",
-    "dev": "nodemon bot.js",
-    "lint": "eslint ."
-  },
   "nodemonConfig": {
     "ignore": [
       "**/*.json"
@@ -22,6 +17,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/levxyca/pandadomalbot/issues"
+  },
+  "scripts": {
+    "start": "node src/bot.js",
+    "dev": "nodemon --watch src",
+    "lint": "eslint ."
   },
   "homepage": "https://github.com/levxyca/pandadomalbot#readme",
   "dependencies": {

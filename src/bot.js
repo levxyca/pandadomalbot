@@ -12,7 +12,7 @@ const express = require('express');
 const axios = require('axios');
 
 const app = express();
-app.use(express.static('public'));
+app.use(express.static('src/public'));
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const timer = require('./timers');
@@ -20,7 +20,7 @@ const timer = require('./timers');
 const porta = 5050;
 
 app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/public/index.html`);
+  res.sendFile(`${__dirname}/src/public/index.html`);
 });
 const { protectSubscriber } = require('./commands/jail/actions');
 const { readDataJSON, writeDataJSON } = require('./utils/data');
