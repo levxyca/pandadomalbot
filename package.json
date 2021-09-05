@@ -30,7 +30,6 @@
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "gitmoji-cli": "^3.4.2",
-    "node-fetch": "^2.6.1",
     "socket.io": "^3.1.2",
     "tmi.js": "^1.8.5",
     "twitter-v2": "^1.1.0"
