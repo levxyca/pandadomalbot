@@ -56,7 +56,7 @@ npm run start
 
 Quer fazer parte desse projeto? Você pode nos ajudar criando issues novas, caso encontre erros ou também nos mandando sugestões de funcionalidades novas. Fique a vontade para verificar as issues já existentes e resolve-lás.
 
-Para contribuir com _pandadomalbot_ leia nosso [CONTRIBUTING](CONTRIBUTING.md).
+Para contribuir com _pandadomalbot_ leia nosso [CONTRIBUTING](.github/CONTRIBUTING.md).
 
 ## Licença
 
