@@ -7,7 +7,7 @@
 
 const { Client } = require('tmi.js');
 require('dotenv').config();
-const { readdirSync } = require('fs');
+const { readdirSync, existsSync, mkdirSync } = require('fs');
 const express = require('express');
 const axios = require('axios');
 
@@ -18,6 +18,10 @@ const io = require('socket.io')(http);
 const timer = require('./timers');
 
 const porta = 5050;
+
+if (!existsSync('./data/')) {
+  mkdirSync('./data/', { recursive: true });
+}
 
 app.get('/', (req, res) => {
   res.sendFile(`${__dirname}/src/public/index.html`);
