@@ -26,7 +26,7 @@
     "gitmoji-cli": "^3.4.2",
     "socket.io": "^3.1.2",
     "tmi.js": "^1.8.5",
-    "twitter-v2": "^1.1.0"
+    "twitter-v2": "github:edsu/twitter-v2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
