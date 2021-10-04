@@ -34,7 +34,7 @@ const client = new Twitter({
  */
 const getLatestTweets = async (limit = 20) => {
   const { data } = await client.get('tweets/search/recent', {
-    query: `from:${process.env.TWITTER_USERNAME}`,
+    query: `from:${process.env.TWITTER_USERNAME} -is:retweet`,
     'tweet.fields': 'created_at,public_metrics,entities',
     max_results: limit,
   });
@@ -43,16 +43,7 @@ const getLatestTweets = async (limit = 20) => {
     throw new Error('Falha ao obter os últimos tweets.');
   }
 
-  /**
-   * Exclui os retweets.
-   * Por algum motivo a lib usada está retornando UNAUTHORIZED quando tenta-se
-   * filtrar os retweets na query. TODO: futuramente, trocar a query de:
-   * "from:levxyca" (excluindo os retweets manualmente) para "from:levxyca -is:retweet"
-   * e retornando o "data" diretamente.
-   *
-   * https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query
-   */
-  return data.filter((item) => !item.text.startsWith('RT'));
+  return data;
 };
 
 /**
