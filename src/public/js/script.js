@@ -7,6 +7,8 @@ const alimentar = document.querySelector('#alimentar');
 const capturaloira = document.querySelector('#capturaloira');
 const mostragato = document.querySelector("#mostragato");
 const gato = document.querySelector("#gato");
+const agora = document.querySelector("#agora")
+const agoraText = document.querySelector("#agora-text")
 
 const socket = io();
 
@@ -40,4 +42,13 @@ socket.on('gato', () => {
     gato.classList.remove('gato');
     mostragato.classList.add('hidden');
   }, 5000);
+});
+
+socket.on('agora', (arg) => {
+  agora.classList.remove('hidden');
+  agoraText.innerHTML = `Agora: ${arg}`
+  console.log(arg)
+  setTimeout(() => {
+    agora.classList.add('hidden');
+  }, 60000);
 });
