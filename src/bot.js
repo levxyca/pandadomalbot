@@ -7,7 +7,7 @@
 
 const { Client } = require('tmi.js');
 require('dotenv').config();
-const { readdirSync, existsSync, mkdirSync } = require('fs');
+const { readdirSync, existsSync, mkdirSync, readFileSync } = require('fs');
 const express = require('express');
 const axios = require('axios');
 
@@ -312,7 +312,7 @@ io.on('connection', (socket) => {
     if (ehBot) return;
 
     if (message === '!alimentar') {
-      socket.broadcast.emit('alimentar', true);
+      socket.emit('alimentar', true);
       client.say(
         target,
         `/me ${context.username} alimentou o pandadomalbot com um sorvete.`,
@@ -320,7 +320,7 @@ io.on('connection', (socket) => {
     }
 
     if (message === '!loira') {
-      socket.broadcast.emit('loira', true);
+      socket.emit('loira', true);
       client.say(
         target,
         `/me Quem soltou essa loira? Meu deus leva ela de volta ${context.username}!`,
@@ -328,7 +328,13 @@ io.on('connection', (socket) => {
     }
 
     if (message === '!gato') {
-      socket.broadcast.emit('gato', true);
+      socket.emit('gato', true);
+    }
+
+    if (message === '!agora') {
+      const data = readFileSync('agora.txt', 'utf8')
+      
+      socket.emit('agora', data);
     }
   });
 });
