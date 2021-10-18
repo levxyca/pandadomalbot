@@ -26,6 +26,15 @@
         sorvete 5s;
 }
 
+#agora #agora-text {
+    background-color: #38353a;
+    color: #fff;
+    font-family: sans-serif;
+    width: 30%;
+    padding: 13px;
+    font-weight: bold;
+}
+
 @keyframes movement {
     0% {
         transform: translate(200px, 0);
