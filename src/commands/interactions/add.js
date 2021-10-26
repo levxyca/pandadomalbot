@@ -23,7 +23,6 @@ exports.default = (client, target, context, message, ehBot) => {
     const user = message.split(' ')[1].toLowerCase().replace('@', '');
     let qtd = message.split(' ')[2];
 
-    // eslint-disable-next-line no-restricted-globals
     if (isNaN(qtd)) {
       client.say(
         target,
@@ -43,7 +42,6 @@ exports.default = (client, target, context, message, ehBot) => {
           const viewers = [...response.data.chatters.viewers];
           const users = vips.concat(mods, viewers);
 
-          // eslint-disable-next-line no-shadow
           users.forEach((user) => {
             if (estoqueCarinho[user]) {
               estoqueCarinho.users[user] += qtd;
@@ -62,7 +60,6 @@ exports.default = (client, target, context, message, ehBot) => {
             writeDataJSON('estoque-irritar', estoqueIrritar);
           });
         })
-        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           client.say(target, '/me, Erro ao adicionar carinho(s) e irritar(s).');
         });

@@ -48,7 +48,6 @@ const canUseCommand = (username) => {
       writeDataJSON('irritadores', state);
       return true;
     }
-    // eslint-disable-next-line no-else-return
   } else if (usage < DEFAULT_MAX) {
     state.users[username] = usage + 1;
     writeDataJSON('irritadores', state);
