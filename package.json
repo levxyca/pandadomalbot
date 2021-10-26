@@ -62,7 +62,8 @@
       "no-console": "off",
       "no-unsafe-finally": "off",
       "consistent-return": "off",
-      "no-param-reassign": "off"
+      "no-param-reassign": "off",
+      "no-undef": "off"
     }
   },
   "prettier": {

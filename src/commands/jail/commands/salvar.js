@@ -28,7 +28,6 @@ exports.default = (client, target, context, message) => {
     }
 
     if (Math.random() < 0.5) {
-      // eslint-disable-next-line no-unused-vars
       const points = giveMoneyAndPointsTo(context.username.toLowerCase(), 100);
 
       const rescued =
