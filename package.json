@@ -51,7 +51,18 @@
       "ecmaVersion": 12
     },
     "rules": {
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "radix": "off",
+      "no-restricted-globals": "off",
+      "no-shadow": "off",
+      "prefer-const": "off",
+      "import/no-dynamic-require": "off",
+      "global-require": "off",
+      "no-unused-vars": "off",
+      "no-console": "off",
+      "no-unsafe-finally": "off",
+      "consistent-return": "off",
+      "no-param-reassign": "off"
     }
   },
   "prettier": {

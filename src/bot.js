@@ -1,10 +1,3 @@
-/* eslint-disable radix */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable no-shadow */
-/* eslint-disable prefer-const */
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
-
 const { Client } = require('tmi.js');
 require('dotenv').config();
 const { readdirSync, existsSync, mkdirSync, readFileSync } = require('fs');
@@ -219,7 +212,6 @@ function mensagemChegou(target, context, message, ehBot) {
             writeDataJSON('pontos', pontos);
           });
         })
-        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           client.say(target, '/me, Erro ao adicionar pontos.');
         });
@@ -305,7 +297,6 @@ async function darPontos() {
 }
 
 io.on('connection', (socket) => {
-  // eslint-disable-next-line no-console
   console.log('Conectou com overlay');
 
   client.on('message', (target, context, message, ehBot) => {
@@ -332,15 +323,14 @@ io.on('connection', (socket) => {
     }
 
     if (message === '!agora') {
-      const data = readFileSync('agora.txt', 'utf8')
-      
+      const data = readFileSync('agora.txt', 'utf8');
+
       socket.emit('agora', data);
     }
   });
 });
 
 client.on('connected', (host, port) => {
-  // eslint-disable-next-line no-console
   console.log(`* Bot entrou no endereço ${host}:${port}`);
 
   setTimeout(() => {
@@ -391,6 +381,5 @@ client.on('message', mensagemChegou);
 client.connect();
 
 http.listen(porta, () => {
-  // eslint-disable-next-line no-console
   console.log(`O overlay está rodando em: http://localhost:${porta}`);
 });
