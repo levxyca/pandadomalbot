@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 let mensagens = [];
 const padroesFeitos = [];
 
