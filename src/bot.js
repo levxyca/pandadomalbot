@@ -332,8 +332,7 @@ io.on('connection', (socket) => {
     }
 
     if (message === '!agora') {
-      const data = readFileSync('agora.txt', 'utf8')
-      
+      const data = readFileSync('agora.txt', 'utf8');
       socket.emit('agora', data);
     }
   });

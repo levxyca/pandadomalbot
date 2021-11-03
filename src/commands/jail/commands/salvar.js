@@ -28,7 +28,7 @@ exports.default = (client, target, context, message) => {
     }
 
     if (Math.random() < 0.5) {
-      const points = giveMoneyAndPointsTo(context.username.toLowerCase(), 100);
+      giveMoneyAndPointsTo(context.username.toLowerCase(), 100);
 
       const rescued =
         state.prisoners[Math.floor(Math.random() * state.prisoners.length)];
