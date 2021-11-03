@@ -219,8 +219,7 @@ function mensagemChegou(target, context, message, ehBot) {
             writeDataJSON('pontos', pontos);
           });
         })
-        // eslint-disable-next-line no-unused-vars
-        .catch((error) => {
+        .catch(() => {
           client.say(target, '/me, Erro ao adicionar pontos.');
         });
 

@@ -1,6 +1,6 @@
+const { readDataJSON } = require('../utils/data');
+
 exports.default = (client, target, context, message) => {
-  // eslint-disable-next-line global-require
-  const { readDataJSON } = require('../utils/data');
   const pontos = readDataJSON('pontos');
 
   function verRanking(username) {

@@ -43,27 +43,25 @@ exports.default = (client, target, context, message, ehBot) => {
           const viewers = [...response.data.chatters.viewers];
           const users = vips.concat(mods, viewers);
 
-          // eslint-disable-next-line no-shadow
-          users.forEach((user) => {
-            if (estoqueCarinho[user]) {
-              estoqueCarinho.users[user] += qtd;
+          users.forEach((currentUser) => {
+            if (estoqueCarinho[currentUser]) {
+              estoqueCarinho.users[currentUser] += qtd;
             } else {
-              estoqueCarinho.users[user] = qtd;
+              estoqueCarinho.users[currentUser] = qtd;
             }
 
             writeDataJSON('estoque-carinhos', estoqueCarinho);
 
-            if (estoqueIrritar[user]) {
-              estoqueIrritar.users[user] += qtd;
+            if (estoqueIrritar[currentUser]) {
+              estoqueIrritar.users[currentUser] += qtd;
             } else {
-              estoqueIrritar.users[user] = qtd;
+              estoqueIrritar.users[currentUser] = qtd;
             }
 
             writeDataJSON('estoque-irritar', estoqueIrritar);
           });
         })
-        // eslint-disable-next-line no-unused-vars
-        .catch((error) => {
+        .catch(() => {
           client.say(target, '/me, Erro ao adicionar carinho(s) e irritar(s).');
         });
 
