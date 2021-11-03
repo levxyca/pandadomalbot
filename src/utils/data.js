@@ -44,6 +44,7 @@ const writeDataJSON = (file, data) => {
     writeFileSync(path, contents, { encoding: 'utf-8' });
     return true;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(
       `Falha ao persistir o conteúdo "${contents}" em "${path}". Err: ${err}`,
     );

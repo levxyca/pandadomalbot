@@ -1,4 +1,5 @@
 exports.default = (client, target, context, message) => {
+  // eslint-disable-next-line global-require
   const { readDataJSON } = require('../../../../utils/data');
   const muralcarinhos = readDataJSON('muralcarinhos');
 
