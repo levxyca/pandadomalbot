@@ -1,5 +1,6 @@
+const { readDataJSON } = require('../../../../utils/data');
+
 exports.default = (client, target, context, message) => {
-  const { readDataJSON } = require('../../../../utils/data');
   const muralcarinhos = readDataJSON('muralcarinhos');
 
   function verMural(username) {

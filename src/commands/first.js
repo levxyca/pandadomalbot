@@ -3,6 +3,7 @@ const { giveMoneyAndPointsTo } = require('../utils/points');
 exports.default = (client, target, context, message, dados) => {
   if (message.trim() === '!first') {
     if (dados.first == null) {
+      // eslint-disable-next-line no-param-reassign
       dados.first = context.username;
       client.say(
         target,
