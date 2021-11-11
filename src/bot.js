@@ -234,7 +234,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
     client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
   }
-  
+
   if (message.split(' ')[0] === '!nario') {
     let geradorNario =
       geradorNarios[Math.floor(Math.random() * geradorNarios.length)];
