@@ -49,7 +49,6 @@ const client = new Client(opts);
 
 const dados = readDataJSON('dados');
 const loja = readDataJSON('lojinha');
-const piadas = readDataJSON('piadas');
 const geradorNarios = readDataJSON('gerador-de-narios');
 const geradorLevs = readDataJSON('gerador-de-levs');
 dados.first = null;
@@ -235,22 +234,7 @@ function mensagemChegou(target, context, message, ehBot) {
 
     client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
   }
-
-  if (message.split(' ')[0] === '!piada') {
-    let piada = piadas[Math.floor(Math.random() * piadas.length)];
-    client.say(
-      target,
-
-      `/me ${piada.pergunta}`,
-    );
-    setTimeout(() => {
-      client.say(
-        target,
-
-        `/me ${piada.resposta}`,
-      );
-    }, 3000);
-  }
+  
   if (message.split(' ')[0] === '!nario') {
     let geradorNario =
       geradorNarios[Math.floor(Math.random() * geradorNarios.length)];
