@@ -49,7 +49,6 @@ const client = new Client(opts);
 
 const dados = readDataJSON('dados');
 const loja = readDataJSON('lojinha');
-const ensinamentos = readDataJSON('ensinamentos');
 const geradorNarios = readDataJSON('gerador-de-narios');
 const geradorLevs = readDataJSON('gerador-de-levs');
 dados.first = null;
@@ -234,16 +233,6 @@ function mensagemChegou(target, context, message, ehBot) {
     }
 
     client.say(target, `/me Adicionado ${qtdPontos} para ${user} BloodTrail`);
-  }
-  if (message.split(' ')[0] === '!ensinamento') {
-    let ensinamento =
-      ensinamentos[Math.floor(Math.random() * ensinamentos.length)];
-
-    client.say(
-      target,
-
-      `/me ${ensinamento.ensinamento}`,
-    );
   }
 
   if (message.split(' ')[0] === '!nario') {
