@@ -46,6 +46,13 @@ exports.default = (client, target, context, message) => {
       client.say(target, `/me 9? 99? @${context.username}`);
     } else if (message.includes("já pode?")) {
       client.say(target, `/me Nunca pode @${context.username} Kappa`);
+    } else if (
+      message.includes("aqui salva") ||
+      message.includes("aki salva") ||
+      message.includes("salva?") ||
+      message.includes("salvo?")
+    ) {
+      client.say(target, `/me salva nada @${context.username}.`);
     } else {
       const answer = getAnswer();
       client.say(target, `/me ${answer} @${context.username}`);
