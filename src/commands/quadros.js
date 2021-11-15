@@ -24,6 +24,12 @@ exports.default = (client, target, context, message) => {
         `/me Aproveite as comemorações de hoje 🥳 Para relembrar o passado: Cada sub ou 100 bits uma estrelinha no rosto e mais 5 minutos de livexyca(que vai no máximo até ás 20h)!`,
       );
       break;
+    case '!co-conversinha':
+      client.say(
+        target,
+        `/me O co-conversinha é um quadro do canal onde temos o nosso co-working/co-studyng do jeitinho da 'levxyca' ⭐ Passe um tempo por aqui a converse comigo e com o chat enquanto fazemos algo diferente.`,
+      );
+      break;
     default:
       break;
   }

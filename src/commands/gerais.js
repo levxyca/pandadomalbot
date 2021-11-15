@@ -14,7 +14,7 @@ exports.default = (client, target, context, message) => {
         `/me Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.com/pandadomalsite/`,
       );
       break;
-    case '!repopanda':
+    case '!bot':
       client.say(
         target,
         `/me Repositório do pandadomalbot 🐼 https://github.com/levxyca/pandadomalbot`,

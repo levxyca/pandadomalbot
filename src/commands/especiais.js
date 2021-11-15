@@ -41,6 +41,11 @@ exports.default = (client, target, context, message) => {
         client.say(target, `/me ${reply}`);
       }
       break;
+    case '!soltar':
+      if (context.username.toLowerCase() === 'monikinhadev') {
+        client.say(target, `/me MONIKINHAAAAAAAAAAA PandaFurious é !salvar`);
+      }
+      break;
     default:
       break;
   }
