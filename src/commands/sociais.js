@@ -3,7 +3,7 @@ exports.default = (client, target, context, message) => {
     case '!social':
       client.say(
         target,
-        `/me Me encontre nas outras redes sociais 🌎 https://links.levxyca.codes`,
+        `/me Me encontre nas outras redes sociais 🌎 https://links.levxyca.com`,
       );
       break;
     case '!telegram':

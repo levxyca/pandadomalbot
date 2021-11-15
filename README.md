@@ -1,6 +1,6 @@
 # pandadomalbot 🐼 [![Continuous Integration](https://github.com/levxyca/pandadomalbot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/levxyca/pandadomalbot/actions/workflows/ci.yml)
 
-> O **pandadomalbot** foi pensado para as lives do canal da [levxyca](https://twitch.tv/levxyca). Criado para divertir e alegrar o chat da melhor live da galacta. Faz brincadeiras, ajuda a streamer e entretêm. Para ver todas as funcionalidades do bot leia sua documentação [aqui](https://levxyca.codes/pandadomalsite/).
+> O **pandadomalbot** foi pensado para as lives do canal da [levxyca](https://twitch.tv/levxyca). Criado para divertir e alegrar o chat da melhor live da galacta. Faz brincadeiras, ajuda a streamer e entretêm. Para ver todas as funcionalidades do bot leia sua documentação [aqui](https://levxyca.com/pandadomalsite/).
 
 ## Usando pandadomalbot
 

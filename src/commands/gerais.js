@@ -11,7 +11,7 @@ exports.default = (client, target, context, message) => {
     case '!site':
       client.say(
         target,
-        `/me Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.codes/pandadomalsite/`,
+        `/me Site do bot mais carinhoso da twitch, leia a documentação do pandadomalbot 🐼 https://levxyca.com/pandadomalsite/`,
       );
       break;
     case '!repopanda':
@@ -43,7 +43,7 @@ exports.default = (client, target, context, message) => {
     case '!docs':
       client.say(
         target,
-        `/me Repositório que reúne todas as minhas anotações de estudo 📂 https://docs.levxyca.codes/`,
+        `/me Repositório que reúne todas as minhas anotações de estudo 📂 https://docs.levxyca.com/`,
       );
       break;
     case '!modlider':
