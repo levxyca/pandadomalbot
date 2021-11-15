@@ -2,7 +2,7 @@
 
 Ao contribuir com este repositório, discuta primeiro a mudança que deseja fazer por meio da issue.
 
-Para que você entenda todas as funcionalidades existentes no nosso bot recomenda-se a leitura [dessa documentação](https://levxyca.codes/pandadomalsite/). Caso tenha alguma dúvida mande um comentário na issue.
+Para que você entenda todas as funcionalidades existentes no nosso bot recomenda-se a leitura [dessa documentação](https://levxyca.com/pandadomalsite/). Caso tenha alguma dúvida mande um comentário na issue.
 
 ## Como Contribuir
 
