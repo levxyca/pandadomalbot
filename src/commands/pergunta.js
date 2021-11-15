@@ -13,6 +13,17 @@ function getAnswer() {
     'é sério que você tá me perguntando isso?',
     'eu gostaria de saber...',
     'minha resposta vai mudar em algo?',
+    'fica o questionamento...',
+    'é uma questão deveras confusa...',
+    'impossível.',
+    'que pergunta, hein?',
+    'duvido muito.',
+    'não acredito nisso.',
+    'nem que o panda urre.',
+    'em breve.',
+    'tudo indica que sim',
+    'se concentra e pergunta de novo',
+    'é melhor eu não te contar agora',
   ];
 
   const answersCount = answers.length;
