@@ -13,6 +13,17 @@ function getAnswer() {
     'é sério que você tá me perguntando isso?',
     'eu gostaria de saber...',
     'minha resposta vai mudar em algo?',
+    'fica o questionamento...',
+    'é uma questão deveras confusa...',
+    'impossível.',
+    'que pergunta, hein?',
+    'duvido muito.',
+    'não acredito nisso.',
+    'nem que o panda urre.',
+    'em breve.',
+    'tudo indica que sim',
+    'se concentra e pergunta de novo',
+    'é melhor eu não te contar agora',
   ];
 
   const answersCount = answers.length;
@@ -35,6 +46,13 @@ exports.default = (client, target, context, message) => {
       client.say(target, `/me 9? 99? @${context.username}`);
     } else if (message.includes('já pode?')) {
       client.say(target, `/me Nunca pode @${context.username} Kappa`);
+    } else if (
+      message.includes('aqui salva') ||
+      message.includes('aki salva') ||
+      message.includes('salva?') ||
+      message.includes('salvo?')
+    ) {
+      client.say(target, `/me Salva nada @${context.username}.`);
     } else {
       const answer = getAnswer();
       client.say(target, `/me ${answer} @${context.username}`);
