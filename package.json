@@ -14,19 +14,13 @@
     "url": "https://github.com/levxyca/pandadomalbot/issues"
   },
   "scripts": {
-    "start": "node src/bot.js",
+    "start": "node src/index.js",
     "dev": "nodemon --watch src",
     "lint": "eslint ."
   },
   "dependencies": {
-    "axios": "^0.21.3",
-    "date-fns": "^2.23.0",
     "dotenv": "^8.6.0",
-    "express": "^4.17.1",
-    "gitmoji-cli": "^3.4.2",
-    "socket.io": "^3.1.2",
-    "tmi.js": "^1.8.5",
-    "twitter-v2": "github:edsu/twitter-v2"
+    "tmi.js": "^1.8.5"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

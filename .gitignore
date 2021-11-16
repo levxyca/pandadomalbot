@@ -1,10 +1,11 @@
+# Editores
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Dependências
 node_modules
+
+# Arquivos locais
 .env
-dados.json
-subs.txt
-pontos.json
-lojinha.json
-carteira.json
-hoje.js
-rt.txt
-data
+data/*

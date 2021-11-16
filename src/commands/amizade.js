@@ -1,18 +1,17 @@
-exports.default = (client, target, context, message) => {
-  const splittedMessage = String(message).split(' ');
-  const { username } = context;
+const { client } = require('../core/client');
 
-  if (splittedMessage[0] === '!amizade' && splittedMessage.length === 2) {
-    const amizade = Math.random() * 100;
-    const pessoaAmiga = splittedMessage[1].replace('#', '');
+const execute = (args, channel, context) => {
+  if (!args) return;
 
-    const amizadeFormated = new Intl.NumberFormat('en-US', {
-      maximumSignificantDigits: 4,
-    }).format(amizade);
+  const friendship = Math.round(Math.random() * 99) + 1;
 
-    client.say(
-      target,
-      `/me ${username} tem ${amizadeFormated}% de amizade com ${pessoaAmiga} PogChamp`,
-    );
-  }
+  client.say(
+    channel,
+    `/me ${context.username} tem ${friendship}% de amizade com ${args} PogChamp`,
+  );
+};
+
+module.exports = {
+  keyword: 'amizade',
+  execute,
 };
