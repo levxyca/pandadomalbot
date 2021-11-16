@@ -31,7 +31,7 @@ module.exports = {
 
 ## ✨ Dicas
 
-- A função `execute` não necessiriamente precisa ser uma função. Se um comando não realiza nenhum processamento e somente retorna um texto, você pode fazer com o valor de `execute` seja uma _string_. Por exemplo:
+- A função `execute` não necessiriamente precisa ser uma função. Se um comando não realiza nenhum processamento e somente retorna um texto, você pode fazer com que o valor de `execute` seja uma _string_. Por exemplo:
 
   ```js
   module.exports = {
