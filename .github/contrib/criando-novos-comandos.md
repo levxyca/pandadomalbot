@@ -31,6 +31,15 @@ module.exports = {
 
 ## ✨ Dicas
 
+- A função `execute` não necessiriamente precisa ser uma função. Se um comando não realiza nenhum processamento e somente retorna um texto, você pode fazer com o valor de `execute` seja uma _string_. Por exemplo:
+
+  ```js
+  module.exports = {
+    keyword: 'pi',
+    execute: 'O valor de PI é 3,14.',
+  };
+  ```
+
 - Como mencionado anteriormente, tudo que estiver dentro do diretório "commands" será carregado e disponibilizado para o _bot_, de forma recursiva.
 
   - Isto quer dizer que você pode agrupar comandos "com o mesmo propósito" em um diretório específico, ao invés de criar um único arquivo que "faz tudo". Por exemplo, suponha que o _bot_ tenha a funcionalidade de SHOP no qual o telespectador pode comprar, vender, alugar, etc:
