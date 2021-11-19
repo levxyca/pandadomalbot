@@ -1,6 +1,6 @@
 <p align="center">
   <img src=".github/assets/panda.png">
-  <h1>Pandadomalbot</h1>
+  <h1 align="center">Pandadomalbot</h1>
 </p>
 
 O **pandadomalbot** foi pensado para as lives do canal da [levxyca][1].
