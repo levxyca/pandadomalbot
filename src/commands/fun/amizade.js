@@ -1,4 +1,4 @@
-const { client } = require('../core/client');
+const { client } = require('../../core/client');
 
 const execute = (args, channel, context) => {
   if (!args) return;
