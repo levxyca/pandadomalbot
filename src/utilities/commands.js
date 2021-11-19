@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+
 const fs = require('fs');
 const path = require('path');
 
@@ -5,7 +7,6 @@ const COMMANDS_PATH = `${__dirname}/../commands`;
 
 const getCommandFiles = (filePath) => {
   const files = [];
-  // eslint-disable-next-line no-restricted-syntax
   for (const file of fs.readdirSync(filePath)) {
     const fullPath = `${filePath}/${file}`;
     if (fs.lstatSync(fullPath).isDirectory())
@@ -15,18 +16,18 @@ const getCommandFiles = (filePath) => {
   return files;
 };
 
-function walkCommands() {
-  const commands = [];
+function commands() {
+  const availableCommands = [];
 
-  // eslint-disable-next-line no-restricted-syntax
   for (const file of getCommandFiles(COMMANDS_PATH)) {
     if (!path.parse(file).base.startsWith('_') && file.slice(-3) === '.js') {
       // eslint-disable-next-line import/no-dynamic-require,global-require
       const module = require(`${COMMANDS_PATH}/${file}`);
-      commands.push(module);
+      availableCommands.push(module);
     }
   }
-  return commands;
+  availableCommands.sort((a, b) => (a.keyword - b.keyword ? 1 : -1));
+  return availableCommands;
 }
 
-module.exports = { walkCommands };
+module.exports = { commands };

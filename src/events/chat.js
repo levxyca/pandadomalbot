@@ -1,8 +1,8 @@
 const { client } = require('../core/client');
-const { walkCommands } = require('../utilities/walk-commands');
+const { commands } = require('../utilities/commands');
 
 const regex = new RegExp(`^${process.env.PREFIX}([a-zA-Z0-9]+)(?:\\W+)?(.*)?`);
-const commands = walkCommands();
+const botCommands = commands();
 
 function onNewChatMessageReceived(channel, context, message, self) {
   // Ignora mensagens do próprio bot.
@@ -12,7 +12,7 @@ function onNewChatMessageReceived(channel, context, message, self) {
   if (command) {
     const [, keyword, argument] = command;
 
-    commands.forEach((item) => {
+    botCommands.forEach((item) => {
       if (item.keyword === keyword || item.aliases?.includes(keyword)) {
         switch (typeof item.execute) {
           case 'function':
@@ -22,7 +22,9 @@ function onNewChatMessageReceived(channel, context, message, self) {
             client.say(channel, item.execute);
             break;
           default:
-            throw new Error('erro');
+            throw new Error(
+              `Falha ao executar o comando "${item.keyword}", verifique se o objeto contém o atributo 'execute' sendo uma função ou uma string.`,
+            );
         }
       }
     });
