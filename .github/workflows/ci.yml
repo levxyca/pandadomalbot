@@ -21,3 +21,6 @@ jobs:
 
       - name: linter
         run: npm run lint
+
+      - name: markdown linter
+        run: npm run mdownlint

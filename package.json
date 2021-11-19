@@ -16,10 +16,12 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon --watch src",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "mdownlint": "markdownlint **/*.md --ignore node_modules"
   },
   "dependencies": {
     "dotenv": "^8.6.0",
+    "fastq": "^1.13.0",
     "tmi.js": "^1.8.5"
   },
   "devDependencies": {
@@ -28,6 +30,7 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^3.4.1",
+    "markdownlint-cli": "^0.29.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
   },
@@ -45,7 +48,16 @@
       "ecmaVersion": 12
     },
     "rules": {
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "no-console": [
+        "warn",
+        {
+          "allow": [
+            "info",
+            "error"
+          ]
+        }
+      ]
     }
   },
   "prettier": {
