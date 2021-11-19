@@ -1,6 +1,4 @@
-const { picpay } = require('./_urls');
-
 module.exports = {
   keyword: 'picpay',
-  execute: `Você pode doar através do picpay: ${picpay}`,
+  execute: `Você pode doar através do picpay: https://app.picpay.com/user/levxyca`,
 };
