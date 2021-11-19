@@ -26,7 +26,7 @@ function commands() {
       availableCommands.push(module);
     }
   }
-  availableCommands.sort((a, b) => (a.keyword - b.keyword ? 1 : -1));
+  availableCommands.sort((a, b) => (a.keyword - b.keyword ? -1 : 1));
   return availableCommands;
 }
 
