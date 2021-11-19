@@ -7,7 +7,7 @@ const execute = (args, channel, context) => {
 
   client.say(
     channel,
-    `/me ${context.username} tem ${friendship}% de amizade com ${args} PogChamp`,
+    `${context.username} tem ${friendship}% de amizade com ${args} PogChamp`,
   );
 };
 
