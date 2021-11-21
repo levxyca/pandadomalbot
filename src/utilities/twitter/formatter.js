@@ -15,6 +15,8 @@ const tweetMetrics = (tweet) => {
 };
 
 module.exports = {
-  tweetURL,
-  tweetMetrics,
+  format: {
+    tweetURL,
+    tweetMetrics,
+  },
 };

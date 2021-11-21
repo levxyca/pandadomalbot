@@ -1,12 +1,5 @@
-const Twitter = require('twitter-v2');
-const { isToday } = require('../../utilities/date-time');
-
-const client = new Twitter({
-  consumer_key: process.env.TW_CONSUMER_KEY,
-  consumer_secret: process.env.TW_CONSUMER_SECRET,
-  access_token_key: process.env.TW_ACCESS_TOKEN_KEY,
-  access_token_secret: process.env.TW_ACCESS_TOKEN_SECRET,
-});
+const { client } = require('../../core/twitter_client');
+const { isToday } = require('../date-time');
 
 const QUERY = `from:${process.env.TW_USERNAME} -is:retweet -is:reply has:links`;
 
