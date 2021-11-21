@@ -22,7 +22,8 @@
   "dependencies": {
     "dotenv": "^8.6.0",
     "fastq": "^1.13.0",
-    "tmi.js": "^1.8.5"
+    "tmi.js": "^1.8.5",
+    "twitter-v2": "github:edsu/twitter-v2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
