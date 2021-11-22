@@ -4,7 +4,7 @@ const { format } = require('../utilities/twitter/formatter');
 
 module.exports = {
   keyword: 'rt',
-  execute: async (_, channel) => {
+  execute: async ({ channel }) => {
     const tweet = await getTodaysLiveAnnouncement();
     if (tweet) {
       const url = format.tweetURL(tweet.id);

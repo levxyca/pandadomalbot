@@ -16,7 +16,12 @@ function onNewChatMessageReceived(channel, context, message, self) {
       if (item.keyword === keyword || item.aliases?.includes(keyword)) {
         switch (typeof item.execute) {
           case 'function':
-            item.execute(argument, channel, context, message);
+            item.execute({
+              argument,
+              channel,
+              context,
+              message,
+            });
             break;
           case 'string':
             client.say(channel, item.execute);

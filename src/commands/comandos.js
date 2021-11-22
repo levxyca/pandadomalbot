@@ -13,8 +13,8 @@ const getCommandKeys = (alias) => {
   return keys;
 };
 
-const execute = (args, channel) => {
-  const keys = getCommandKeys(args && args === 'alias');
+const execute = ({ argument, channel }) => {
+  const keys = getCommandKeys(argument && argument === 'alias');
   client.say(channel, `Comandos disponíveis: ${keys.join(', ')}.`);
 };
 
