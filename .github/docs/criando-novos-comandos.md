@@ -7,7 +7,7 @@ Esse arquivo, precisa exportar o seguinte objeto:
 module.exports = {
   keyword: 'comando',
   aliases: [], // opcional
-  execute: (args){}
+  execute: ({ args, channel, context, message }){}
 };
 ```
 
@@ -28,7 +28,7 @@ Onde:
 ```js
 module.exports = {
   keyword: 'abacaxi',
-  execute: (args, channel, context, message){
+  execute: ({ args, channel, context, message }){
     console.log(args); // palavra1 palavra2
     console.log(channel); // levxyca
     console.log(context); // {...}
