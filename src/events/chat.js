@@ -1,4 +1,4 @@
-const { client } = require('../core/client');
+const { client } = require('../core/twitch_client');
 const { commands } = require('../utilities/commands');
 
 const regex = new RegExp(`^${process.env.PREFIX}([a-zA-Z0-9]+)(?:\\W+)?(.*)?`);
