@@ -55,14 +55,20 @@ function update(attributesToUpdate, newAttributes) {
 
 async function worker({ username, attributes }) {
   const content = read(FILE_NAME, {});
-
+  if (
+    attributes &&
+    Object.keys(attributes).length === 0 &&
+    Object.getPrototypeOf(attributes) === Object.prototype
+  ) {
+    return content[username];
+  }
   if (!Object.prototype.hasOwnProperty.call(content, username)) {
     content[username] = clearAttributes(attributes);
     console.info(
       `
-      Novo usuário criado: ${username}.
-      Atributos inicias: ${JSON.stringify(attributes)}.
-      `,
+        Novo usuário criado: ${username}.
+        Atributos inicias: ${JSON.stringify(attributes)}.
+        `,
     );
   } else {
     const oldAttributes = content[username];
@@ -70,10 +76,10 @@ async function worker({ username, attributes }) {
 
     console.info(
       `
-      Usuário ${username} atualizado.
-      Antes: ${JSON.stringify(oldAttributes)}.
-      Agora: ${JSON.stringify(newAttributes)}.
-      `,
+        Usuário ${username} atualizado.
+        Antes: ${JSON.stringify(oldAttributes)}.
+        Agora: ${JSON.stringify(newAttributes)}.
+        `,
     );
     content[username] = newAttributes;
   }
