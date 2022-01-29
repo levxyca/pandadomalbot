@@ -1,4 +1,4 @@
-const { client } = require('../../core/client');
+const { client } = require('../../core/twitch_client');
 
 module.exports = {
   keyword: 'soltar',
