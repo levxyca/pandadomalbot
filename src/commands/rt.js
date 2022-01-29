@@ -1,4 +1,4 @@
-const { client } = require('../core/client');
+const { client } = require('../core/twitch_client');
 const { getTodaysLiveAnnouncement } = require('../utilities/twitter/api');
 const { format } = require('../utilities/twitter/formatter');
 
