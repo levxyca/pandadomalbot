@@ -84,8 +84,8 @@ async function worker({ username, attributes }) {
 
 const queue = fastq.promise(worker, 1);
 
-async function people(username, attributes = {}) {
-  await queue.push({
+function people(username, attributes = {}) {
+  queue.push({
     username,
     attributes,
   });
