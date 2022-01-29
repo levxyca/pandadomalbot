@@ -86,15 +86,18 @@ async function worker({ username, attributes }) {
   if (!write(FILE_NAME, content)) {
     console.error('Falha ao salvar o arquivo');
   }
+
+  return content[username];
 }
 
 const queue = fastq.promise(worker, 1);
 
-function people(username, attributes = {}) {
-  queue.push({
+async function people(username, attributes = {}) {
+  const person = await queue.push({
     username,
     attributes,
   });
+  return person;
 }
 
 module.exports = { people };
