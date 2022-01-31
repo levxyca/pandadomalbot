@@ -6,6 +6,7 @@ const { read, write } = require('../utilities/data-file');
 const FILE_NAME = 'people';
 
 // Pattern utilizado para pegar valores c/ sinal, ex: "valor", "+valor", "-valor"
+// eslint-disable-next-line prefer-regex-literals
 const ATTRIBUTE_UPDATE_REGEX = new RegExp('^(\\+|-)?(\\w*)');
 
 function clearAttributes(attributes) {
