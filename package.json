@@ -34,39 +34,5 @@
     "markdownlint-cli": "^0.29.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
-  },
-  "eslintConfig": {
-    "env": {
-      "commonjs": true,
-      "es2021": true,
-      "node": true
-    },
-    "extends": [
-      "airbnb-base",
-      "plugin:prettier/recommended"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 12
-    },
-    "rules": {
-      "prettier/prettier": "error",
-      "no-console": [
-        "warn",
-        {
-          "allow": [
-            "info",
-            "error"
-          ]
-        }
-      ]
-    }
-  },
-  "prettier": {
-    "semi": true,
-    "trailingComma": "all",
-    "singleQuote": true,
-    "printWidth": 80,
-    "tabWidth": 2,
-    "useTabs": false
   }
 }
