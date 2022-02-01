@@ -1,11 +1,15 @@
 const patterns = [
-  /^([oO]+([iI]|[eE])+)$/, // oi, oe, oie
-  /^([Oo]+[Ll]+[AÁaá]+)$/, // olá
+  /^[Oo]+[Iiìí]*[Eeê]*\W*$/, // oi, oe, oie
+  /^[Oo]+[Ll]+[Aaàá]+\W*$/, // ola
 ];
 
-function execute({ context, firstMatch }) {
-  const greeting = firstMatch.charAt(0).toUpperCase() + firstMatch.slice(1);
-  return `${greeting} para você também ${context.username}! levxycAnimada`;
+function execute({ context, matches }) {
+  const greeting = () => {
+    const word = matches[0].replace(/[.,/#!$%^&*;:{}=\-_`~()]/g, '');
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
+  return `${greeting()} para você também ${context.username}!`;
 }
 
 module.exports = {

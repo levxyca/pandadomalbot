@@ -38,20 +38,19 @@ function handleAutoReply(channel, context, message) {
   autoReply.forEach((item) => {
     // eslint-disable-next-line no-restricted-syntax
     for (const pattern of item.patterns) {
-      const match = message.match(pattern);
+      const matches = message.match(pattern);
 
-      if (match) {
-        const firstMatch = Array.isArray(match) ? match[0] : match;
-
+      if (matches) {
         client.say(
           channel,
           item.execute({
             channel,
             context,
             message,
-            firstMatch,
+            matches,
           }),
         );
+        break;
       }
     }
   });
