@@ -4,8 +4,8 @@ const patterns = [
 ];
 
 function execute({ context, firstMatch }) {
-  const gretting = firstMatch.charAt(0).toUpperCase() + firstMatch.slice(1);
-  return `${gretting} para você também ${context.username}! levxycAnimada`;
+  const greeting = firstMatch.charAt(0).toUpperCase() + firstMatch.slice(1);
+  return `${greeting} para você também ${context.username}! levxycAnimada`;
 }
 
 module.exports = {
