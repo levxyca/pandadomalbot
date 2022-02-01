@@ -1,8 +1,8 @@
 const { client } = require('../core/twitch_client');
-const { commands } = require('../utilities/commands');
+const { listJSFiles } = require('../utilities/bot-fs');
 
 const getCommandKeys = (alias) => {
-  const keys = commands().map((item) => {
+  const keys = listJSFiles('commands').map((item) => {
     let command = `${process.env.PREFIX}${item.keyword}`;
     if (alias && item.aliases?.length > 0) {
       command += `(${item.aliases?.join(',')})`;
