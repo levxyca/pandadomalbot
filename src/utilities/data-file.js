@@ -1,7 +1,10 @@
 const { existsSync, readFileSync, writeFileSync, mkdirSync } = require('fs');
 
 const PATH = './data';
-const INDENT = process.env.PRETTY_PRINT_DATAJSON === 'false' ? 0 : 2;
+const INDENT = [undefined, 'false'].includes(process.env.PRETTY_PRINT_DATAJSON)
+  ? 0
+  : 2;
+
 /**
  * Lê um arquivo específico dentro do diretório /data.
  *
