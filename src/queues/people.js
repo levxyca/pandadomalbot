@@ -1,4 +1,5 @@
 const fastq = require('fastq');
+const { types } = require('util');
 const Person = require('../models/person');
 const { read, write } = require('../utilities/data-file');
 
@@ -18,20 +19,24 @@ async function worker({ username, callback }) {
     person = Person.fromJSON(person);
   }
   const before = JSON.stringify(person);
-  const postExecution = callback(person);
-  const after = JSON.stringify(postExecution);
+  const postExecution = types.isAsyncFunction(callback)
+    ? await callback(person)
+    : callback(person);
 
+  const after = JSON.stringify(postExecution);
   let log;
   if (born) {
     content = [...content, postExecution];
     log = `[Novo usuário criado] :: Valores iniciais: ${after}`;
-  } else {
+  } else if (postExecution) {
     content = content.map((p) => (p.name === username ? postExecution : p));
     log = `[Usuário modificado]\nAntes: ${before}\nAgora: ${after}`;
   }
 
-  console.info(log);
-  write(FILE_NAME, content);
+  if (postExecution) {
+    console.info(log);
+    write(FILE_NAME, content);
+  }
 }
 
 const queue = fastq.promise(worker, 1);
