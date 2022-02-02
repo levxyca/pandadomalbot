@@ -1,10 +1,20 @@
-# Como Contribuir
+# 🐼 Contribuindo com o pandadomalbot
+
+1. [Como contribuir](#como-contribuir)
+2. [Antes de executar](#antes-de-executar)
+3. [Executando](#executando)
+
+## Como contribuir
 
 Para contribuir com este projeto, você não precisa necessariamente programar. Reportar problemas e sugerir
 melhorias também são ótimas formas de contribuir. Para isto, basta criar uma [nova _issue_][6], bem descritiva.
 
-Mas caso queira contribuir com código mesmo, você precisa ter o [git][1] e o [NodeJS][2] devidamente
-instalados. Uma vez que ambos estiverem prontos, basta clonar este repositório:
+Mas caso queira contribuir com código, você precisa ter o [git][1] e o [NodeJS][2] devidamente
+instalados.
+
+> Caso você tenha dificuldades ou não saiba usar o GitHub, recomendo que leia esse artigo da levxyca falando sobre [GitHub para leigos][7].
+
+Uma vez que ambos estiverem prontos, basta clonar este repositório:
 
 ```sh
 git clone git@github.com:levxyca/pandadomalbot.git
@@ -74,6 +84,7 @@ info: Joined :levxyca
 
 ### Links úteis
 
+- [Criando novos comandos para o bot](./criando-novos-comandos.md)
 - [Criando um pull request](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 [1]: https://git-scm.com/downloads
@@ -82,3 +93,4 @@ info: Joined :levxyca
 [4]: ../../.env.example
 [5]: https://twitchapps.com/tmi/
 [6]: https://github.com/levxyca/pandadomalbot/issues
+[7]: https://dev.to/levxyca/pt-br-github-para-leigos-4i7j
