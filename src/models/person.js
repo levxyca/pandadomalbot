@@ -10,6 +10,10 @@ class Person {
     this.name = name;
     this.points = points || 0;
     this.usage = usage || {};
+    this.counter = {
+      irritations: 0,
+      affections: 0,
+    };
   }
 
   /**
