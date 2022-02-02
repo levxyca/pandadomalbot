@@ -1,6 +1,7 @@
 const { existsSync, readFileSync, writeFileSync, mkdirSync } = require('fs');
 
 const PATH = './data';
+const INDENT = process.env.PRETTY_PRINT_DATAJSON === 'false' ? 0 : 2;
 /**
  * Lê um arquivo específico dentro do diretório /data.
  *
@@ -41,7 +42,7 @@ function read(file, defaultValue = {}) {
  */
 function write(file, contents) {
   const path = `${PATH}/${file}.json`;
-  const contentAsString = JSON.stringify(contents);
+  const contentAsString = JSON.stringify(contents, null, INDENT);
 
   try {
     writeFileSync(path, contentAsString, { encoding: 'utf-8' });
