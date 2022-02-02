@@ -15,7 +15,7 @@ const getCommandKeys = (alias) => {
 
 const execute = ({ argument, channel }) => {
   const keys = getCommandKeys(argument && argument === 'alias');
-  client.say(channel, `Comandos disponíveis: ${keys.join(', ')}.`);
+  client.say(channel, `Comandos disponíveis: ${keys.sort().join(', ')}.`);
 };
 
 module.exports = {
