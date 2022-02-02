@@ -16,5 +16,6 @@ module.exports = {
         allow: ['info', 'error'],
       },
     ],
+    'no-param-reassign': 'off',
   },
 };
