@@ -85,6 +85,7 @@ info: Joined :levxyca
 ### Links úteis
 
 - [Criando novos comandos para o bot](./criando-novos-comandos.md)
+- [Criando comandos de resposta automática](./criando-comandos-de-resposta-automatica.md)
 - [Criando um pull request](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 [1]: https://git-scm.com/downloads
