@@ -1,18 +1,16 @@
 const { client } = require('../core/twitch_client');
-const { commands } = require('../utilities/commands');
+const { listJSFiles } = require('../utilities/bot-fs');
 
 const regex = new RegExp(`^${process.env.PREFIX}([a-zA-Z0-9]+)(?:\\W+)?(.*)?`);
-const botCommands = commands();
+const commands = listJSFiles('commands');
+const autoReply = listJSFiles('autoreply');
 
-function onNewChatMessageReceived(channel, context, message, self) {
-  // Ignora mensagens do próprio bot.
-  if (self) return;
-
+function handleBotCommand(channel, context, message) {
   const command = message.match(regex);
   if (command) {
     const [, keyword, argument] = command;
 
-    botCommands.forEach((item) => {
+    commands.forEach((item) => {
       if (item.keyword === keyword || item.aliases?.includes(keyword)) {
         switch (typeof item.execute) {
           case 'function':
@@ -34,6 +32,39 @@ function onNewChatMessageReceived(channel, context, message, self) {
       }
     });
   }
+}
+
+function handleAutoReply(channel, context, message) {
+  autoReply.forEach((item) => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pattern of item.patterns) {
+      const matches = message.match(pattern);
+
+      if (matches) {
+        client.say(
+          channel,
+          item.execute({
+            channel,
+            context,
+            message,
+            matches,
+          }),
+        );
+        break;
+      }
+    }
+  });
+}
+
+function onNewChatMessageReceived(channel, context, message, self) {
+  // Ignora mensagens do próprio bot.
+  if (self) return;
+
+  // Verifica se é um comando do bot, e, executa.
+  handleBotCommand(channel, context, message);
+
+  // Verifica se é uma resposta automática, e, executa.
+  handleAutoReply(channel, context, message);
 }
 
 module.exports = { onNewChatMessageReceived };

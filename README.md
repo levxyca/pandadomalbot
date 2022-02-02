@@ -2,6 +2,17 @@
   <img src=".github/assets/panda.png">
   <h1 align="center">Pandadomalbot</h1>
 </p>
+<p align="center">
+  <a href="https://github.com/levxyca/pandadomalbot/actions/workflows/ci.yml">
+    <img src="https://github.com/levxyca/pandadomalbot/actions/workflows/ci.yml/badge.svg">
+  </a>
+  <a href="https://github.com/prettier/prettier">
+    <img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg">
+  </a>
+  <a href="https://github.com/airbnb/javascript">
+    <img src="https://badgen.net/badge/style/Airbnb/ff5a5f?icon=airbnb">
+  </a>
+</p>
 
 O **pandadomalbot** foi pensado para as lives do canal da [levxyca][1].
 Criado para divertir e alegrar o chat da melhor live da galacta. Faz brincadeiras,
