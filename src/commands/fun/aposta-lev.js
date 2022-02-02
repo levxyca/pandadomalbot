@@ -20,10 +20,7 @@ function clean(text) {
  */
 function haveUsedTheCommandToday(person) {
   const lastUsage = person.usage[COMMAND_KEY]?.lastuse || undefined;
-  return (
-    lastUsage !== undefined &&
-    isToday(new Date(person.usage[COMMAND_KEY].lastuse))
-  );
+  return lastUsage && isToday(new Date(person.usage[COMMAND_KEY].lastuse));
 }
 
 module.exports = {
