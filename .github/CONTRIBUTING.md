@@ -8,8 +8,8 @@ Caso queira resolver uma [issue][1], aqui vão alguns pontos que vão te ajudar 
 ambiente para execução do bot:
 
 - [Como contribuir? O que preciso ter instalado?](./docs/como-contribuir.md)
-- [Como executar o bot? Quais variáveis de ambiente devo definir?](./docs/como-executar.md)
 - [Como criar novos comandos?](./docs/criando-novos-comandos.md)
+- [Como criar comandos de resposta automática?](./docs/criando-comandos-de-resposta-automatica.md)
 
 **PS**: se tiver interesse em resolver uma issue, peça a algum contribuidor do projeto para atribuí-la
 a você. Isso dá visibilidade de que uma issue já está sendo resolvida por uma pessoa e impede que
