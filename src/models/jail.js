@@ -47,7 +47,7 @@ class Jail {
    */
   protect(username) {
     const user = username.toLowerCase();
-    this.protected = user;
+    this.users.protected = user;
     console.info(`Novo usuário protegido: ${user}`);
   }
 
