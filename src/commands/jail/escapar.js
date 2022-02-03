@@ -1,6 +1,9 @@
 const { client } = require('../../core/twitch_client');
 const { EscapeActions } = require('../../models/jail');
 const { jail } = require('../../queues/jail');
+const { people } = require('../../queues/people');
+
+const POINTS_TO_ESCAPE = process.env.POINTS_ESCAPAR_DA_PRISAO.split(',');
 
 module.exports = {
   keyword: 'escapar',
@@ -18,7 +21,17 @@ module.exports = {
           break;
         case EscapeActions.SUCCESS_TO_ESCAPE: {
           // TODO: dar pontos ao conseguir escapar.
-          const points = '...';
+          const points = Number(
+            POINTS_TO_ESCAPE[
+              Math.floor(Math.random() * POINTS_TO_ESCAPE.length)
+            ],
+          );
+
+          await people(context.username, (p) => {
+            p.points += points;
+            return p;
+          });
+
           message = `Wowwwww, ${context.username} conseguiu escapar das minhas mãos e achou ${points} em cima da mesa.`;
           break;
         }
