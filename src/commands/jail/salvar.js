@@ -20,6 +20,7 @@ module.exports = {
           message = `${context.username}, você não pode mais resgatar ninguém das mãos do panda do mal`;
           break;
         case RescueActions.SUCCESS_TO_RESCUE:
+          // TODO: dar pontos ao conseguir salvar.
           message = `${context.username} resgatou ${j.lastRescuedUser} das mãos do panda do mal`;
           break;
         case RescueActions.FAIL_TO_RESCUE:

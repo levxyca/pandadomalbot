@@ -6,6 +6,13 @@ const RescueActions = Object.freeze({
   FAIL_TO_RESCUE: 4,
 });
 
+const EscapeActions = Object.freeze({
+  NOT_WASTED_YET: 0,
+  ALREADY_TRIED_TO_ESCAPE: 1,
+  SUCCESS_TO_ESCAPE: 2,
+  FAIL_TO_ESCAPE: 3,
+});
+
 class Jail {
   constructor() {
     this.prisoners = [];
@@ -103,7 +110,20 @@ class Jail {
   }
 
   escape(username) {
-    throw new Error('Missing implementation.');
+    const user = username.toLowerCase();
+
+    if (this.prisioners.length === 0 || !this.prisioners.includes(user))
+      return EscapeActions.NOT_WASTED_YET;
+
+    if (this.fugitives.includes(user))
+      return EscapeActions.ALREADY_TRIED_TO_ESCAPE;
+
+    if (Math.random() <= 0.1) {
+      this.prisoners = this.prisoners.filter((u) => u !== user);
+      return EscapeActions.SUCCESS_TO_ESCAPE;
+    }
+    this.fugitives = [...new Set([...this.fugitives, user])];
+    return EscapeActions.FAIL_TO_ESCAPE;
   }
 
   static fromJSON(json) {
@@ -111,4 +131,4 @@ class Jail {
   }
 }
 
-module.exports = { Jail, RescueActions };
+module.exports = { Jail, RescueActions, EscapeActions };
