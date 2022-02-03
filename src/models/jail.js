@@ -31,6 +31,13 @@ class Jail {
     return this.users.protected;
   }
 
+  get prisioners() {
+    if (this.prisoners.length === 0) {
+      return null;
+    }
+    return this.prisoners.join(', ');
+  }
+
   /**
    * Limpa os usuários presos, salvadores e futitivos.
    */
