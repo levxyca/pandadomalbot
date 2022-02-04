@@ -1,7 +1,7 @@
 # ♾️ Criando rotinas de repetição
 
 Pode ser que você queira criar uma rotina que se repita de tempos em tempos, para isso existe a
-opção de criar comandos de loop. Para isto, basta criar um arquivo .js dentro do diretório `src/loops`
+opção de criar comandos de loop. Basta criar um arquivo .js dentro do diretório `src/loops`
 contendo a seguinte estrutura:
 
 ```js
@@ -19,7 +19,7 @@ Onde:
 ## Exemplo
 
 Imagine que você queira exibir a mensagem "Estou de olho em vocês 🐼" no chat de 5 em 5 segundos,
-basta criar um arquivo em `src/loops/mensagem-do-panda.js` contendo:
+crie um arquivo em `src/loops/mensagem-do-panda.js` contendo:
 
 ```js
 
