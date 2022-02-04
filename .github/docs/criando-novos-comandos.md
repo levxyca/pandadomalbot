@@ -91,4 +91,14 @@ module.exports = {
           - dividir.js
   ```
 
+🎉 Sinta-se a vontade para sugerir ou contribuir com novas implementações.
+
+----
+
+## Links úteis
+
+- [Criando novos comandos para o bot](./criando-novos-comandos.md)
+- [Criando um pull request](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+- [GitHub para leigos](https://dev.to/levxyca/pt-br-github-para-leigos-4i7j)
+
 [1]: https://github.com/tmijs/docs/blob/gh-pages/_posts/v1.4.2/2019-03-03-Events.md#chat
