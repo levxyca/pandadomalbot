@@ -20,7 +20,6 @@ module.exports = {
           message = `PunOko ${context.username}, você já tentou escapar.`;
           break;
         case EscapeActions.SUCCESS_TO_ESCAPE: {
-          // TODO: dar pontos ao conseguir escapar.
           const points = Number(
             POINTS_TO_ESCAPE[
               Math.floor(Math.random() * POINTS_TO_ESCAPE.length)
