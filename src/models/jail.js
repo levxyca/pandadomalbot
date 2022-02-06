@@ -1,3 +1,6 @@
+const { read } = require('../utilities/data-file');
+const { usersInChat } = require('../utilities/twitch');
+
 const RescueActions = Object.freeze({
   IS_EMPTY: 0,
   IS_WASTED: 1,
@@ -40,7 +43,7 @@ class Jail {
 
   get prisioners() {
     if (this.prisoners.length === 0) {
-      return null;
+      return [];
     }
     return this.prisoners.join(', ');
   }
@@ -59,14 +62,49 @@ class Jail {
    *
    * @param {String} username nome do usuário a ser protegido.
    */
-  protect(username) {
-    const user = username.toLowerCase();
+  async protect() {
+    const subs = read('subs', null);
+    if (!subs) {
+      console.error(
+        'Arquivo de subs não encontrado em /data/subs.json ou vazio.',
+      );
+      return null;
+    }
+
+    const users = await usersInChat();
+    const subsInChat = users.filter((user) => subs.includes(user));
+
+    if (!subsInChat || subsInChat.length === 0) {
+      console.info('Nenhum sub para ser protegido atualmente no chat.');
+      return null;
+    }
+    const user = subsInChat[Math.floor(Math.random() * subsInChat.length)];
+
     this.users.protected = user;
-    console.info(`Novo usuário protegido: ${user}`);
+    console.info('Novo usuário protegido:', user);
+    return user;
   }
 
-  arrest(username) {
-    throw new Error('Missing implementation.');
+  /**
+   * Prende um usuário do chat
+   * @returns {String} nome do usuário que foi preso.
+   */
+  async arrest() {
+    let chat = await usersInChat();
+
+    chat = chat.filter((user) => !this.prisoners.includes(user.toLowerCase()));
+
+    if (this.users.protected) {
+      chat = chat.filter((user) => user.toLowerCase() !== this.users.protected);
+    }
+
+    if (chat.length === 0) return null;
+
+    const user = chat[Math.floor(Math.random() * chat.length)];
+    this.prisoners.push(user.toLowerCase());
+
+    console.info('Novo usuário preso:', user);
+    return user;
   }
 
   /**
