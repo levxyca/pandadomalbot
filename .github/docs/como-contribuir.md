@@ -12,7 +12,8 @@ melhorias também são ótimas formas de contribuir. Para isto, basta criar uma 
 Mas caso queira contribuir com código, você precisa ter o [git][1] e o [NodeJS][2] devidamente
 instalados.
 
-> Caso você tenha dificuldades ou não saiba usar o GitHub, recomendo que leia esse artigo da levxyca falando sobre [GitHub para leigos][7].
+> Caso você tenha dificuldades ou não saiba usar o GitHub, recomendo que leia esse artigo da levxyca
+> falando sobre [GitHub para leigos][7].
 
 Uma vez que ambos estiverem prontos, basta clonar este repositório:
 
@@ -86,6 +87,7 @@ info: Joined :levxyca
 
 - [Criando novos comandos para o bot](./criando-novos-comandos.md)
 - [Criando comandos de resposta automática](./criando-comandos-de-resposta-automatica.md)
+- [Criando rotinas de repetição](./criando-rotinas-de-repeticao.md)
 - [Criando um pull request](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 [1]: https://git-scm.com/downloads
