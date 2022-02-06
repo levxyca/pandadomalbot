@@ -8,7 +8,7 @@ module.exports = {
     await jail(async (j) => {
       let message = '';
 
-      if (j.prisioners) {
+      if (j.prisioners.length > 0) {
         message = `Usuários que estão em minhas mãos: ${j.prisioners}. Use !salvar pra tentar salvá-los.`;
       } else {
         message = 'Não tem ninguem em minhas mãos.';
