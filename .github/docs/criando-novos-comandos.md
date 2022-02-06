@@ -97,7 +97,8 @@ module.exports = {
 
 ## Links úteis
 
-- [Criando novos comandos para o bot](./criando-novos-comandos.md)
+- [Criando comandos de resposta automática](./criando-comandos-de-resposta-automatica.md)
+- [Criando rotinas de repetição](./criando-rotinas-de-repeticao.md)
 - [Criando um pull request](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 - [GitHub para leigos](https://dev.to/levxyca/pt-br-github-para-leigos-4i7j)
 
