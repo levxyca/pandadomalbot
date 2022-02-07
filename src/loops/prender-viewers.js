@@ -7,7 +7,7 @@ module.exports = {
     await jail(async (j) => {
       const username = await j.arrest();
       if (username) {
-        client.say(process.env.CHANNEL, `Ei ${username}, você está preso! 🐼`);
+        client.say(process.env.CHANNEL, `Prendeu ${username}`);
       }
     });
   },
