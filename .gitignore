@@ -2,6 +2,7 @@
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
+.idea/
 
 # Dependências
 node_modules
