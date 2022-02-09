@@ -1,6 +1,6 @@
 const patterns = [/^eita/i];
 
-const answer = () => `levxycEita levxycEita levxycEita`;
+const answer = () => 'levxycEita levxycEita levxycEita';
 
 /**
  * Answer the "eita" message.
