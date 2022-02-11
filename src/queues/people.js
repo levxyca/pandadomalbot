@@ -10,8 +10,6 @@ async function worker({ username, callback }) {
   let content = read(FILE_NAME, []);
 
   if (!username) {
-    // if (types.isAsyncFunction(callback)) await callback(content);
-    // else callback(content);
     return content;
   }
 
