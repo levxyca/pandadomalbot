@@ -2,6 +2,7 @@ const { levxycas } = require('./_constants');
 const { client } = require('../../core/twitch_client');
 const { people } = require('../../queues/people');
 const { isToday } = require('../../utilities/date-time');
+const { sample } = require('../../utilities/collections');
 
 const COMMAND_KEY = 'apostalev';
 const POINTS = process.env.POINTS_APOSTA_LEV || 150;
@@ -33,7 +34,9 @@ module.exports = {
     }
 
     const choice = argument.split(' ')[0];
-    const selected = levxycas[Math.floor(Math.random() * levxycas.length)];
+    const selected = sample(levxycas);
+
+    if (!selected) return;
 
     await people(context.username, (person) => {
       if (haveUsedTheCommandToday(person)) {
