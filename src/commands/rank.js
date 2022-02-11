@@ -27,8 +27,9 @@ module.exports = {
     let message;
     if (username) {
       const prefix =
-        context.username === username ? 'Você' : `O usuário @${username}`;
-      message = `${prefix} não possui nenhum ponto. :(`;
+        context.username === username
+          ? `@${username}, você`
+          : `O usuário @${username}`;
 
       let position;
       const found = users.find((user, index) => {
@@ -38,6 +39,8 @@ module.exports = {
 
       if (found) {
         message = `${prefix} está na posição ${position}/${users.length} com ${found.points} pontos.`;
+      } else {
+        message = `${prefix} ainda não possui nenhum ponto. :(`;
       }
     } else {
       message = 'O ranking atual 🥇 -> ';
