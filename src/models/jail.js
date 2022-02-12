@@ -1,3 +1,4 @@
+const { sample } = require('../utilities/collections');
 const { read } = require('../utilities/data-file');
 const { usersInChat } = require('../utilities/twitch');
 
@@ -78,7 +79,7 @@ class Jail {
       console.info('Nenhum sub para ser protegido atualmente no chat.');
       return null;
     }
-    const user = subsInChat[Math.floor(Math.random() * subsInChat.length)];
+    const user = sample(subsInChat);
 
     this.users.protected = user;
     console.info('Novo usuário protegido:', user);
@@ -100,7 +101,7 @@ class Jail {
 
     if (chat.length === 0) return null;
 
-    const user = chat[Math.floor(Math.random() * chat.length)];
+    const user = sample(chat);
     this.prisoners.push(user.toLowerCase());
 
     console.info('Novo usuário preso:', user);
@@ -131,8 +132,7 @@ class Jail {
       return RescueActions.ALREADY_TRIED_TO_RESCUE;
 
     if (Math.random() < 0.5) {
-      const rescued =
-        this.prisoners[Math.floor(Math.random() * this.prisoners.length)];
+      const rescued = sample(this.prisoners);
 
       this.prisoners = this.prisoners.filter((u) => u !== rescued);
 

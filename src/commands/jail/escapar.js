@@ -2,6 +2,7 @@ const { client } = require('../../core/twitch_client');
 const { EscapeActions } = require('../../models/jail');
 const { jail } = require('../../queues/jail');
 const { people } = require('../../queues/people');
+const { sample } = require('../../utilities/collections');
 
 const POINTS_TO_ESCAPE = process.env.POINTS_ESCAPAR_DA_PRISAO.split(',');
 
@@ -20,11 +21,7 @@ module.exports = {
           message = `PunOko ${context.username}, você já tentou escapar.`;
           break;
         case EscapeActions.SUCCESS_TO_ESCAPE: {
-          const points = Number(
-            POINTS_TO_ESCAPE[
-              Math.floor(Math.random() * POINTS_TO_ESCAPE.length)
-            ],
-          );
+          const points = Number(sample(POINTS_TO_ESCAPE));
 
           await people(context.username, (p) => {
             p.points += points;
