@@ -17,7 +17,8 @@
     "start": "node src/index.js",
     "dev": "nodemon --watch src",
     "lint": "eslint .",
-    "lint:markdown": "markdownlint **/*.md --ignore node_modules"
+    "lint:markdown": "markdownlint **/*.md --ignore node_modules",
+    "export": "node src/export.js"
   },
   "dependencies": {
     "axios": "^0.25.0",
