@@ -1,13 +1,12 @@
 /**
- * Get a sample value from the collection.
+ * Obtém um valor aleatório do Array.
  *
  * @param collection
  * @returns {*}
  */
 function sample(collection) {
-  return collection[Math.floor(Math.random() * collection.length)];
+  const length = collection == null ? 0 : collection.length;
+  return length ? collection[Math.floor(Math.random() * length)] : undefined;
 }
 
-module.exports = {
-  sample,
-};
+module.exports = { sample };
