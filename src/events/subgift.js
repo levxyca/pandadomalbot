@@ -26,7 +26,7 @@ async function onSubGift(
 
   const message = `
     Hey ${username}, obrigado pelo sub de presente para ${recipient}.
-    Por isso, vou te dar $${points} pontos!`;
+    Por isso, vou te dar ${points} pontos!`;
 
   await people(username, (person) => {
     person.points += points;
