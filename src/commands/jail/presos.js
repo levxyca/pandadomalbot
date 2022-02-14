@@ -9,7 +9,7 @@ module.exports = {
       let message = '';
 
       if (j.prisioners.length > 0) {
-        message = `Usuários que estão em minhas mãos: ${j.prisioners}. Use !salvar pra tentar salvá-los.`;
+        message = `Pessoas que estão em minhas mãos: ${j.prisioners}. Use !salvar pra tentar salvá-las.`;
       } else {
         message = 'Não tem ninguem em minhas mãos.';
       }

@@ -43,7 +43,7 @@ module.exports = {
         message = `${prefix} ainda não possui nenhum ponto. :(`;
       }
     } else {
-      message = 'O ranking atual 🥇 -> ';
+      message = 'O ranking atual 🥇 ';
       users.slice(0, PODIUM).forEach((user, index) => {
         message += `${index + 1}º @${user.name} com ${user.points} pontos. `;
       });
