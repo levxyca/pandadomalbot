@@ -7,4 +7,13 @@ const client = new Twitter({
   access_token_secret: process.env.TW_ACCESS_TOKEN_SECRET,
 });
 
-module.exports = { client };
+function isTwitterEnabled() {
+  return (
+    process.env.TW_CONSUMER_KEY &&
+    process.env.TW_CONSUMER_SECRET &&
+    process.env.TW_ACCESS_TOKEN_KEY &&
+    process.env.TW_ACCESS_TOKEN_SECRET
+  );
+}
+
+module.exports = { client, isTwitterEnabled };
