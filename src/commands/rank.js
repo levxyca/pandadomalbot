@@ -49,6 +49,6 @@ module.exports = {
       });
     }
 
-    client.say(channel, message);
+    await client.say(channel, message);
   },
 };

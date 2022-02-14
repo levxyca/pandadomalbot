@@ -9,12 +9,12 @@ module.exports = {
     if (tweet) {
       const url = format.tweetURL(tweet.id);
       const metrics = format.tweetMetrics(tweet);
-      client.say(
+      await client.say(
         channel,
         `Dá um RT aí por favorzinho levxycAnimada ${url} (${metrics})`,
       );
     } else {
-      client.say(
+      await client.say(
         channel,
         'Não encontrei nenhum tweet relacionado a live de hoje.',
       );
