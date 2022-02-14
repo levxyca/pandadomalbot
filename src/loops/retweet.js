@@ -4,7 +4,7 @@ const { getTodaysLiveAnnouncement } = require('../utilities/twitter/api');
 const { format } = require('../utilities/twitter/formatter');
 
 module.exports = {
-  interval: 5000, // 10min
+  interval: 600000, // 10min
   async execute() {
     if (!isTwitterEnabled()) {
       console.info(`
