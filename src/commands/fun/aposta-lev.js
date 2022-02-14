@@ -20,8 +20,14 @@ function clean(text) {
  * Do contrário false é retornado.
  */
 function haveUsedTheCommandToday(person) {
-  const lastUsage = person.usage[COMMAND_KEY]?.lastuse || undefined;
-  return lastUsage && isToday(new Date(person.usage[COMMAND_KEY].lastuse));
+  const lastUsage = person.usage[COMMAND_KEY]?.lastuse || null;
+
+  if (!lastUsage) return false;
+
+  const parts = lastUsage.split('/');
+
+  const date = new Date(parts[2], parts[1] - 1, parts[0]);
+  return isToday(date);
 }
 
 module.exports = {
