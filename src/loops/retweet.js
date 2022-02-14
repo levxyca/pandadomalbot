@@ -1,10 +1,19 @@
 const { client } = require('../core/twitch_client');
+const { isTwitterEnabled } = require('../core/twitter_client');
 const { getTodaysLiveAnnouncement } = require('../utilities/twitter/api');
 const { format } = require('../utilities/twitter/formatter');
 
 module.exports = {
   interval: 600000, // 10min
   async execute() {
+    if (!isTwitterEnabled()) {
+      console.info(`
+        Configuração incorreta dos tokens do Twitter.
+        Ignorando mensagem solicitando o retweet da live.
+      `);
+      return;
+    }
+
     const tweet = await getTodaysLiveAnnouncement();
     if (tweet) {
       const url = format.tweetURL(tweet.id);

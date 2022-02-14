@@ -22,4 +22,21 @@ async function chatters() {
   );
 }
 
-module.exports = { chatters };
+/**
+ * Obtém a lista de usuários online no chat.
+ *
+ * @returns {Array} lista contendo os usuários online no chat, sem distinções
+ */
+async function usersInChat() {
+  const chat = await chatters();
+  return [
+    ...new Set([
+      ...chat.users.vips,
+      ...chat.users.viewers,
+      ...chat.users.moderators,
+      ...chat.users.broadcaster,
+    ]),
+  ];
+}
+
+module.exports = { chatters, usersInChat };

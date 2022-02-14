@@ -2,6 +2,7 @@
 .vscode/*
 !.vscode/settings.json
 !.vscode/extensions.json
+.idea/
 
 # Dependências
 node_modules
@@ -9,3 +10,4 @@ node_modules
 # Arquivos locais
 .env
 data/*
+commands.json

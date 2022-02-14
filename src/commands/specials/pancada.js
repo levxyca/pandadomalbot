@@ -28,7 +28,7 @@ module.exports = {
         `;
       }
 
-      client.say(channel, reply);
+      await client.say(channel, reply);
     }
   },
 };

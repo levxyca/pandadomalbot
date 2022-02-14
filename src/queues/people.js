@@ -9,6 +9,10 @@ const FILE_NAME = 'people';
 async function worker({ username, callback }) {
   let content = read(FILE_NAME, []);
 
+  if (!username) {
+    return content;
+  }
+
   let born = false;
   let person = content.find((p) => p.name === username);
 
@@ -37,15 +41,18 @@ async function worker({ username, callback }) {
     console.info(log);
     write(FILE_NAME, content);
   }
+
+  return null;
 }
 
 const queue = fastq.promise(worker, 1);
 
 async function people(username, callback) {
-  await queue.push({
+  const result = await queue.push({
     username,
     callback,
   });
+  return result;
 }
 
 module.exports = { people };
