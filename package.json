@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
-    "dotenv": "^15.0.0",
+    "dotenv": "^16.0.0",
     "fastq": "^1.13.0",
     "tmi.js": "^1.8.5",
     "twitter-v2": "github:edsu/twitter-v2"
@@ -33,7 +33,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "markdownlint-cli": "^0.30.0",
+    "markdownlint-cli": "^0.31.1",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2"
   }
