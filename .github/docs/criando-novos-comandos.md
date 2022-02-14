@@ -37,6 +37,22 @@ module.exports = {
 };
 ```
 
+## Exportando comandos
+
+Caso precise exportar todos os comandos (e alias) existentes no bot, pode utilizar o comando:
+
+```sh
+npm run export
+```
+
+Caso queira exportar o JSON formatado, indentado, use a flag `-pretty`:
+
+```sh
+npm run export -- -pretty
+```
+
+Um novo arquivo `commands.json` será criado no diretório raiz do projeto.
+
 ## ✨ Dicas
 
 - A função `execute` não necessariamente precisa ser uma função. Se um comando não realiza nenhum
