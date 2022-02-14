@@ -7,7 +7,6 @@ const levxyca = {
 };
 
 const links = {
-  caverna: 'http://caverna.live/discord',
   podcast: 'https://anchor.fm/mocasdaweb',
 };
 

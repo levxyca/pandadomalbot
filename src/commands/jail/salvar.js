@@ -20,7 +20,7 @@ module.exports = {
           message = `${context.username}, você não pode se salvar! Mas pode tentar escapar usando o comando !escapar`;
           break;
         case RescueActions.ALREADY_TRIED_TO_RESCUE:
-          message = `${context.username}, você não pode mais resgatar ninguém das mãos do panda do mal. Espere que alguém consiga ser salvo e tente novamente`;
+          message = `${context.username}, você não pode mais resgatar ninguém das mãos do panda do mal. Espere que outra pessoa consiga salvar e tente novamente`;
           break;
         case RescueActions.SUCCESS_TO_RESCUE:
           await people(context.username, (p) => {
