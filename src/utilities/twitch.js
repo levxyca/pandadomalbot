@@ -29,12 +29,14 @@ async function chatters() {
  */
 async function usersInChat() {
   const chat = await chatters();
-  return new Set([
-    ...chat.users.vips,
-    ...chat.users.viewers,
-    ...chat.users.moderators,
-    ...chat.users.broadcaster,
-  ]);
+  return [
+    ...new Set([
+      ...chat.users.vips,
+      ...chat.users.viewers,
+      ...chat.users.moderators,
+      ...chat.users.broadcaster,
+    ]),
+  ];
 }
 
 module.exports = { chatters, usersInChat };
