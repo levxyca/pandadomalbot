@@ -1,7 +1,14 @@
 const { client } = require('../../core/twitch_client');
 
 const execute = ({ argument, channel, context }) => {
-  if (!argument) return;
+  if (!argument) {
+    client.say(
+      channel,
+      `Mas amizade com quem mesmo, hein ${context.username}?`,
+    );
+
+    return;
+  }
 
   const friendship = Math.round(Math.random() * 99) + 1;
 
