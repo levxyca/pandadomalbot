@@ -41,15 +41,15 @@ function handleAutoReply(channel, context, message) {
       const matches = message.match(pattern);
 
       if (matches) {
-        client.say(
+        const result = item.execute({
           channel,
-          item.execute({
-            channel,
-            context,
-            message,
-            matches,
-          }),
-        );
+          context,
+          message,
+          matches,
+        });
+        if (result && typeof result === 'string') {
+          client.say(channel, result);
+        }
         break;
       }
     }
