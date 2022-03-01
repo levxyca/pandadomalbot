@@ -9,13 +9,13 @@ const PODIUM = 3; // Quantos usuários no podium.
  * @returns {Array} lista de usuários.
  */
 async function ranked() {
-  const rankedUsers = await people(null);
+  const rankedUsers = await people();
   rankedUsers.sort((personA, personB) => {
-    if (personA.points < personB.points) return -1;
-    if (personB.points > personA.points) return 1;
+    if (personA.points > personB.points) return -1;
+    if (personB.points < personA.points) return 1;
     return 0;
   });
-  return rankedUsers.reverse();
+  return rankedUsers;
 }
 
 module.exports = {

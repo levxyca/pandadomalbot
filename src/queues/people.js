@@ -10,7 +10,8 @@ async function worker({ username, callback }) {
   let content = read(FILE_NAME, []);
 
   if (!username) {
-    return content;
+    const users = content.map((data) => Person.fromJSON(data));
+    return users;
   }
 
   let born = false;
