@@ -26,7 +26,10 @@ function read(file, defaultValue = {}) {
     return defaultValue;
   }
 
-  const content = readFileSync(path, { encoding: 'utf-8' }) || {};
+  const content = readFileSync(path, { encoding: 'utf-8' });
+
+  if (!content) return defaultValue;
+
   const json = JSON.parse(content);
   if (Object.keys(json).length === 0) {
     return defaultValue;
