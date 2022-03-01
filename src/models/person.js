@@ -1,3 +1,5 @@
+const { isToday } = require('../utilities/date-time');
+
 class Person {
   /**
    * Representa um usuário do chat.
@@ -18,15 +20,53 @@ class Person {
 
   /**
    * Incrementa a quantidade de uso de um comando.
-   * @param {String} command chave para identificar o comando.
+   * @param {String} key chave para identificar o comando.
    */
-  incrementCommandUsage(command) {
-    const usage = {
-      counter: (this.usage[command]?.counter || 0) + 1,
-      lastuse: new Date().toLocaleDateString('pt-BR'),
-    };
+  incrementCommandUsage(key) {
+    const usage = this.usage[key] || {};
 
-    this.usage = { ...this.usage, [command]: usage };
+    this.usage = {
+      ...this.usage,
+      [key]: {
+        ...usage,
+        counter: (this.usage[key]?.counter || 0) + 1,
+      },
+    };
+  }
+
+  /**
+   * Define a última data de uso do comando para hoje.
+   *
+   * @param {String} key identificador do comando.
+   */
+  setLastCommandUsageForToday(key) {
+    const usage = this.usage[key] || {};
+
+    this.usage = {
+      ...this.usage,
+      [key]: {
+        ...usage,
+        lastuse: new Date().toLocaleDateString('pt-BR'),
+      },
+    };
+  }
+
+  /**
+   * Verifica se o usuário já utilizou o comando hoje.
+   *
+   * @param {String} key identificador do comando.
+   * @returns {Boolean} true, indicando que o usuário já utilizou o comando hoje.
+   * Do contrário false é retornado.
+   */
+  haveUsedTheCommandToday(key) {
+    const lastUsage = this.usage[key]?.lastuse || null;
+
+    if (!lastUsage) return false;
+
+    const parts = lastUsage.split('/');
+
+    const date = new Date(parts[2], parts[1] - 1, parts[0]);
+    return isToday(date);
   }
 
   /**

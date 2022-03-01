@@ -1,7 +1,6 @@
 const { levxycas } = require('./_constants');
 const { client } = require('../../core/twitch_client');
 const { people } = require('../../queues/people');
-const { isToday } = require('../../utilities/date-time');
 const { sample } = require('../../utilities/collections');
 
 const COMMAND_KEY = 'apostalev';
@@ -12,27 +11,8 @@ function clean(text) {
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-/**
- * Verifica se o usuário já utilizou o comando hoje.
- *
- * @param {String} username nome de usuário.
- * @returns {Boolean} true, indicando que o usuário já utilizou o comando hoje.
- * Do contrário false é retornado.
- */
-function haveUsedTheCommandToday(person) {
-  const lastUsage = person.usage[COMMAND_KEY]?.lastuse || null;
-
-  if (!lastUsage) return false;
-
-  const parts = lastUsage.split('/');
-
-  const date = new Date(parts[2], parts[1] - 1, parts[0]);
-  return isToday(date);
-}
-
 module.exports = {
   keyword: COMMAND_KEY,
-  aliases: ['apostaLev'],
   async execute({ argument, context, channel }) {
     if (!argument) {
       /* TODO: responder o usuário explicando como utilizar comando? */
@@ -45,7 +25,7 @@ module.exports = {
     if (!selected) return;
 
     await people(context.username, (person) => {
-      if (haveUsedTheCommandToday(person)) {
+      if (person.haveUsedTheCommandToday(COMMAND_KEY)) {
         client.say(
           channel,
           `Ei ${context.username}, você só pode tentar apostar uma vez por dia.`,
@@ -64,7 +44,8 @@ module.exports = {
         );
       }
 
-      person.incrementCommandUsage('apostalev');
+      person.incrementCommandUsage(COMMAND_KEY);
+      person.setLastCommandUsageForToday(COMMAND_KEY);
       return person;
     });
   },
