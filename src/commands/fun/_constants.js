@@ -20,4 +20,22 @@ const levxycas = [
   'leviajyca',
 ];
 
-module.exports = { levxycas };
+const narios = [
+  'ordi@NarioDev',
+  'bilio@NarioDev',
+  'milio@NarioDev',
+  'dicio@NarioDev',
+  'embrio@Nariodev',
+  'confessio@NarioDev',
+  'bi@NarioDev',
+  'funcio@NarioDev',
+  'maqui@NarioDev',
+  'merce@Nariodev',
+  'ple@NarioDev',
+  'questio@NarioDev',
+  'veteri@NarioDev',
+  'visio@NarioDev',
+  'culi@NarioDev',
+];
+
+module.exports = { levxycas, narios };
