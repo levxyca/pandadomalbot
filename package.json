@@ -21,16 +21,16 @@
     "export": "node src/export.js"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "fastq": "^1.13.0",
     "tmi.js": "^1.8.5",
     "twitter-v2": "github:edsu/twitter-v2"
   },
   "devDependencies": {
-    "eslint": "^8.8.0",
+    "eslint": "^8.10.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^4.0.0",
     "markdownlint-cli": "^0.31.1",
