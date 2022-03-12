@@ -5,10 +5,12 @@ module.exports = {
   keyword: 'add',
   async execute({ channel, context, argument }) {
     if ('broadcaster' in context.badges) {
+      const streamer = context.username;
+
       if (!argument) {
         await client.say(
           channel,
-          `Pô ${context.username}, eu preciso de mais informações para fazer isso.`,
+          `Pô ${streamer}, eu preciso de mais informações para fazer isso.`,
         );
 
         return;
@@ -17,7 +19,7 @@ module.exports = {
       if (infos.length < 2) {
         await client.say(
           channel,
-          `Pô ${context.username}, você esqueceu de algo hein.`,
+          `Pô ${streamer}, você esqueceu de algo hein.`,
         );
         return;
       }
@@ -25,10 +27,7 @@ module.exports = {
       const qtd = infos[1];
 
       if (Number.isNaN(qtd)) {
-        await client.say(
-          channel,
-          `Ei ${context.username}, adicione apenas números.`,
-        );
+        await client.say(channel, `Ei ${streamer}, adicione apenas números.`);
 
         return;
       }
@@ -36,6 +35,12 @@ module.exports = {
       await people(person, (p) => {
         p.counter.irritations = Number(p.counter.irritations) + Number(qtd);
         p.counter.affections = Number(p.counter.affections) + Number(qtd);
+
+        client.say(
+          channel,
+          `Adicionado ${qtd} carinho(s) e irritar(s) para ${person} levxycNham`,
+        );
+
         return p;
       });
     } else {
