@@ -14,6 +14,13 @@ module.exports = {
         return;
       }
       const infos = argument.split(' ');
+      if (infos.length < 2) {
+        await client.say(
+          channel,
+          `Pô ${context.username}, você esqueceu de algo hein.`,
+        );
+        return;
+      }
       const person = infos[0];
       const qtd = infos[1];
 
