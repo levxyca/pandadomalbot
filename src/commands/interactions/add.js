@@ -41,7 +41,7 @@ module.exports = {
     } else {
       await client.say(
         channel,
-        `${context.tusername} você não tem permissão para dar interações adicionais!`,
+        `${context.username} você não tem permissão para dar interações adicionais!`,
       );
     }
   },
