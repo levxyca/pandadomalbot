@@ -1,8 +1,16 @@
+const { commands } = require('../utilities/commands');
+
 let messages = [];
 
 const REPLY_AFTER = 2; // Responder após quantas mensagens iguais.
+const commandsKeys = commands(true);
 
 function execute({ message }) {
+  if (commandsKeys.includes(message)) {
+    // Ignora comandos.
+    return null;
+  }
+
   messages.push(message);
 
   if (messages.length === REPLY_AFTER) {
