@@ -1,21 +1,9 @@
 const { client } = require('../core/twitch_client');
-const { listJSFiles } = require('../utilities/bot-fs');
-
-const getCommandKeys = (alias) => {
-  const keys = listJSFiles('commands').map((item) => {
-    let command = `${process.env.PREFIX}${item.keyword}`;
-    if (alias && item.aliases?.length > 0) {
-      command += `(${item.aliases?.join(',')})`;
-    }
-    return command;
-  });
-
-  return keys;
-};
+const { commandsAsText } = require('../utilities/commands');
 
 const execute = ({ argument, channel }) => {
-  const keys = getCommandKeys(argument && argument === 'alias');
-  client.say(channel, `Comandos disponíveis: ${keys.sort().join(', ')}.`);
+  const commands = commandsAsText(argument && argument === 'alias');
+  client.say(channel, `Comandos disponíveis: ${commands}.`);
 };
 
 module.exports = {
