@@ -1,7 +1,9 @@
 const { client } = require('../core/twitch_client');
 const { listJSFiles } = require('../utilities/bot-fs');
 
-const regex = new RegExp(`^${process.env.PREFIX}([a-zA-Z0-9]+)(?:\\W+)?(.*)?`);
+const regex = new RegExp(
+  `^${process.env.PREFIX}([a-zà-úA-ZÀ-Ú0-9]+)(?:\\W+)?(.*)?`,
+);
 const commands = listJSFiles('commands');
 const autoReply = listJSFiles('autoreply');
 
