@@ -14,7 +14,7 @@ class Counter {
         total: 0,
         day: 0,
       },
-      oh: {
+      ó: {
         total: 0,
         day: 0,
       },
