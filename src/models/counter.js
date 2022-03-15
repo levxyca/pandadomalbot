@@ -58,10 +58,6 @@ class Counter {
   static fromJSON(json) {
     const counter = Object.assign(new Counter(), json);
 
-    if (!counter.today) {
-      counter.today = dateToString(new Date());
-    }
-
     if (!isToday(dateFromText(counter.today))) {
       Object.keys(counter.counters).forEach((key) => {
         counter.counters[key].day = 0;
