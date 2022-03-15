@@ -1,4 +1,4 @@
-const { isToday } = require('../utilities/date-time');
+const { isToday, dateFromText } = require('../utilities/date-time');
 
 class Person {
   /**
@@ -63,10 +63,7 @@ class Person {
 
     if (!lastUsage) return false;
 
-    const parts = lastUsage.split('/');
-
-    const date = new Date(parts[2], parts[1] - 1, parts[0]);
-    return isToday(date);
+    return isToday(dateFromText(lastUsage));
   }
 
   /**

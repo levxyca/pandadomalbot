@@ -17,7 +17,19 @@ const dateToString = (date) => date.toLocaleDateString('pt-BR');
 const isToday = (date) =>
   dateToString(new Date()) === dateToString(new Date(date));
 
+/**
+ * Cria-se um objeto Date a partir de um texto.
+ *
+ * @param {String} text texto contendo a data no formato DD/MM/YYYY
+ */
+const dateFromText = (text) => {
+  const parts = text.split('/');
+
+  return new Date(parts[2], parts[1] - 1, parts[0]);
+};
+
 module.exports = {
   dateToString,
   isToday,
+  dateFromText,
 };
