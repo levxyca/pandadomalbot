@@ -1,11 +1,12 @@
 const { client } = require('../core/twitch_client');
 const { listJSFiles } = require('../utilities/bot-fs');
+const { listCommands } = require('../utilities/commands');
 
 const regex = new RegExp(
   `^${process.env.PREFIX}([a-zà-úA-ZÀ-Ú0-9]+)(?:\\W+)?(.*)?`,
 );
-const commands = listJSFiles('commands');
 const autoReply = listJSFiles('autoreply');
+const commands = listCommands();
 
 function handleBotCommand(channel, context, message) {
   const command = message.match(regex);
