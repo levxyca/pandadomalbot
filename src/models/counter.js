@@ -35,7 +35,7 @@ class Counter {
     if (counter) {
       counter.total += 1;
       counter.day += 1;
-      this.counters = { ...this.counters, counter };
+      this.counters = { ...this.counters, [key]: { ...counter } };
     }
   }
 
