@@ -1,3 +1,18 @@
+const formatter = new Intl.RelativeTimeFormat('pt-BR', {
+  numeric: 'auto',
+  style: 'long',
+});
+
+const divisions = [
+  { amount: 60, name: 'seconds' },
+  { amount: 60, name: 'minutes' },
+  { amount: 24, name: 'hours' },
+  { amount: 7, name: 'days' },
+  { amount: 4.34524, name: 'weeks' },
+  { amount: 12, name: 'months' },
+  { amount: Number.POSITIVE_INFINITY, name: 'years' },
+];
+
 /**
  * Formata um objeto date para o formato especificado.
  *
@@ -28,8 +43,23 @@ const dateFromText = (text) => {
   return new Date(parts[2], parts[1] - 1, parts[0]);
 };
 
+function fromNow(date) {
+  let duration = (date - new Date()) / 1000;
+
+  let text = '';
+  divisions.forEach((division) => {
+    if (Math.abs(duration) < division.amount) {
+      text += formatter.format(Math.round(duration), division.name);
+    }
+    duration /= division.amount;
+  });
+
+  return text;
+}
+
 module.exports = {
   dateToString,
   isToday,
   dateFromText,
+  fromNow,
 };
