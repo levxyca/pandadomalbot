@@ -47,6 +47,23 @@ Você pode utilizar a conta do seu canal mesmo, caso não tenha uma conta espec�
 - Em seguida, acesse [este serviço][5] e autorize o acesso à sua conta da Twitch
 - Depois de autorizado, guarde o token exibido.
 
+### Client ID/Secret
+
+Visto que também utilizamos a API da Twitch para obter algumas informações, é necessário que você
+registre uma aplicação no [console de desenvolvimento da Twitch][8]
+para obter um _client ID_ e um _client secret_. Para isto:
+
+- Acesse o [console][8] e clique em **Registre seu aplicativo**;
+- Em **Nome**, insira qualquer valor para identificar esta aplicação -
+_se preferir, pode ser o mesmo nome de usuário do bot_;
+- Em **URLs de redirecionamento OAuth**, pode utilizar o valor `http//localhost`. Isto não será importante
+visto que utilizamos o [_credentials flow_](https://dev.twitch.tv/docs/authentication/getting-tokens-oauth#oauth-client-credentials-flow).
+- Em **Categoria**, pode selecionar o valor "Chat Bot";
+- Clique em **Criar**.
+- Na tela seguinte, você terá acesso ao _client ID_ (**ID do cliente**) e _client secret_
+(**Segredo do cliente**), insira-os no arquivo de de variáveis de ambiente substituindo as chaves
+`CLIENT_ID` e `CLIENT_SECRET` respectivamente.
+
 ## Executando
 
 Você pode definir todas as variáveis de ambiente especificadas no arquivo [.env.example][4],
@@ -97,3 +114,4 @@ info: Joined :levxyca
 [5]: https://twitchapps.com/tmi/
 [6]: https://github.com/levxyca/pandadomalbot/issues
 [7]: https://dev.to/levxyca/pt-br-github-para-leigos-4i7j
+[8]: https://dev.twitch.tv/console/apps

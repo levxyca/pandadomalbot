@@ -1,3 +1,5 @@
+const { DateTime } = require('luxon');
+
 /**
  * Formata um objeto date para o formato especificado.
  *
@@ -28,8 +30,25 @@ const dateFromText = (text) => {
   return new Date(parts[2], parts[1] - 1, parts[0]);
 };
 
+/**
+ * Compara a quantidade de anos, meses e dias a partir de hoje.
+ * @param {Date} date data a ser comparada.
+ */
+function diff(date) {
+  const { years, months, days } = DateTime.now()
+    .diff(DateTime.fromJSDate(date), ['years', 'months', 'days'])
+    .toObject();
+
+  return {
+    years: Math.round(years),
+    months: Math.round(months),
+    days: Math.round(days),
+  };
+}
+
 module.exports = {
   dateToString,
   isToday,
   dateFromText,
+  diff,
 };
