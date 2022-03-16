@@ -24,6 +24,7 @@
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "fastq": "^1.13.0",
+    "luxon": "^2.3.1",
     "tmi.js": "^1.8.5",
     "twitter-v2": "github:edsu/twitter-v2"
   },
