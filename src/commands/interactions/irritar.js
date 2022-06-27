@@ -30,7 +30,7 @@ module.exports = {
         if (luck < 0.5) {
           client.say(
             channel,
-            `${person} tentou mas deu azar. Vou prender você e roubar 5 pontos seus.`,
+            `${person} tentou mas deu azar. Vou roubar 5 pontos seus.`,
           );
           client.say(channel, `/timeout ${person} 10`);
           p.points -= Number(5);
