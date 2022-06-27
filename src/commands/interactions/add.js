@@ -32,13 +32,13 @@ module.exports = {
         return;
       }
 
-      await people(person, (p) => {
+      await people(person.toLowerCase(), (p) => {
         p.counter.irritations = Number(p.counter.irritations) + Number(qtd);
         p.counter.affections = Number(p.counter.affections) + Number(qtd);
 
         client.say(
           channel,
-          `Adicionado ${qtd} carinho(s) e irritar(s) para ${person} levxycNham`,
+          `Adicionado ${qtd} carinho(s) e irritar(s) para ${person.toLowerCase()} levxycNham`,
         );
 
         return p;
